@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/basic_info.dart';
+import 'package:subscription_app_web/widgets/button.dart';
 
 class SubscriptionDetail extends StatefulWidget {
   const SubscriptionDetail({
@@ -108,49 +109,19 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
                 const SizedBox(height: 20),
                 _buildPaymentMethodCard(context),
                 const SizedBox(height: 28),
-                SizedBox(
-                  width: 210,
-                  child: OutlinedButton(
-                    onPressed: () => {},
-                    style: OutlinedButton.styleFrom(
-                      primary: Colors.black,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      side: const BorderSide(color: Colors.black),
-                    ),
-                    child: const Text(
-                      "編集",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                Button(
+                  variant: Variant.outline,
+                  text: "編集",
+                  onPressed: () {},
+                  color: Colors.black,
                 ),
                 const SizedBox(height: 12),
-                SizedBox(
-                  width: 210,
-                  child: ElevatedButton(
-                    onPressed: () => {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      side: const BorderSide(color: Colors.red),
-                    ),
-                    child: const Text(
-                      "削除",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
+                Button(
+                  variant: Variant.solid,
+                  text: "削除",
+                  onPressed: () {},
+                  color: Colors.red,
+                ),
               ],
             ),
           ),
