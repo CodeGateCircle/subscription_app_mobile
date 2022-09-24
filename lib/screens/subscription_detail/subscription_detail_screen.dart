@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/screens/subscription_detail/basic_info.dart';
+import 'package:subscription_app_web/screens/subscription_detail/delete_modal.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 
 class SubscriptionDetail extends StatefulWidget {
@@ -17,6 +21,30 @@ class SubscriptionDetail extends StatefulWidget {
 
 class _SubscriptionDetailState extends State<SubscriptionDetail> {
   double progressValue = 0.2;
+
+  Future _deleteSubscription(int id) async {
+    try {
+      await SubscriptionRepository.delete(id);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future _showAlertDialog() async {
+    int count = 0;
+
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DeleteModal(
+          onPressed: () {
+            _deleteSubscription(widget.subscription.subscription_id);
+            Navigator.popUntil(context, (_) => count++ >= 2);
+          },
+        );
+      },
+    );
+  }
 
   Widget _buildPaymentMethodCard(BuildContext context) {
     return Container(
@@ -119,7 +147,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
                 Button(
                   variant: Variant.solid,
                   text: "削除",
-                  onPressed: () {},
+                  onPressed: _showAlertDialog,
                   color: Colors.red,
                 ),
               ],
