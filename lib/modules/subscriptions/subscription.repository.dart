@@ -6,4 +6,8 @@ class SubscriptionRepository {
     final res = await api().get("/subscriptions");
     return FindAllResultData.fromJson(res.data);
   }
+
+  static Future<void> delete(int id) async {
+    await api().delete("/subscriptions/${id.toString()}");
+  }
 }

@@ -39,7 +39,7 @@ class Button extends StatelessWidget {
       return SizedBox(
         width: size,
         child: OutlinedButton(
-          onPressed: () => {},
+          onPressed: onPressed,
           style: OutlinedButton.styleFrom(
             primary: color,
             padding: const EdgeInsets.symmetric(vertical: 12),
@@ -55,7 +55,7 @@ class Button extends StatelessWidget {
       return SizedBox(
         width: size,
         child: ElevatedButton(
-          onPressed: () => {},
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             primary: color,
             padding: const EdgeInsets.symmetric(vertical: 12),
