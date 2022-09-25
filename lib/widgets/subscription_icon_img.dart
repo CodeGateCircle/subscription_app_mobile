@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 
 class SubscriptionIconImage extends StatefulWidget {
   const SubscriptionIconImage({
     Key? key,
-    required this.subscription,
-    this.iconSize,
+    required this.iconImageUrl,
+    this.iconSize = 56,
   }) : super(key: key);
 
-  final Subscription subscription;
+  final String? iconImageUrl;
   final double? iconSize;
 
   @override
@@ -17,32 +15,30 @@ class SubscriptionIconImage extends StatefulWidget {
 }
 
 class _SubscriptionIconImageState extends State<SubscriptionIconImage> {
-  final double defaultSize = 56;
-
   @override
   Widget build(BuildContext context) {
-    final double defaultSvgSize =
-        widget.iconSize == null ? defaultSize - 20 : widget.iconSize! - 20;
+    final double defaultIconSize = widget.iconSize! / 2;
 
-    return widget.subscription.image_url != null &&
-            widget.subscription.image_url!.startsWith('http')
+    return widget.iconImageUrl != null &&
+            widget.iconImageUrl!.startsWith('http')
         ? CircleAvatar(
-            radius: widget.iconSize ?? defaultSize,
-            backgroundImage: NetworkImage(widget.subscription.image_url!),
+            radius: widget.iconSize,
+            backgroundImage: NetworkImage(widget.iconImageUrl!),
           )
         : Container(
-            width: widget.iconSize ?? defaultSize,
-            height: widget.iconSize ?? defaultSize,
+            width: widget.iconSize,
+            height: widget.iconSize,
             decoration: BoxDecoration(
-              border: Border.all(width: 1, color: Colors.grey),
+              border: Border.all(
+                width: 1,
+                color: const Color.fromRGBO(240, 237, 235, 1),
+              ),
               borderRadius: BorderRadius.circular(999),
             ),
-            child: SvgPicture.asset(
-              'images/device_mobile.svg',
-              semanticsLabel: 'subscription_default_icon',
-              width: defaultSvgSize,
-              height: defaultSvgSize,
-              color: Colors.grey,
+            child: Icon(
+              Icons.image,
+              size: defaultIconSize,
+              color: const Color.fromRGBO(17, 17, 17, 0.25),
             ),
           );
   }
