@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:subscription_app_web/screens/add_subscription/add_subscription_screen.dart';
+import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
+
 import 'package:subscription_app_web/screens/search_subscription/search_input.dart';
 
 class SearchSubscription extends StatefulWidget {
@@ -31,7 +32,7 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddSubscription(),
+                    builder: (context) => const CreateSubscription(),
                   ),
                 );
               },

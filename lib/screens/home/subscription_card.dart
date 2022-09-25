@@ -82,7 +82,9 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SubscriptionIconImage(subscription: widget.subscription),
+            SubscriptionIconImage(
+              iconImageUrl: widget.subscription.image_url,
+            ),
             const SizedBox(width: 8),
             Expanded(
               child: Column(

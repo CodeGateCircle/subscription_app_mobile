@@ -22,7 +22,7 @@ class _BasicInfoAreaState extends State<BasicInfoArea> {
       child: Row(
         children: [
           SubscriptionIconImage(
-            subscription: widget.subscription,
+            iconImageUrl: widget.subscription.image_url,
             iconSize: 96,
           ),
           const SizedBox(width: 15),

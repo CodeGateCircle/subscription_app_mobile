@@ -37,24 +37,63 @@ const _$PaymentCycleEnumMap = {
   PaymentCycle.year: 'year',
 };
 
-FindAllResultData _$FindAllResultDataFromJson(Map<String, dynamic> json) =>
-    FindAllResultData(
-      data: FindAllResult.fromJson(json['data'] as Map<String, dynamic>),
+ResponseData _$ResponseDataFromJson(Map<String, dynamic> json) => ResponseData(
+      data:
+          ResponseSubscriptions.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$FindAllResultDataToJson(FindAllResultData instance) =>
+Map<String, dynamic> _$ResponseDataToJson(ResponseData instance) =>
     <String, dynamic>{
       'data': instance.data,
     };
 
-FindAllResult _$FindAllResultFromJson(Map<String, dynamic> json) =>
-    FindAllResult(
+ResponseSubscriptions _$ResponseSubscriptionsFromJson(
+        Map<String, dynamic> json) =>
+    ResponseSubscriptions(
       subscriptions: (json['subscriptions'] as List<dynamic>)
           .map((e) => Subscription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$FindAllResultToJson(FindAllResult instance) =>
+Map<String, dynamic> _$ResponseSubscriptionsToJson(
+        ResponseSubscriptions instance) =>
     <String, dynamic>{
       'subscriptions': instance.subscriptions,
+    };
+
+CreateRequestData _$CreateRequestDataFromJson(Map<String, dynamic> json) =>
+    CreateRequestData(
+      user_id: json['user_id'] as int,
+      subscriptions: CreateRequestSubscription.fromJson(
+          json['subscriptions'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CreateRequestDataToJson(CreateRequestData instance) =>
+    <String, dynamic>{
+      'user_id': instance.user_id,
+      'subscriptions': instance.subscriptions,
+    };
+
+CreateRequestSubscription _$CreateRequestSubscriptionFromJson(
+        Map<String, dynamic> json) =>
+    CreateRequestSubscription(
+      name: json['name'] as String,
+      price: json['price'] as int,
+      payment_cycle: $enumDecode(_$PaymentCycleEnumMap, json['payment_cycle']),
+      first_payment_date: DateTime.parse(json['first_payment_date'] as String),
+      payment_method: json['payment_method'] as String,
+      remarks: json['remarks'] as String,
+      image_url: json['image_url'] as String,
+    );
+
+Map<String, dynamic> _$CreateRequestSubscriptionToJson(
+        CreateRequestSubscription instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'price': instance.price,
+      'payment_cycle': _$PaymentCycleEnumMap[instance.payment_cycle]!,
+      'first_payment_date': instance.first_payment_date.toIso8601String(),
+      'payment_method': instance.payment_method,
+      'remarks': instance.remarks,
+      'image_url': instance.image_url,
     };
