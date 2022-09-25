@@ -3,6 +3,7 @@ import 'package:subscription_app_web/modules/subscriptions/subscription.entity.d
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/screens/home/subscription_list.dart';
 import 'package:subscription_app_web/screens/home/total_amount.dart';
+import 'package:subscription_app_web/screens/search_subscription/search_subscription_screen.dart';
 import 'package:subscription_app_web/widgets/app_bottom_navigation_bar.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  static const double floatingActionButtonSize = 64;
   List<Subscription> subscriptions = [];
   int totalAmount = 0;
 
@@ -55,6 +57,22 @@ class _HomeState extends State<Home> {
         ],
       ),
       bottomNavigationBar: AppBottomNavigationBar(),
+      floatingActionButton: SizedBox(
+        width: floatingActionButtonSize,
+        height: floatingActionButtonSize,
+        child: FloatingActionButton(
+          backgroundColor: Colors.red,
+          child: const Icon(Icons.add, size: 32),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SearchSubscription(),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
