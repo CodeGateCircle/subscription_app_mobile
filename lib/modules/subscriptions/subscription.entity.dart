@@ -37,27 +37,27 @@ class Subscription {
 }
 
 @JsonSerializable()
-class FindAllResultData {
-  FindAllResult data;
+class Response {
+  ResponseData data;
 
-  FindAllResultData({
+  Response({
     required this.data,
   });
 
-  factory FindAllResultData.fromJson(Map<String, dynamic> json) =>
-      _$FindAllResultDataFromJson(json);
-  Map<String, dynamic> toJson() => _$FindAllResultDataToJson(this);
+  factory Response.fromJson(Map<String, dynamic> json) =>
+      _$ResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$ResponseToJson(this);
 }
 
 @JsonSerializable()
-class FindAllResult {
+class ResponseData {
   List<Subscription> subscriptions;
 
-  FindAllResult({
+  ResponseData({
     required this.subscriptions,
   });
 
-  factory FindAllResult.fromJson(Map<String, dynamic> json) =>
-      _$FindAllResultFromJson(json);
-  Map<String, dynamic> toJson() => _$FindAllResultToJson(this);
+  factory ResponseData.fromJson(Map<String, dynamic> json) =>
+      _$ResponseDataFromJson(json);
+  Map<String, dynamic> toJson() => _$ResponseDataToJson(this);
 }

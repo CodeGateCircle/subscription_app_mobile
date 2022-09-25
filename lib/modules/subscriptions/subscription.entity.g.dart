@@ -37,24 +37,21 @@ const _$PaymentCycleEnumMap = {
   PaymentCycle.year: 'year',
 };
 
-FindAllResultData _$FindAllResultDataFromJson(Map<String, dynamic> json) =>
-    FindAllResultData(
-      data: FindAllResult.fromJson(json['data'] as Map<String, dynamic>),
+Response _$ResponseFromJson(Map<String, dynamic> json) => Response(
+      data: ResponseData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$FindAllResultDataToJson(FindAllResultData instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ResponseToJson(Response instance) => <String, dynamic>{
       'data': instance.data,
     };
 
-FindAllResult _$FindAllResultFromJson(Map<String, dynamic> json) =>
-    FindAllResult(
+ResponseData _$ResponseDataFromJson(Map<String, dynamic> json) => ResponseData(
       subscriptions: (json['subscriptions'] as List<dynamic>)
           .map((e) => Subscription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$FindAllResultToJson(FindAllResult instance) =>
+Map<String, dynamic> _$ResponseDataToJson(ResponseData instance) =>
     <String, dynamic>{
       'subscriptions': instance.subscriptions,
     };
