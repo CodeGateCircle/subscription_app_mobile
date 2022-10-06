@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/screens/home/subscription_list.dart';
 import 'package:subscription_app_web/screens/home/total_amount.dart';
 import 'package:subscription_app_web/screens/search_subscription/search_subscription_screen.dart';
 import 'package:subscription_app_web/widgets/app_bottom_navigation_bar.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({Key? key}) : super(key: key);
   @override
-  State<Home> createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends ConsumerState<Home> {
   static const double floatingActionButtonSize = 64;
-  List<Subscription> subscriptions = [];
+  // List<Subscription> subscriptions = [];
   int totalAmount = 0;
 
   Future fetchSubscriptions() async {
     try {
       final res = await SubscriptionRepository.findAll();
-      setState(() {
-        subscriptions = res.data.subscriptions;
-      });
+      ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
+      // setState(() {
+      //   subscriptions = res.data.subscriptions;
+      // });
       calculateTotalsAmount();
     } catch (e) {
       debugPrint(e.toString());
@@ -30,7 +32,7 @@ class _HomeState extends State<Home> {
   }
 
   int calculateTotalsAmount() {
-    for (final subscription in subscriptions) {
+    for (final subscription in ref.watch(subscriptionsProvider)) {
       setState(() {
         totalAmount = totalAmount + subscription.price;
       });
@@ -52,7 +54,9 @@ class _HomeState extends State<Home> {
         children: [
           TotalAmount(totalAmount: totalAmount),
           Expanded(
-            child: SubscriptionList(subscriptions: subscriptions),
+            child: SubscriptionList(
+              subscriptions: ref.watch(subscriptionsProvider),
+            ),
           )
         ],
       ),

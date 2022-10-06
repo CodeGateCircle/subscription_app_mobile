@@ -42,12 +42,34 @@ const _$PaymentMethodEnumMap = {
   PaymentMethod.card: 'card',
 };
 
-ResponseData _$ResponseDataFromJson(Map<String, dynamic> json) => ResponseData(
+FindAllResponseData _$FindAllResponseDataFromJson(Map<String, dynamic> json) =>
+    FindAllResponseData(
       data:
           ResponseSubscriptions.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ResponseDataToJson(ResponseData instance) =>
+Map<String, dynamic> _$FindAllResponseDataToJson(
+        FindAllResponseData instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
+CreateResponseData _$CreateResponseDataFromJson(Map<String, dynamic> json) =>
+    CreateResponseData(
+      data: ResponseSubscription.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CreateResponseDataToJson(CreateResponseData instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
+UpdateResponseData _$UpdateResponseDataFromJson(Map<String, dynamic> json) =>
+    UpdateResponseData(
+      data: ResponseSubscription.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$UpdateResponseDataToJson(UpdateResponseData instance) =>
     <String, dynamic>{
       'data': instance.data,
     };
@@ -66,39 +88,50 @@ Map<String, dynamic> _$ResponseSubscriptionsToJson(
       'subscriptions': instance.subscriptions,
     };
 
-CreateRequestData _$CreateRequestDataFromJson(Map<String, dynamic> json) =>
-    CreateRequestData(
+ResponseSubscription _$ResponseSubscriptionFromJson(
+        Map<String, dynamic> json) =>
+    ResponseSubscription(
+      subscription:
+          Subscription.fromJson(json['subscription'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ResponseSubscriptionToJson(
+        ResponseSubscription instance) =>
+    <String, dynamic>{
+      'subscription': instance.subscription,
+    };
+
+RequestData _$RequestDataFromJson(Map<String, dynamic> json) => RequestData(
       userId: json['userId'] as int,
-      subscriptions: CreateRequestSubscription.fromJson(
+      subscriptions: RequestSubscription.fromJson(
           json['subscriptions'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CreateRequestDataToJson(CreateRequestData instance) =>
+Map<String, dynamic> _$RequestDataToJson(RequestData instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'subscriptions': instance.subscriptions,
     };
 
-CreateRequestSubscription _$CreateRequestSubscriptionFromJson(
-        Map<String, dynamic> json) =>
-    CreateRequestSubscription(
+RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
+    RequestSubscription(
       name: json['name'] as String,
       price: json['price'] as int,
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
-      remarks: json['remarks'] as String,
-      imageUrl: json['imageUrl'] as String,
+      image: json['image'] as String?,
+      remarks: json['remarks'] as String?,
     );
 
-Map<String, dynamic> _$CreateRequestSubscriptionToJson(
-        CreateRequestSubscription instance) =>
+Map<String, dynamic> _$RequestSubscriptionToJson(
+        RequestSubscription instance) =>
     <String, dynamic>{
       'name': instance.name,
       'price': instance.price,
       'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
       'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
+      'image': instance.image,
       'remarks': instance.remarks,
-      'imageUrl': instance.imageUrl,
     };

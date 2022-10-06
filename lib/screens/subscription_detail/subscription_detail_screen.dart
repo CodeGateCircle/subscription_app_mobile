@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
+import 'package:subscription_app_web/screens/edit_subscription/edit_subscription_screen.dart';
 import 'package:subscription_app_web/screens/subscription_detail/basic_info.dart';
 import 'package:subscription_app_web/screens/subscription_detail/delete_modal.dart';
 import 'package:subscription_app_web/widgets/button.dart';
@@ -79,11 +80,29 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
     );
   }
 
+  void moveToEditScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditSubscription(
+          id: widget.subscription.subscriptionId,
+          name: widget.subscription.name,
+          paymentCycle: widget.subscription.paymentCycle,
+          price: widget.subscription.price,
+          paymentMethod: widget.subscription.paymentMethod,
+          firstPaymentDate: widget.subscription.firstPaymentDate,
+          iconImage: widget.subscription.imageUrl,
+          remarks: widget.subscription.remarks,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 64,
+        toolbarHeight: 50,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
@@ -95,7 +114,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
             color: Colors.black,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: Column(
@@ -138,7 +157,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
                 Button(
                   variant: Variant.outline,
                   text: "編集",
-                  onPressed: () {},
+                  onPressed: moveToEditScreen,
                   color: Colors.black,
                 ),
                 const SizedBox(height: 12),

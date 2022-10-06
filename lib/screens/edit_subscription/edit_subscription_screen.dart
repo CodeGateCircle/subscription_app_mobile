@@ -1,27 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/widgets/update_subscription_form.dart';
 
-class CreateSubscription extends StatefulWidget {
-  const CreateSubscription({Key? key}) : super(key: key);
+class EditSubscription extends ConsumerStatefulWidget {
+  const EditSubscription({
+    Key? key,
+    required this.id,
+    required this.name,
+    required this.paymentCycle,
+    required this.price,
+    required this.paymentMethod,
+    required this.firstPaymentDate,
+    required this.iconImage,
+    required this.remarks,
+  }) : super(key: key);
+
+  final int id;
+  final String name;
+  final PaymentCycle paymentCycle;
+  final int price;
+  final PaymentMethod paymentMethod;
+  final DateTime firstPaymentDate;
+  final String? iconImage;
+  final String? remarks;
 
   @override
-  State<CreateSubscription> createState() => _CreateSubscriptionState();
+  EditSubscriptionState createState() => EditSubscriptionState();
 }
 
-class _CreateSubscriptionState extends State<CreateSubscription> {
-  String name = "";
-  PaymentCycle paymentCycle = PaymentCycle.oneMonth;
-  int price = 0;
-  PaymentMethod paymentMethod = PaymentMethod.cash;
-  DateTime firstPaymentDate = DateTime.now();
-  XFile? iconImage;
-  String? remarks;
+class EditSubscriptionState extends ConsumerState<EditSubscription> {
+  late String name;
+  late PaymentCycle paymentCycle;
+  late int price;
+  late PaymentMethod paymentMethod;
+  late DateTime firstPaymentDate;
+  late XFile? iconImage;
+  late String? remarks;
 
-  // TODO: globalStateにサブスクを追加する処理を追加
-  Future _createSubscription() async {
+  @override
+  void initState() {
+    setState(() {
+      name = widget.name;
+      paymentCycle = widget.paymentCycle;
+      price = widget.price;
+      paymentMethod = widget.paymentMethod;
+      firstPaymentDate = widget.firstPaymentDate;
+      iconImage = XFile(widget.iconImage ?? "");
+      remarks = widget.remarks;
+    });
+    super.initState();
+  }
+
+  Future _editSubscription() async {
     final postData = RequestData(
       userId: 0,
       subscriptions: RequestSubscription(
@@ -35,11 +69,14 @@ class _CreateSubscriptionState extends State<CreateSubscription> {
       ),
     );
     try {
-      // final res = await SubscriptionRepository.create(postData);
+      // TODO: グローバルステートの更新処理を記述する
+      final res = await SubscriptionRepository.update(postData, widget.id);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
+
+  Future _pauseSubscription() async {}
 
   void setName(String value) {
     setState(() {
@@ -96,14 +133,33 @@ class _CreateSubscriptionState extends State<CreateSubscription> {
             color: Colors.black,
           ),
           actions: [
+            GestureDetector(
+              onTap: _pauseSubscription,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(
+                    Icons.pause_circle_outline,
+                    color: Colors.black,
+                  ),
+                  Text(
+                    "一時停止",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
             Button(
               variant: Variant.solid,
-              text: "登録",
+              text: "更新",
               size: 90,
               color: Colors.red,
               onPressed: () {
                 int count = 0;
-                _createSubscription();
+                _editSubscription();
                 Navigator.popUntil(context, (_) => count++ >= 2);
               },
             ),
