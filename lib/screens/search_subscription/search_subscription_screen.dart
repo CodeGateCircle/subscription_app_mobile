@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:subscription_app_web/screens/search_subscription/search_input.dart';
 import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
+import 'package:subscription_app_web/widgets/button.dart';
 
 class SearchSubscription extends StatefulWidget {
   const SearchSubscription({Key? key}) : super(key: key);
@@ -24,10 +25,10 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
             color: Colors.black,
           ),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.create),
-              iconSize: 32,
-              tooltip: '新しいサブスクを作成',
+            Button(
+              variant: Variant.solid,
+              text: "作成",
+              size: 90,
               color: Colors.black,
               onPressed: () {
                 Navigator.push(
@@ -38,7 +39,7 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
                 );
               },
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 12),
           ],
           backgroundColor: Colors.transparent,
           elevation: 0,
