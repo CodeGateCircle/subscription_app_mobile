@@ -36,7 +36,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
       builder: (BuildContext context) {
         return DeleteModal(
           onPressed: () {
-            _deleteSubscription(widget.subscription.subscription_id);
+            _deleteSubscription(widget.subscription.subscriptionId);
             Navigator.popUntil(context, (_) => count++ >= 2);
           },
         );

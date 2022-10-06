@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
-import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/screens/create_subscription/dropdown_button_widget.dart';
 import 'package:subscription_app_web/screens/create_subscription/text_field_widget.dart';
 import 'package:subscription_app_web/screens/create_subscription/upload_icon_image_field.dart';
@@ -17,7 +15,7 @@ class CreateSubscription extends StatefulWidget {
 class _CreateSubscriptionState extends State<CreateSubscription> {
   XFile iconImage = XFile("");
   String name = "";
-  PaymentCycle paymentCycle = PaymentCycle.month;
+  PaymentCycle paymentCycle = PaymentCycle.oneMonth;
   int price = 0;
   DateTime? firstPaymentDate;
   String paymentMethod = "現金";
@@ -75,7 +73,7 @@ class _CreateSubscriptionState extends State<CreateSubscription> {
 
     final paymentCycleOptions = [
       DropdownMenuItem(
-        value: PaymentCycle.month,
+        value: PaymentCycle.oneMonth,
         child: _buildOptionText(context, "1ヶ月"),
       ),
       DropdownMenuItem(

@@ -7,34 +7,39 @@ part of 'subscription.entity.dart';
 // **************************************************************************
 
 Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
-      subscription_id: json['subscription_id'] as int,
+      subscriptionId: json['subscriptionId'] as int,
       name: json['name'] as String,
       price: json['price'] as int,
-      payment_cycle: $enumDecode(_$PaymentCycleEnumMap, json['payment_cycle']),
-      first_payment_date: DateTime.parse(json['first_payment_date'] as String),
-      payment_method: json['payment_method'] as String,
+      paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
+      firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
+      paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
       remarks: json['remarks'] as String?,
-      image_url: json['image_url'] as String?,
+      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
     <String, dynamic>{
-      'subscription_id': instance.subscription_id,
+      'subscriptionId': instance.subscriptionId,
       'name': instance.name,
       'price': instance.price,
-      'payment_cycle': _$PaymentCycleEnumMap[instance.payment_cycle]!,
-      'first_payment_date': instance.first_payment_date.toIso8601String(),
-      'payment_method': instance.payment_method,
+      'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
+      'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
+      'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
       'remarks': instance.remarks,
-      'image_url': instance.image_url,
+      'imageUrl': instance.imageUrl,
     };
 
 const _$PaymentCycleEnumMap = {
-  PaymentCycle.month: 'month',
+  PaymentCycle.oneMonth: 'oneMonth',
   PaymentCycle.twoMonths: 'twoMonths',
   PaymentCycle.threeMonths: 'threeMonths',
   PaymentCycle.sixMonths: 'sixMonths',
   PaymentCycle.year: 'year',
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cash: 'cash',
+  PaymentMethod.card: 'card',
 };
 
 ResponseData _$ResponseDataFromJson(Map<String, dynamic> json) => ResponseData(
@@ -63,14 +68,14 @@ Map<String, dynamic> _$ResponseSubscriptionsToJson(
 
 CreateRequestData _$CreateRequestDataFromJson(Map<String, dynamic> json) =>
     CreateRequestData(
-      user_id: json['user_id'] as int,
+      userId: json['userId'] as int,
       subscriptions: CreateRequestSubscription.fromJson(
           json['subscriptions'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CreateRequestDataToJson(CreateRequestData instance) =>
     <String, dynamic>{
-      'user_id': instance.user_id,
+      'userId': instance.userId,
       'subscriptions': instance.subscriptions,
     };
 
@@ -79,11 +84,11 @@ CreateRequestSubscription _$CreateRequestSubscriptionFromJson(
     CreateRequestSubscription(
       name: json['name'] as String,
       price: json['price'] as int,
-      payment_cycle: $enumDecode(_$PaymentCycleEnumMap, json['payment_cycle']),
-      first_payment_date: DateTime.parse(json['first_payment_date'] as String),
-      payment_method: json['payment_method'] as String,
+      paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
+      firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
+      paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
       remarks: json['remarks'] as String,
-      image_url: json['image_url'] as String,
+      imageUrl: json['imageUrl'] as String,
     );
 
 Map<String, dynamic> _$CreateRequestSubscriptionToJson(
@@ -91,9 +96,9 @@ Map<String, dynamic> _$CreateRequestSubscriptionToJson(
     <String, dynamic>{
       'name': instance.name,
       'price': instance.price,
-      'payment_cycle': _$PaymentCycleEnumMap[instance.payment_cycle]!,
-      'first_payment_date': instance.first_payment_date.toIso8601String(),
-      'payment_method': instance.payment_method,
+      'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
+      'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
+      'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
       'remarks': instance.remarks,
-      'image_url': instance.image_url,
+      'imageUrl': instance.imageUrl,
     };
