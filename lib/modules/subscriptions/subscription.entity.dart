@@ -2,33 +2,38 @@ import 'package:json_annotation/json_annotation.dart';
 part 'subscription.entity.g.dart';
 
 enum PaymentCycle {
-  month,
+  oneMonth,
   twoMonths,
   threeMonths,
   sixMonths,
   year,
 }
 
+enum PaymentMethod {
+  cash,
+  card,
+}
+
 @JsonSerializable()
 class Subscription {
-  late int subscription_id;
+  late int subscriptionId;
   late String name;
   late int price;
-  late PaymentCycle payment_cycle;
-  late DateTime first_payment_date;
-  late String payment_method;
+  late PaymentCycle paymentCycle;
+  late DateTime firstPaymentDate;
+  late PaymentMethod paymentMethod;
   late String? remarks;
-  late String? image_url;
+  late String? imageUrl;
 
   Subscription({
-    required this.subscription_id,
+    required this.subscriptionId,
     required this.name,
     required this.price,
-    required this.payment_cycle,
-    required this.first_payment_date,
-    required this.payment_method,
+    required this.paymentCycle,
+    required this.firstPaymentDate,
+    required this.paymentMethod,
     this.remarks,
-    this.image_url,
+    this.imageUrl,
   });
 
   factory Subscription.fromJson(Map<String, dynamic> json) =>
@@ -64,11 +69,11 @@ class ResponseSubscriptions {
 
 @JsonSerializable()
 class CreateRequestData {
-  late int user_id;
+  late int userId;
   late CreateRequestSubscription subscriptions;
 
   CreateRequestData({
-    required this.user_id,
+    required this.userId,
     required this.subscriptions,
   });
 
@@ -81,20 +86,20 @@ class CreateRequestData {
 class CreateRequestSubscription {
   late String name;
   late int price;
-  late PaymentCycle payment_cycle;
-  late DateTime first_payment_date;
-  late String payment_method;
+  late PaymentCycle paymentCycle;
+  late DateTime firstPaymentDate;
+  late PaymentMethod paymentMethod;
   late String remarks;
-  late String image_url;
+  late String imageUrl;
 
   CreateRequestSubscription({
     required this.name,
     required this.price,
-    required this.payment_cycle,
-    required this.first_payment_date,
-    required this.payment_method,
+    required this.paymentCycle,
+    required this.firstPaymentDate,
+    required this.paymentMethod,
     required this.remarks,
-    required this.image_url,
+    required this.imageUrl,
   });
 
   factory CreateRequestSubscription.fromJson(Map<String, dynamic> json) =>
