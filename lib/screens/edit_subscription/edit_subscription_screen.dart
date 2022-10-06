@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/widgets/update_subscription_form.dart';
 
-class EditSubscription extends StatefulWidget {
+class EditSubscription extends ConsumerStatefulWidget {
   const EditSubscription({
     Key? key,
     required this.id,
@@ -28,10 +29,10 @@ class EditSubscription extends StatefulWidget {
   final String? remarks;
 
   @override
-  State<EditSubscription> createState() => _EditSubscriptionState();
+  EditSubscriptionState createState() => EditSubscriptionState();
 }
 
-class _EditSubscriptionState extends State<EditSubscription> {
+class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late String name;
   late PaymentCycle paymentCycle;
   late int price;
@@ -68,6 +69,7 @@ class _EditSubscriptionState extends State<EditSubscription> {
       ),
     );
     try {
+      // TODO: グローバルステートの更新処理を記述する
       final res = await SubscriptionRepository.update(postData, widget.id);
     } catch (e) {
       debugPrint(e.toString());
