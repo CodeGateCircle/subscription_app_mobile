@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
 
 import 'package:subscription_app_web/screens/search_subscription/search_input.dart';
+import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
 
 class SearchSubscription extends StatefulWidget {
   const SearchSubscription({Key? key}) : super(key: key);

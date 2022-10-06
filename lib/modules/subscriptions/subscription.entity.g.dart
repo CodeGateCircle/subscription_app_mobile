@@ -87,8 +87,8 @@ CreateRequestSubscription _$CreateRequestSubscriptionFromJson(
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
-      remarks: json['remarks'] as String,
-      imageUrl: json['imageUrl'] as String,
+      image: json['image'] as String?,
+      remarks: json['remarks'] as String?,
     );
 
 Map<String, dynamic> _$CreateRequestSubscriptionToJson(
@@ -99,6 +99,6 @@ Map<String, dynamic> _$CreateRequestSubscriptionToJson(
       'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
       'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
+      'image': instance.image,
       'remarks': instance.remarks,
-      'imageUrl': instance.imageUrl,
     };

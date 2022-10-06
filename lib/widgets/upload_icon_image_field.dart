@@ -5,11 +5,11 @@ import 'package:image_picker/image_picker.dart';
 class UploadIconImageField extends StatelessWidget {
   const UploadIconImageField({
     Key? key,
-    required this.iconImage,
     required this.onTapIconImage,
+    this.iconImage,
   }) : super(key: key);
 
-  final XFile iconImage;
+  final XFile? iconImage;
   final void Function() onTapIconImage;
 
   final double imageSize = 96;
@@ -20,10 +20,10 @@ class UploadIconImageField extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTapIconImage,
-          child: iconImage.path != ""
+          child: iconImage != null
               ? CircleAvatar(
                   radius: imageSize / 2,
-                  backgroundImage: Image.file(File(iconImage.path)).image,
+                  backgroundImage: Image.file(File(iconImage!.path)).image,
                 )
               : Container(
                   width: imageSize,
