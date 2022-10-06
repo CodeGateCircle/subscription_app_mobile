@@ -121,6 +121,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 onTapIconImage: onTapIconImage,
               ),
               TextFieldWidget(
+                initialValue: widget.name,
                 labelText: "サブスク名",
                 hintText: "登録するサブスク名を記入してください",
                 onChanged: (String value) {
@@ -136,6 +137,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 },
               ),
               TextFieldWidget(
+                initialValue: widget.price.toString(),
                 labelText: "月額料金（JPY）",
                 hintText: "料金を記入してください",
                 onChanged: (String value) {
@@ -151,6 +153,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 },
               ),
               TextFieldWidget(
+                initialValue: widget.remarks,
                 labelText: "メモ",
                 hintText: "メモの記入ができます",
                 onChanged: (String value) {

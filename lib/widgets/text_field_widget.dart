@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
     Key? key,
+    required this.initialValue,
     required this.labelText,
     required this.hintText,
     required this.onChanged,
     this.isMultiline = false,
   }) : super(key: key);
 
+  final String? initialValue;
   final String labelText;
   final String hintText;
   final void Function(String) onChanged;
@@ -27,6 +29,13 @@ class TextFieldWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextField(
+          controller: TextEditingController(
+            text: initialValue == null ||
+                    initialValue == "" ||
+                    initialValue == "0"
+                ? null
+                : initialValue,
+          ),
           onChanged: (text) {
             onChanged(text);
           },

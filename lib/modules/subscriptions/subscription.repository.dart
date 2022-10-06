@@ -7,8 +7,14 @@ class SubscriptionRepository {
     return ResponseData.fromJson(res.data);
   }
 
-  static Future<ResponseData> create(CreateRequestData subscription) async {
+  static Future<ResponseData> create(RequestData subscription) async {
     final res = await api().post("/subscriptions", data: subscription);
+    return ResponseData.fromJson(res.data);
+  }
+
+  static Future<ResponseData> update(RequestData subscription, int id) async {
+    final res =
+        await api().put("/subscriptions/${id.toString()}", data: subscription);
     return ResponseData.fromJson(res.data);
   }
 

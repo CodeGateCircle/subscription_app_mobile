@@ -68,22 +68,22 @@ class ResponseSubscriptions {
 }
 
 @JsonSerializable()
-class CreateRequestData {
+class RequestData {
   late int userId;
-  late CreateRequestSubscription subscriptions;
+  late RequestSubscription subscriptions;
 
-  CreateRequestData({
+  RequestData({
     required this.userId,
     required this.subscriptions,
   });
 
-  factory CreateRequestData.fromJson(Map<String, dynamic> json) =>
-      _$CreateRequestDataFromJson(json);
-  Map<String, dynamic> toJson() => _$CreateRequestDataToJson(this);
+  factory RequestData.fromJson(Map<String, dynamic> json) =>
+      _$RequestDataFromJson(json);
+  Map<String, dynamic> toJson() => _$RequestDataToJson(this);
 }
 
 @JsonSerializable()
-class CreateRequestSubscription {
+class RequestSubscription {
   late String name;
   late int price;
   late PaymentCycle paymentCycle;
@@ -92,7 +92,7 @@ class CreateRequestSubscription {
   late String? image;
   late String? remarks;
 
-  CreateRequestSubscription({
+  RequestSubscription({
     required this.name,
     required this.price,
     required this.paymentCycle,
@@ -102,7 +102,7 @@ class CreateRequestSubscription {
     this.remarks,
   });
 
-  factory CreateRequestSubscription.fromJson(Map<String, dynamic> json) =>
-      _$CreateRequestSubscriptionFromJson(json);
-  Map<String, dynamic> toJson() => _$CreateRequestSubscriptionToJson(this);
+  factory RequestSubscription.fromJson(Map<String, dynamic> json) =>
+      _$RequestSubscriptionFromJson(json);
+  Map<String, dynamic> toJson() => _$RequestSubscriptionToJson(this);
 }

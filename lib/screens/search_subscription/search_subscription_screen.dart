@@ -17,6 +17,7 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 50,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
@@ -39,12 +40,12 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
             ),
             const SizedBox(width: 10),
           ],
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           elevation: 0,
           titleSpacing: 20,
         ),
         body: Column(
-          children: [
+          children: const [
             SearchInput(),
           ],
         ),

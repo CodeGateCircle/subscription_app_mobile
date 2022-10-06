@@ -20,7 +20,7 @@ class UploadIconImageField extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTapIconImage,
-          child: iconImage != null
+          child: iconImage != null && iconImage!.path != "string"
               ? CircleAvatar(
                   radius: imageSize / 2,
                   backgroundImage: Image.file(File(iconImage!.path)).image,

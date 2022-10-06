@@ -66,22 +66,20 @@ Map<String, dynamic> _$ResponseSubscriptionsToJson(
       'subscriptions': instance.subscriptions,
     };
 
-CreateRequestData _$CreateRequestDataFromJson(Map<String, dynamic> json) =>
-    CreateRequestData(
+RequestData _$RequestDataFromJson(Map<String, dynamic> json) => RequestData(
       userId: json['userId'] as int,
-      subscriptions: CreateRequestSubscription.fromJson(
+      subscriptions: RequestSubscription.fromJson(
           json['subscriptions'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CreateRequestDataToJson(CreateRequestData instance) =>
+Map<String, dynamic> _$RequestDataToJson(RequestData instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'subscriptions': instance.subscriptions,
     };
 
-CreateRequestSubscription _$CreateRequestSubscriptionFromJson(
-        Map<String, dynamic> json) =>
-    CreateRequestSubscription(
+RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
+    RequestSubscription(
       name: json['name'] as String,
       price: json['price'] as int,
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
@@ -91,8 +89,8 @@ CreateRequestSubscription _$CreateRequestSubscriptionFromJson(
       remarks: json['remarks'] as String?,
     );
 
-Map<String, dynamic> _$CreateRequestSubscriptionToJson(
-        CreateRequestSubscription instance) =>
+Map<String, dynamic> _$RequestSubscriptionToJson(
+        RequestSubscription instance) =>
     <String, dynamic>{
       'name': instance.name,
       'price': instance.price,
