@@ -32,7 +32,6 @@ class HomeState extends ConsumerState<Home> {
       final userId = ref.watch(currentUserProvider)!.userId;
       final res = await SubscriptionRepository.findAll(userId);
       ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
-      calculateTotalsAmount();
     } catch (e) {
       logger.e("error: $e");
     }
@@ -52,7 +51,7 @@ class HomeState extends ConsumerState<Home> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TotalAmount(totalAmount: totalAmount),
+            TotalAmount(totalAmount: calculateTotalsAmount()),
             Expanded(
               child: SubscriptionList(
                 subscriptions: ref.watch(subscriptionsProvider),

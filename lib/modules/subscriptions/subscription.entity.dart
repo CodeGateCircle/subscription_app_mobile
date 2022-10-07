@@ -58,7 +58,7 @@ class FindAllResponseData {
 
 @JsonSerializable()
 class CreateResponseData {
-  late ResponseSubscription data;
+  late Subscription data;
 
   CreateResponseData({
     required this.data,
@@ -71,7 +71,7 @@ class CreateResponseData {
 
 @JsonSerializable()
 class UpdateResponseData {
-  late ResponseSubscription data;
+  late Subscription data;
 
   UpdateResponseData({
     required this.data,
@@ -93,19 +93,6 @@ class ResponseSubscriptions {
   factory ResponseSubscriptions.fromJson(Map<String, dynamic> json) =>
       _$ResponseSubscriptionsFromJson(json);
   Map<String, dynamic> toJson() => _$ResponseSubscriptionsToJson(this);
-}
-
-@JsonSerializable()
-class ResponseSubscription {
-  late Subscription subscription;
-
-  ResponseSubscription({
-    required this.subscription,
-  });
-
-  factory ResponseSubscription.fromJson(Map<String, dynamic> json) =>
-      _$ResponseSubscriptionFromJson(json);
-  Map<String, dynamic> toJson() => _$ResponseSubscriptionToJson(this);
 }
 
 @JsonSerializable()

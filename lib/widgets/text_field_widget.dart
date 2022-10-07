@@ -33,7 +33,7 @@ class TextFieldWidget extends StatelessWidget {
               initialValue == null || initialValue == "" || initialValue == "0"
                   ? null
                   : initialValue,
-          onSaved: (text) {
+          onChanged: (text) {
             onSaved(text);
           },
           decoration: InputDecoration(
