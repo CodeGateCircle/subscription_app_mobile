@@ -19,6 +19,9 @@ class HomeState extends ConsumerState<Home> {
   int totalAmount = 0;
 
   int calculateTotalsAmount() {
+    setState(() {
+      totalAmount = 0;
+    });
     for (final subscription in ref.watch(subscriptionsProvider)) {
       setState(() {
         totalAmount = totalAmount + subscription.price;
