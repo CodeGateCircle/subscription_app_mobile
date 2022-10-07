@@ -18,7 +18,7 @@ class SubscriptionRepository {
   static Future<UpdateResponseData> update(
       RequestData subscription, int id) async {
     final res =
-        await api().put("/subscriptions/${id.toString()}", data: subscription);
+        await api().post("/subscriptions/${id.toString()}", data: subscription);
     return UpdateResponseData.fromJson(res.data);
   }
 
