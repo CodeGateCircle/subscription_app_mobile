@@ -6,14 +6,14 @@ class TextFieldWidget extends StatelessWidget {
     required this.initialValue,
     required this.labelText,
     required this.hintText,
-    required this.onChanged,
+    required this.onSaved,
     this.isMultiline = false,
   }) : super(key: key);
 
   final String? initialValue;
   final String labelText;
   final String hintText;
-  final void Function(String) onChanged;
+  final void Function(String?) onSaved;
   final bool? isMultiline;
 
   @override
@@ -28,16 +28,13 @@ class TextFieldWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        TextField(
-          controller: TextEditingController(
-            text: initialValue == null ||
-                    initialValue == "" ||
-                    initialValue == "0"
-                ? null
-                : initialValue,
-          ),
-          onChanged: (text) {
-            onChanged(text);
+        TextFormField(
+          initialValue:
+              initialValue == null || initialValue == "" || initialValue == "0"
+                  ? null
+                  : initialValue,
+          onSaved: (text) {
+            onSaved(text);
           },
           decoration: InputDecoration(
             contentPadding: isMultiline == true
