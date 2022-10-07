@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
+import 'package:subscription_app_web/provider/current_user_notifier.dart';
 import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
 import 'package:subscription_app_web/screens/home/subscription_list.dart';
 import 'package:subscription_app_web/screens/home/total_amount.dart';
@@ -17,16 +18,6 @@ class HomeState extends ConsumerState<Home> {
   static const double floatingActionButtonSize = 64;
   int totalAmount = 0;
 
-  Future initializeData() async {
-    try {
-      final res = await SubscriptionRepository.findAll();
-      ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
-      calculateTotalsAmount();
-    } catch (e) {
-      logger.e(e);
-    }
-  }
-
   int calculateTotalsAmount() {
     for (final subscription in ref.watch(subscriptionsProvider)) {
       setState(() {
@@ -36,10 +27,21 @@ class HomeState extends ConsumerState<Home> {
     return totalAmount;
   }
 
+  Future<void> initializeData() async {
+    try {
+      final userId = ref.watch(currentUserProvider)!.userId;
+      final res = await SubscriptionRepository.findAll(userId);
+      ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
+      calculateTotalsAmount();
+    } catch (e) {
+      logger.e("error: $e");
+    }
+  }
+
   @override
-  void initState() {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     initializeData();
-    super.initState();
   }
 
   @override

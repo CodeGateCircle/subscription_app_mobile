@@ -16,24 +16,24 @@ enum PaymentMethod {
 
 @JsonSerializable()
 class Subscription {
-  late int subscriptionId;
+  late int id;
   late String name;
   late int price;
   late PaymentCycle paymentCycle;
   late DateTime firstPaymentDate;
   late PaymentMethod paymentMethod;
-  late bool isPause;
+  late bool isPaused;
   late String? remarks;
   late String? imageUrl;
 
   Subscription({
-    required this.subscriptionId,
+    required this.id,
     required this.name,
     required this.price,
     required this.paymentCycle,
     required this.firstPaymentDate,
     required this.paymentMethod,
-    required this.isPause,
+    required this.isPaused,
     this.remarks,
     this.imageUrl,
   });
@@ -111,11 +111,11 @@ class ResponseSubscription {
 @JsonSerializable()
 class RequestData {
   late String userId;
-  late RequestSubscription subscriptions;
+  late RequestSubscription subscription;
 
   RequestData({
     required this.userId,
-    required this.subscriptions,
+    required this.subscription,
   });
 
   factory RequestData.fromJson(Map<String, dynamic> json) =>
@@ -130,6 +130,7 @@ class RequestSubscription {
   late PaymentCycle paymentCycle;
   late DateTime firstPaymentDate;
   late PaymentMethod paymentMethod;
+  late bool isPause;
   late String? image;
   late String? remarks;
 
@@ -139,6 +140,7 @@ class RequestSubscription {
     required this.paymentCycle,
     required this.firstPaymentDate,
     required this.paymentMethod,
+    required this.isPause,
     this.image,
     this.remarks,
   });

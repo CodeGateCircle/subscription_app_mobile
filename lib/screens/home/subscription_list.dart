@@ -61,8 +61,13 @@ class _SubscriptionListState extends State<SubscriptionList> {
               padding: EdgeInsets.zero,
               itemCount: widget.subscriptions.length,
               itemBuilder: (context, index) {
-                return SubscriptionCard(
-                  subscription: widget.subscriptions[index],
+                return Column(
+                  children: [
+                    SubscriptionCard(
+                      subscription: widget.subscriptions[index],
+                    ),
+                    const SizedBox(height: 12),
+                  ],
                 );
               },
             ),
