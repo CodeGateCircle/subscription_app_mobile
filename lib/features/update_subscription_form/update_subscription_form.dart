@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
+import 'package:subscription_app_web/widgets/dropdown_button_widget.dart';
 import 'package:subscription_app_web/widgets/text_field_widget.dart';
 import 'package:subscription_app_web/widgets/upload_icon_image_field.dart';
-
-import 'dropdown_button_widget.dart';
 
 class UpdateSubscriptionForm extends StatefulWidget {
   const UpdateSubscriptionForm({

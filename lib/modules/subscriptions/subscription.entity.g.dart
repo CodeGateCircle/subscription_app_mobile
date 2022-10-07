@@ -13,6 +13,7 @@ Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
+      isPause: json['isPause'] as bool,
       remarks: json['remarks'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );
@@ -25,6 +26,7 @@ Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
       'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
       'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
+      'isPause': instance.isPause,
       'remarks': instance.remarks,
       'imageUrl': instance.imageUrl,
     };

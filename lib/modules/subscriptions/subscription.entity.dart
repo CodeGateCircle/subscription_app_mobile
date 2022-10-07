@@ -22,6 +22,7 @@ class Subscription {
   late PaymentCycle paymentCycle;
   late DateTime firstPaymentDate;
   late PaymentMethod paymentMethod;
+  late bool isPause;
   late String? remarks;
   late String? imageUrl;
 
@@ -32,6 +33,7 @@ class Subscription {
     required this.paymentCycle,
     required this.firstPaymentDate,
     required this.paymentMethod,
+    required this.isPause,
     this.remarks,
     this.imageUrl,
   });
