@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
 import 'package:subscription_app_web/lib/api.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 
 class SubscriptionRepository {
@@ -8,7 +12,9 @@ class SubscriptionRepository {
   }
 
   static Future<CreateResponseData> create(RequestData subscription) async {
+    logger.d("subscription: $subscription");
     final res = await api().post("/subscriptions", data: subscription);
+    logger.d("res: $res");
     return CreateResponseData.fromJson(res.data);
   }
 

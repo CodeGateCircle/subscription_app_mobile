@@ -28,7 +28,7 @@ class SnsAppState extends ConsumerState<SnsApp> {
       final res = await AccountRepository.fetch(deviceId);
       ref.read(currentUserProvider.notifier).state = res.data;
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint("error: ${e.toString()}");
     } finally {
       setState(() {
         _isLoading = false;

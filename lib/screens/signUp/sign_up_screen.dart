@@ -53,7 +53,7 @@ class SignUpState extends ConsumerState<SignUp> {
     ];
 
     Future _signUp() async {
-      final res = await AccountService.login(language, currency);
+      final res = await AccountService.signUp(language, currency);
       ref.read(currentUserProvider.notifier).state = res;
     }
 

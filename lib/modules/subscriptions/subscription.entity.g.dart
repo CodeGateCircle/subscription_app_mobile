@@ -104,7 +104,7 @@ Map<String, dynamic> _$ResponseSubscriptionToJson(
     };
 
 RequestData _$RequestDataFromJson(Map<String, dynamic> json) => RequestData(
-      userId: json['userId'] as int,
+      userId: json['userId'] as String,
       subscriptions: RequestSubscription.fromJson(
           json['subscriptions'] as Map<String, dynamic>),
     );

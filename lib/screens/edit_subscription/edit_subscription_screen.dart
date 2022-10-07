@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
+import 'package:subscription_app_web/provider/current_user_notifier.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 
@@ -57,7 +58,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
 
   Future _editSubscription() async {
     final postData = RequestData(
-      userId: 0,
+      userId: ref.watch(currentUserProvider)!.userId,
       subscriptions: RequestSubscription(
         name: name,
         price: price,
