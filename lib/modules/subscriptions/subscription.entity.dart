@@ -117,7 +117,7 @@ class RequestSubscription {
   late PaymentCycle paymentCycle;
   late DateTime firstPaymentDate;
   late PaymentMethod paymentMethod;
-  late bool isPause;
+  late bool isPaused;
   late String? image;
   late String? remarks;
 
@@ -127,7 +127,7 @@ class RequestSubscription {
     required this.paymentCycle,
     required this.firstPaymentDate,
     required this.paymentMethod,
-    required this.isPause,
+    required this.isPaused,
     this.image,
     this.remarks,
   });

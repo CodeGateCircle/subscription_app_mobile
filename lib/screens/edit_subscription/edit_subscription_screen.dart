@@ -17,7 +17,7 @@ class EditSubscription extends ConsumerStatefulWidget {
     required this.price,
     required this.paymentMethod,
     required this.firstPaymentDate,
-    required this.isPause,
+    required this.isPaused,
     required this.iconImage,
     required this.remarks,
   }) : super(key: key);
@@ -28,7 +28,7 @@ class EditSubscription extends ConsumerStatefulWidget {
   final int price;
   final PaymentMethod paymentMethod;
   final DateTime firstPaymentDate;
-  final bool isPause;
+  final bool isPaused;
   final String? iconImage;
   final String? remarks;
 
@@ -42,7 +42,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late int price;
   late PaymentMethod paymentMethod;
   late DateTime firstPaymentDate;
-  late bool isPause;
+  late bool isPaused;
   late XFile? iconImage;
   late String? remarks;
 
@@ -54,7 +54,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       price = widget.price;
       paymentMethod = widget.paymentMethod;
       firstPaymentDate = widget.firstPaymentDate;
-      isPause = widget.isPause;
+      isPaused = widget.isPaused;
       iconImage = XFile(widget.iconImage ?? "");
       remarks = widget.remarks;
     });
@@ -70,7 +70,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
         paymentCycle: paymentCycle,
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
-        isPause: isPause,
+        isPaused: isPaused,
         // image: iconImage,
         remarks: remarks,
       ),

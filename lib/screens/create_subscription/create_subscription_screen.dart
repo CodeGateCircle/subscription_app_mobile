@@ -35,7 +35,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
         paymentCycle: paymentCycle,
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
-        isPause: false,
+        isPaused: false,
         // image: null,
         remarks: remarks,
       ),

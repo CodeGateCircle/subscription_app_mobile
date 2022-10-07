@@ -92,7 +92,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
           price: widget.subscription.price,
           paymentMethod: widget.subscription.paymentMethod,
           firstPaymentDate: widget.subscription.firstPaymentDate,
-          isPause: widget.subscription.isPaused,
+          isPaused: widget.subscription.isPaused,
           iconImage: widget.subscription.imageUrl,
           remarks: widget.subscription.remarks,
         ),
