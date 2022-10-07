@@ -124,7 +124,8 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 initialValue: widget.name,
                 labelText: "サブスク名",
                 hintText: "登録するサブスク名を記入してください",
-                onChanged: (String value) {
+                onSaved: (String? value) {
+                  if (value == null) return;
                   widget.setName(value);
                 },
               ),
@@ -140,7 +141,8 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 initialValue: widget.price.toString(),
                 labelText: "月額料金（JPY）",
                 hintText: "料金を記入してください",
-                onChanged: (String value) {
+                onSaved: (String? value) {
+                  if (value == null) return;
                   widget.setPrice(int.parse(value));
                 },
               ),
@@ -156,7 +158,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 initialValue: widget.remarks,
                 labelText: "メモ",
                 hintText: "メモの記入ができます",
-                onChanged: (String value) {
+                onSaved: (String? value) {
                   widget.setRemarks(value);
                 },
                 isMultiline: true,

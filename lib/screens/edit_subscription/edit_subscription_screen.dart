@@ -80,6 +80,8 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
 
   void setName(String value) {
     setState(() {
+      debugPrint("value: $value");
+      debugPrint("name: $name");
       name = value;
     });
   }
