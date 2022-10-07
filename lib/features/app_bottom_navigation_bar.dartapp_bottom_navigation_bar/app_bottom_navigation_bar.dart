@@ -13,11 +13,20 @@ class AppBottomNavigationBar extends StatefulWidget {
 class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   int currentIndex = 0;
 
-  final List<Icon> icons = [const Icon(Icons.home), const Icon(Icons.settings)];
+  final List<BottomNavigationBarItem> _tabItems = [
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'ホーム',
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      label: "設定",
+    ),
+  ];
 
   void _onTap(int index) {
     setState(() {
-      currentIndex = index; //インデックスの更新
+      currentIndex = index;
     });
   }
 
@@ -31,12 +40,9 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
           Settings(),
         ],
       ),
-      bottomNavigationBar: CupertinoTabBar(
-        items: icons
-            .map(
-              (icon) => BottomNavigationBarItem(icon: icon),
-            )
-            .toList(),
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 32,
+        items: _tabItems,
         currentIndex: currentIndex,
         onTap: _onTap,
       ),
