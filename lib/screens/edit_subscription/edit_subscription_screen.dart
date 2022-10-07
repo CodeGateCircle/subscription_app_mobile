@@ -5,6 +5,7 @@ import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/provider/current_user_notifier.dart';
+import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 
@@ -76,8 +77,8 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       ),
     );
     try {
-      // TODO: グローバルステートの更新処理を記述する
       final res = await SubscriptionRepository.update(postData, widget.id);
+      ref.read(subscriptionsProvider.notifier).addSubscription(res.data);
     } catch (e) {
       logger.e(e);
     }
