@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:subscription_app_web/main.dart';
-import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
-import 'package:subscription_app_web/modules/subscriptions/subscription.service.dart';
 import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
 import 'package:subscription_app_web/screens/home/subscription_list.dart';
 import 'package:subscription_app_web/screens/home/total_amount.dart';
@@ -20,9 +17,13 @@ class HomeState extends ConsumerState<Home> {
   int totalAmount = 0;
 
   Future initializeData() async {
-    final res = await SubscriptionRepository.findAll();
-    ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
-    calculateTotalsAmount();
+    try {
+      final res = await SubscriptionRepository.findAll();
+      ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
+      calculateTotalsAmount();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   int calculateTotalsAmount() {
