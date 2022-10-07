@@ -38,7 +38,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
       builder: (BuildContext context) {
         return DeleteModal(
           onPressed: () {
-            _deleteSubscription(widget.subscription.subscriptionId);
+            _deleteSubscription(widget.subscription.id);
             Navigator.popUntil(context, (_) => count++ >= 2);
           },
         );
@@ -86,12 +86,13 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
       context,
       MaterialPageRoute(
         builder: (context) => EditSubscription(
-          id: widget.subscription.subscriptionId,
+          id: widget.subscription.id,
           name: widget.subscription.name,
           paymentCycle: widget.subscription.paymentCycle,
           price: widget.subscription.price,
           paymentMethod: widget.subscription.paymentMethod,
           firstPaymentDate: widget.subscription.firstPaymentDate,
+          isPaused: widget.subscription.isPaused,
           iconImage: widget.subscription.imageUrl,
           remarks: widget.subscription.remarks,
         ),

@@ -7,26 +7,26 @@ part of 'subscription.entity.dart';
 // **************************************************************************
 
 Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
-      subscriptionId: json['subscriptionId'] as int,
+      id: json['id'] as int,
       name: json['name'] as String,
       price: json['price'] as int,
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
-      isPause: json['isPause'] as bool,
+      isPaused: json['isPaused'] as bool,
       remarks: json['remarks'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
     <String, dynamic>{
-      'subscriptionId': instance.subscriptionId,
+      'id': instance.id,
       'name': instance.name,
       'price': instance.price,
       'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
       'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
-      'isPause': instance.isPause,
+      'isPaused': instance.isPaused,
       'remarks': instance.remarks,
       'imageUrl': instance.imageUrl,
     };
@@ -58,7 +58,7 @@ Map<String, dynamic> _$FindAllResponseDataToJson(
 
 CreateResponseData _$CreateResponseDataFromJson(Map<String, dynamic> json) =>
     CreateResponseData(
-      data: ResponseSubscription.fromJson(json['data'] as Map<String, dynamic>),
+      data: Subscription.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CreateResponseDataToJson(CreateResponseData instance) =>
@@ -68,7 +68,7 @@ Map<String, dynamic> _$CreateResponseDataToJson(CreateResponseData instance) =>
 
 UpdateResponseData _$UpdateResponseDataFromJson(Map<String, dynamic> json) =>
     UpdateResponseData(
-      data: ResponseSubscription.fromJson(json['data'] as Map<String, dynamic>),
+      data: Subscription.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UpdateResponseDataToJson(UpdateResponseData instance) =>
@@ -90,29 +90,16 @@ Map<String, dynamic> _$ResponseSubscriptionsToJson(
       'subscriptions': instance.subscriptions,
     };
 
-ResponseSubscription _$ResponseSubscriptionFromJson(
-        Map<String, dynamic> json) =>
-    ResponseSubscription(
-      subscription:
-          Subscription.fromJson(json['subscription'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ResponseSubscriptionToJson(
-        ResponseSubscription instance) =>
-    <String, dynamic>{
-      'subscription': instance.subscription,
-    };
-
 RequestData _$RequestDataFromJson(Map<String, dynamic> json) => RequestData(
       userId: json['userId'] as String,
-      subscriptions: RequestSubscription.fromJson(
-          json['subscriptions'] as Map<String, dynamic>),
+      subscription: RequestSubscription.fromJson(
+          json['subscription'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RequestDataToJson(RequestData instance) =>
     <String, dynamic>{
       'userId': instance.userId,
-      'subscriptions': instance.subscriptions,
+      'subscription': instance.subscription,
     };
 
 RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
@@ -122,6 +109,7 @@ RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
+      isPaused: json['isPaused'] as bool,
       image: json['image'] as String?,
       remarks: json['remarks'] as String?,
     );
@@ -134,6 +122,7 @@ Map<String, dynamic> _$RequestSubscriptionToJson(
       'paymentCycle': _$PaymentCycleEnumMap[instance.paymentCycle]!,
       'firstPaymentDate': instance.firstPaymentDate.toIso8601String(),
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
+      'isPaused': instance.isPaused,
       'image': instance.image,
       'remarks': instance.remarks,
     };

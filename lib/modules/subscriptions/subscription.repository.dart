@@ -2,8 +2,11 @@ import 'package:subscription_app_web/lib/api.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 
 class SubscriptionRepository {
-  static Future<FindAllResponseData> findAll() async {
-    final res = await api().get("/subscriptions");
+  static Future<FindAllResponseData> findAll(String userId) async {
+    final queryParams = {
+      "userId": userId,
+    };
+    final res = await api().get("/subscriptions", queryParameters: queryParams);
     return FindAllResponseData.fromJson(res.data);
   }
 

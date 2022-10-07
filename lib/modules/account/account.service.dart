@@ -10,7 +10,7 @@ class AccountService {
       if (deviceId == null) return null;
 
       final postData = RequestData(
-        user_id: deviceId,
+        userId: deviceId,
         currency: currency.currency,
         language: language.language,
       );

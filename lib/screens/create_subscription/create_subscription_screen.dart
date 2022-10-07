@@ -29,21 +29,21 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   Future _createSubscription() async {
     final postData = RequestData(
       userId: ref.watch(currentUserProvider)!.userId,
-      subscriptions: RequestSubscription(
+      subscription: RequestSubscription(
         name: name,
         price: price,
         paymentCycle: paymentCycle,
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
+        isPaused: false,
+        // image: null,
         remarks: remarks,
       ),
     );
 
     try {
       final res = await SubscriptionRepository.create(postData);
-      ref
-          .read(subscriptionsProvider.notifier)
-          .addSubscription(res.data.subscription);
+      ref.read(subscriptionsProvider.notifier).addSubscription(res.data);
     } catch (e) {
       logger.e(e);
     }

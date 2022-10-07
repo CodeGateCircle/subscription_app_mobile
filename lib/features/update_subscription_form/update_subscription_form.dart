@@ -108,6 +108,22 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
       ),
     ];
 
+    TextEditingController _textEditingController = TextEditingController();
+
+    _selectDate(BuildContext context) async {
+      final newSelectedDate = await showDatePicker(
+        context: context,
+        initialDate: widget.firstPaymentDate,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2040),
+      );
+
+      if (newSelectedDate != null) {
+        widget.setFirstPaymentDate(newSelectedDate);
+        _textEditingController.text = newSelectedDate.toString();
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: SingleChildScrollView(
@@ -145,6 +161,48 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                   if (value == null) return;
                   widget.setPrice(int.parse(value));
                 },
+              ),
+              TextFormField(
+                // initialValue: widget.firstPaymentDate.toString(),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.fromLTRB(12, 17, 0, 17),
+                  suffixIcon: const Icon(
+                    Icons.calendar_month,
+                    color: Colors.black,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: const BorderSide(
+                      color: Color.fromRGBO(240, 237, 235, 1),
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: const BorderSide(
+                      color: Color.fromRGBO(240, 237, 235, 1),
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2101),
+                  );
+
+                  if (pickedDate != null) {
+                    String formattedDate = pickedDate.toString();
+                    setState(() {
+                      _textEditingController.text = formattedDate;
+                    });
+                    widget.setFirstPaymentDate(pickedDate);
+                  } else {
+                    logger.d("Date is not selected");
+                  }
+                  _selectDate(context);
+                },
+                controller: _textEditingController,
               ),
               DropdownButtonWidget(
                 labelText: "支払い方法",

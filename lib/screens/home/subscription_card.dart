@@ -19,11 +19,6 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
   final double imgSize = 56;
   double progressValue = 0.2;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Widget _buildNameAndPrice(BuildContext context) {
     return Column(
       children: <Widget>[
