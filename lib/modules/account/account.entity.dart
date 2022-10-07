@@ -66,12 +66,12 @@ class ResponseData {
 
 @JsonSerializable()
 class RequestData {
-  late String user_id;
+  late String userId;
   late String currency;
   late String language;
 
   RequestData({
-    required this.user_id,
+    required this.userId,
     required this.currency,
     required this.language,
   });

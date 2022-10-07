@@ -38,14 +38,14 @@ Map<String, dynamic> _$ResponseDataToJson(ResponseData instance) =>
     };
 
 RequestData _$RequestDataFromJson(Map<String, dynamic> json) => RequestData(
-      user_id: json['user_id'] as String,
+      userId: json['userId'] as String,
       currency: json['currency'] as String,
       language: json['language'] as String,
     );
 
 Map<String, dynamic> _$RequestDataToJson(RequestData instance) =>
     <String, dynamic>{
-      'user_id': instance.user_id,
+      'userId': instance.userId,
       'currency': instance.currency,
       'language': instance.language,
     };
