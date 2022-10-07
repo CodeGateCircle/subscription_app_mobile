@@ -45,7 +45,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           .read(subscriptionsProvider.notifier)
           .addSubscription(res.data.subscription);
     } catch (e) {
-      logger.e("error: ${e.toString()}");
+      logger.e(e);
     }
   }
 

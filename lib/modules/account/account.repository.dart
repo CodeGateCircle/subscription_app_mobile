@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:subscription_app_web/lib/api.dart';
 import 'package:subscription_app_web/modules/account/account.entity.dart';
 
@@ -10,7 +9,6 @@ class AccountRepository {
 
   static Future<ResponseData> create(RequestData postData) async {
     final res = await api().post("/account", data: postData);
-    debugPrint(res.data);
     return ResponseData.fromJson(res.data);
   }
 }

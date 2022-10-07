@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/provider/current_user_notifier.dart';
@@ -73,7 +74,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       // TODO: グローバルステートの更新処理を記述する
       final res = await SubscriptionRepository.update(postData, widget.id);
     } catch (e) {
-      debugPrint(e.toString());
+      logger.e(e);
     }
   }
 
@@ -81,8 +82,6 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
 
   void setName(String value) {
     setState(() {
-      debugPrint("value: $value");
-      debugPrint("name: $name");
       name = value;
     });
   }
