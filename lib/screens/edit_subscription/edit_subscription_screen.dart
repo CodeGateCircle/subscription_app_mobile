@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/widgets/button.dart';
-import 'package:subscription_app_web/widgets/update_subscription_form.dart';
+import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 
 class EditSubscription extends ConsumerStatefulWidget {
   const EditSubscription({

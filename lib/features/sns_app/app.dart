@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platform_device_id/platform_device_id.dart';
-import 'package:subscription_app_web/main.dart';
-import 'package:subscription_app_web/screens/home/home_screen.dart';
-import 'package:subscription_app_web/screens/login/login_screen.dart';
+import 'package:subscription_app_web/features/app_bottom_navigation_bar.dartapp_bottom_navigation_bar/app_bottom_navigation_bar.dart';
+import 'package:subscription_app_web/modules/account/account.repository.dart';
+import 'package:subscription_app_web/provider/current_user_notifier.dart';
+import 'package:subscription_app_web/screens/signUp/sign_up_screen.dart';
 
-import 'modules/account/account.repository.dart';
-
-class CheckAccountExists extends ConsumerStatefulWidget {
-  const CheckAccountExists({Key? key}) : super(key: key);
+class SnsApp extends ConsumerStatefulWidget {
+  const SnsApp({Key? key}) : super(key: key);
 
   @override
-  CheckAccountExistsState createState() => CheckAccountExistsState();
+  SnsAppState createState() => SnsAppState();
 }
 
-class CheckAccountExistsState extends ConsumerState<CheckAccountExists> {
+class SnsAppState extends ConsumerState<SnsApp> {
   bool _isLoading = false;
 
   Future<void> fetchUserInfo() async {
@@ -48,13 +47,13 @@ class CheckAccountExistsState extends ConsumerState<CheckAccountExists> {
     if (_isLoading) {
       return const Scaffold(
         body: Center(
-          child: Text("Loading..."),
+          child: CircularProgressIndicator(),
         ),
       );
     }
 
     return ref.watch(currentUserProvider) == null
-        ? const Login()
-        : const Home();
+        ? const SignUp()
+        : const AppBottomNavigationBar();
   }
 }
