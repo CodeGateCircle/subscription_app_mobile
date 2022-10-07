@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:platform_device_id/platform_device_id.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.entity.dart';
 import 'package:subscription_app_web/modules/account/account.repository.dart';
 
@@ -11,6 +12,6 @@ Future checkAccountExists(Function(Account?) setAccount) async {
     final res = await AccountRepository.fetch(deviceId);
     setAccount(res.data);
   } catch (e) {
-    debugPrint(e.toString());
+    logger.e(e);
   }
 }

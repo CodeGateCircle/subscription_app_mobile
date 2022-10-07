@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/screens/edit_subscription/edit_subscription_screen.dart';
@@ -25,7 +26,7 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
     try {
       await SubscriptionRepository.delete(id);
     } catch (e) {
-      debugPrint(e.toString());
+      logger.e(e);
     }
   }
 

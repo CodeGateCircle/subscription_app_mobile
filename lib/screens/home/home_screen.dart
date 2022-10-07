@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
 import 'package:subscription_app_web/screens/home/subscription_list.dart';
@@ -22,7 +23,7 @@ class HomeState extends ConsumerState<Home> {
       ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
       calculateTotalsAmount();
     } catch (e) {
-      debugPrint(e.toString());
+      logger.e(e);
     }
   }
 

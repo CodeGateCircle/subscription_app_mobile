@@ -7,8 +7,8 @@ class AccountRepository {
     return ResponseData.fromJson(res.data);
   }
 
-  static Future<ResponseData> create(Account account) async {
-    final res = await api().post("/account");
+  static Future<ResponseData> create(RequestData postData) async {
+    final res = await api().post("/account", data: postData);
     return ResponseData.fromJson(res.data);
   }
 }

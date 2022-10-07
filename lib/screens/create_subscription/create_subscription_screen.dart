@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
+import 'package:subscription_app_web/provider/current_user_notifier.dart';
+import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 
-class CreateSubscription extends StatefulWidget {
+class CreateSubscription extends ConsumerStatefulWidget {
   const CreateSubscription({Key? key}) : super(key: key);
 
   @override
-  State<CreateSubscription> createState() => _CreateSubscriptionState();
+  CreateSubscriptionState createState() => CreateSubscriptionState();
 }
 
-class _CreateSubscriptionState extends State<CreateSubscription> {
+class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   String name = "";
   PaymentCycle paymentCycle = PaymentCycle.oneMonth;
   int price = 0;
@@ -23,21 +28,24 @@ class _CreateSubscriptionState extends State<CreateSubscription> {
   // TODO: globalStateにサブスクを追加する処理を追加
   Future _createSubscription() async {
     final postData = RequestData(
-      userId: 0,
+      userId: ref.watch(currentUserProvider)!.userId,
       subscriptions: RequestSubscription(
         name: name,
         price: price,
         paymentCycle: paymentCycle,
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
-        // image: iconImage,
         remarks: remarks,
       ),
     );
+
     try {
-      // final res = await SubscriptionRepository.create(postData);
+      final res = await SubscriptionRepository.create(postData);
+      ref
+          .read(subscriptionsProvider.notifier)
+          .addSubscription(res.data.subscription);
     } catch (e) {
-      debugPrint(e.toString());
+      logger.e(e);
     }
   }
 

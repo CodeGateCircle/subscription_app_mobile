@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/widgets/dropdown_button_widget.dart';
 import 'package:subscription_app_web/widgets/text_field_widget.dart';
@@ -64,12 +65,12 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
       try {
         final pickedFile = await picker.pickImage(source: ImageSource.gallery);
         if (pickedFile == null) {
-          debugPrint("No image selected.");
+          logger.e("No image selected.");
           return;
         }
         widget.setIconImage(pickedFile);
       } catch (e) {
-        debugPrint(e.toString());
+        logger.e(e);
       }
     }
 

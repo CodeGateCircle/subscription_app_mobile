@@ -110,7 +110,7 @@ class ResponseSubscription {
 
 @JsonSerializable()
 class RequestData {
-  late int userId;
+  late String userId;
   late RequestSubscription subscriptions;
 
   RequestData({
