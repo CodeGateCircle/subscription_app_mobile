@@ -55,7 +55,6 @@ class _SubscriptionListState extends State<SubscriptionList> {
               ),
             ],
           ),
-          const SizedBox(height: 17),
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.zero,
@@ -63,15 +62,16 @@ class _SubscriptionListState extends State<SubscriptionList> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
+                    const SizedBox(height: 12),
                     SubscriptionCard(
                       subscription: widget.subscriptions[index],
                     ),
-                    const SizedBox(height: 12),
                   ],
                 );
               },
             ),
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );

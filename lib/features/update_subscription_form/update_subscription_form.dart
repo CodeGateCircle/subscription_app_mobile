@@ -151,7 +151,6 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 initialValue: widget.firstPaymentDate,
                 labelText: "初回支払い日",
                 onSaved: (DateTime value) {
-                  logger.d(widget.firstPaymentDate);
                   widget.setFirstPaymentDate(value);
                 },
               ),
