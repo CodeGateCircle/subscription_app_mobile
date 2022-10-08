@@ -6,6 +6,7 @@ import 'package:subscription_app_web/widgets/input/date_form_field_widget.dart';
 import 'package:subscription_app_web/widgets/input/dropdown_button_widget.dart';
 import 'package:subscription_app_web/widgets/input/text_field_form_widget.dart';
 import 'package:subscription_app_web/widgets/input/upload_icon_image_field.dart';
+import 'dart:convert';
 
 class UpdateSubscriptionForm extends StatefulWidget {
   const UpdateSubscriptionForm({
@@ -16,6 +17,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
     required this.paymentMethod,
     required this.firstPaymentDate,
     required this.iconImage,
+    required this.imageData,
     required this.remarks,
     required this.setName,
     required this.setPaymentCycle,
@@ -23,6 +25,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
     required this.setPaymentMethod,
     required this.setFirstPaymentDate,
     required this.setIconImage,
+    required this.setImageData,
     required this.setRemarks,
   }) : super(key: key);
 
@@ -32,6 +35,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
   final PaymentMethod paymentMethod;
   final DateTime firstPaymentDate;
   final XFile? iconImage;
+  final String? imageData;
   final String? remarks;
   final void Function(String) setName;
   final void Function(PaymentCycle) setPaymentCycle;
@@ -39,6 +43,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
   final void Function(PaymentMethod) setPaymentMethod;
   final void Function(DateTime) setFirstPaymentDate;
   final void Function(XFile?) setIconImage;
+  final void Function(String?) setImageData;
   final void Function(String?) setRemarks;
 
   @override
@@ -70,6 +75,12 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
           return;
         }
         widget.setIconImage(pickedFile);
+        final imageBytes = await pickedFile.readAsBytes();
+        final String base64Image = base64Encode(imageBytes);
+        final String imageExtension = pickedFile.name.split('.')[1];
+        final String imageData =
+            'data:image/$imageExtension;base64,$base64Image';
+        widget.setImageData(imageData);
       } catch (e) {
         logger.e(e);
       }
