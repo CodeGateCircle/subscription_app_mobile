@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:subscription_app_web/lib/convert_monthly_fee.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/subscription_detail_screen.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
@@ -20,9 +19,26 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
   final double imgSize = 56;
   double progressValue = 0.2;
 
+  Widget _buildPaymentCycle(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: const Text(
+        "年契約",
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          color: Colors.grey,
+        ),
+      ),
+    );
+  }
+
   Widget _buildNameAndPrice(BuildContext context) {
-    final monthlyFee = convertMonthlyFee(
-        widget.subscription.paymentCycle, widget.subscription.price);
+    final monthlyFee = widget.subscription.convertMonthlyFee();
 
     return Column(
       children: <Widget>[
@@ -33,27 +49,50 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
               widget.subscription.name,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
             Text.rich(
               TextSpan(
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
                 children: [
                   TextSpan(text: '¥$monthlyFee'),
                   const TextSpan(
-                    text: ' /月', // TODO: 月/年表示をミュータブルにする
+                    text: ' / 月', // TODO: 月/年表示をミュータブルにする
                     style: TextStyle(
-                      fontSize: 11,
+                      fontSize: 12,
                     ),
                   ),
                 ],
               ),
             ),
           ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRemainingDaysProgressBar(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Text(
+          "支払いまで17日",
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w600,
+          ),
+        ), // TODO: 期日の計算
+        const SizedBox(width: 4),
+        Expanded(
+          child: LinearProgressIndicator(
+            backgroundColor: Colors.grey,
+            value: progressValue,
+          ),
         ),
       ],
     );
@@ -72,7 +111,7 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
         );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: const Color.fromRGBO(238, 242, 244, 1.0),
           borderRadius: BorderRadius.circular(8),
@@ -83,20 +122,18 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
           children: <Widget>[
             SubscriptionIconImage(
               iconImageUrl: widget.subscription.imageUrl,
+              iconSize: 72,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildNameAndPrice(context),
-                  const SizedBox(height: 10),
-                  LinearProgressIndicator(
-                    backgroundColor: Colors.grey,
-                    value: progressValue,
-                  ),
                   const SizedBox(height: 4),
-                  const Text("支払いまで17日"), // TODO: 期日の計算
+                  _buildPaymentCycle(context),
+                  const SizedBox(height: 4),
+                  _buildRemainingDaysProgressBar(context),
                 ],
               ),
             ),
