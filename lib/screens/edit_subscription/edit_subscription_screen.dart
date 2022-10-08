@@ -75,7 +75,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
         isPaused: isPaused,
-        // image: iconImage,
+        image: imageData,
         remarks: remarks,
       ),
     );
