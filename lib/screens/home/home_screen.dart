@@ -30,6 +30,10 @@ class HomeState extends ConsumerState<Home> {
     return totalAmount;
   }
 
+  void sortSubscriptionList(String? key) {
+    ref.read(subscriptionsProvider.notifier).sort(key);
+  }
+
   Future<void> initializeData() async {
     try {
       final userId = ref.watch(currentUserProvider)!.userId;
@@ -58,6 +62,7 @@ class HomeState extends ConsumerState<Home> {
             Expanded(
               child: SubscriptionList(
                 subscriptions: ref.watch(subscriptionsProvider),
+                sortSubscriptionList: sortSubscriptionList,
               ),
             )
           ],

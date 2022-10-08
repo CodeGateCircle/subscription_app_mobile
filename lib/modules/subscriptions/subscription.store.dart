@@ -23,6 +23,30 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
           subscription,
     ];
   }
+
+  void sort(String? key) {
+    switch (key) {
+      case 'name_asc':
+        state.sort((v1, v2) => v1.name.compareTo(v2.name));
+        break;
+      case 'name_desc':
+        state.sort((v1, v2) => v2.name.compareTo(v1.name));
+        break;
+      case 'price_asc':
+        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        break;
+      case 'price_desc':
+        state.sort((v1, v2) => v2.price.compareTo(v1.price));
+        break;
+      case 'payment_day_asc':
+        // TODO 計算して表示する
+        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        break;
+      case 'payment_day_desc':
+        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        break;
+    }
+  }
 }
 
 final subscriptionsProvider =

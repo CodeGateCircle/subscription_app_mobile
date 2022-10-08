@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/home/subscription_card.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 
 class SubscriptionList extends StatefulWidget {
   const SubscriptionList({
     Key? key,
     required this.subscriptions,
+    required this.sortSubscriptionList,
   }) : super(key: key);
 
   final List<Subscription> subscriptions;
+  final void Function(String?) sortSubscriptionList;
 
   @override
   State<SubscriptionList> createState() => _SubscriptionListState();
@@ -16,6 +19,33 @@ class SubscriptionList extends StatefulWidget {
 
 class _SubscriptionListState extends State<SubscriptionList> {
   String? selectedDropdownItem;
+
+  final List<DropdownMenuItem<String>> sortMenu = const [
+    DropdownMenuItem(
+      value: "name_asc",
+      child: Text("名前(昇順)"),
+    ),
+    DropdownMenuItem(
+      value: "name_desc",
+      child: Text("名前（降順）"),
+    ),
+    DropdownMenuItem(
+      value: "price_asc",
+      child: Text("料金(昇順)"),
+    ),
+    DropdownMenuItem(
+      value: "price_desc",
+      child: Text("料金（降順）"),
+    ),
+    DropdownMenuItem(
+      value: "payment_day_asc",
+      child: Text("支払い日数(昇順)"),
+    ),
+    DropdownMenuItem(
+      value: "payment_day_desc",
+      child: Text("支払い日数（降順）"),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +66,12 @@ class _SubscriptionListState extends State<SubscriptionList> {
               ),
               DropdownButton(
                 hint: const Text("並び替え"),
-                items: const [
-                  DropdownMenuItem(
-                    value: "作成日",
-                    child: Text("作成日"),
-                  ),
-                  DropdownMenuItem(
-                    value: "名前",
-                    child: Text("名前"),
-                  ),
-                ],
+                items: sortMenu,
                 value: selectedDropdownItem,
                 onChanged: (String? value) {
                   setState(() {
                     selectedDropdownItem = value;
+                    widget.sortSubscriptionList(value);
                   });
                 },
               ),
