@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/lib/convert_monthly_fee.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
@@ -18,14 +19,12 @@ class HomeState extends ConsumerState<Home> {
   static const double floatingActionButtonSize = 64;
   int totalAmount = 0;
 
-  int calculateTotalsAmount() {
-    setState(() {
-      totalAmount = 0;
-    });
+  int calculateTotalAmount() {
+    setState(() => totalAmount = 0);
     for (final subscription in ref.watch(subscriptionsProvider)) {
-      setState(() {
-        totalAmount = totalAmount + subscription.price;
-      });
+      final monthlyFee =
+          convertMonthlyFee(subscription.paymentCycle, subscription.price);
+      setState(() => totalAmount = totalAmount + monthlyFee);
     }
     return totalAmount;
   }
@@ -54,7 +53,7 @@ class HomeState extends ConsumerState<Home> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TotalAmount(totalAmount: calculateTotalsAmount()),
+            TotalAmount(totalAmount: calculateTotalAmount()),
             Expanded(
               child: SubscriptionList(
                 subscriptions: ref.watch(subscriptionsProvider),
