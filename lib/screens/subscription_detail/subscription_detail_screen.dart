@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 import 'package:subscription_app_web/screens/edit_subscription/edit_subscription_screen.dart';
 import 'package:subscription_app_web/screens/subscription_detail/basic_info.dart';
 import 'package:subscription_app_web/screens/subscription_detail/delete_modal.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 
-class SubscriptionDetail extends StatefulWidget {
+class SubscriptionDetail extends ConsumerStatefulWidget {
   const SubscriptionDetail({
     Key? key,
     required this.subscription,
@@ -16,30 +18,32 @@ class SubscriptionDetail extends StatefulWidget {
   final Subscription subscription;
 
   @override
-  State<SubscriptionDetail> createState() => _SubscriptionDetailState();
+  SubscriptionDetailState createState() => SubscriptionDetailState();
 }
 
-class _SubscriptionDetailState extends State<SubscriptionDetail> {
+class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
   double progressValue = 0.2;
 
   Future _deleteSubscription(int id) async {
+    int count = 0;
+
     try {
       await SubscriptionRepository.delete(id);
+      ref.read(subscriptionsProvider.notifier).delete(id);
     } catch (e) {
       logger.e(e);
+    } finally {
+      Navigator.popUntil(context, (_) => count++ >= 2);
     }
   }
 
   Future _showAlertDialog() async {
-    int count = 0;
-
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         return DeleteModal(
           onPressed: () {
             _deleteSubscription(widget.subscription.id);
-            Navigator.popUntil(context, (_) => count++ >= 2);
           },
         );
       },

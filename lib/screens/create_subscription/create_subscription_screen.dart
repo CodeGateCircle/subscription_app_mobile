@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/main.dart';
@@ -45,7 +44,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
 
     try {
       final res = await SubscriptionRepository.create(postData);
-      ref.read(subscriptionsProvider.notifier).addSubscription(res.data);
+      ref.read(subscriptionsProvider.notifier).add(res.data);
     } catch (e) {
       logger.e(e);
     } finally {
