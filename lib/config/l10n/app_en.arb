@@ -16,6 +16,8 @@
   "yearContract": "Year Contract",
   "subscriptions": "Subscriptions",
   "sort": "Sort",
+  "searchApplicationInputPlaceHolder": "Search Apps...",
+  "add": "Add",
   "privacyPolicy": "Privacy policy",
       "@privacyPolicy": {
         "description": "Privacy policy"

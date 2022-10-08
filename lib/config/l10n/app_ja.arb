@@ -13,5 +13,7 @@
   "yearContract": "年契約",
   "subscriptions": "サブスク一覧",
   "sort": "並び替え",
+  "searchApplicationInputPlaceHolder": "アプリ名を入力してください",
+  "add": "作成",
   "privacyPolicy": "プライバシー・ポリシー"
 }

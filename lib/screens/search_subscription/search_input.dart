@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchInput extends StatefulWidget {
   const SearchInput({Key? key}) : super(key: key);
@@ -25,7 +26,8 @@ class _SearchInputState extends State<SearchInput> {
         onChanged: (value) => _changeInputValue(value),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(14, 10, 0, 10),
-          hintText: "アプリ名を入力してください",
+          hintText:
+              AppLocalizations.of(context)!.searchApplicationInputPlaceHolder,
           prefixIcon: const Icon(Icons.search),
           filled: true,
           fillColor: const Color.fromRGBO(240, 237, 235, 1),
