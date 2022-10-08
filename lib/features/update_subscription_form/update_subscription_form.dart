@@ -17,6 +17,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
     required this.paymentMethod,
     required this.firstPaymentDate,
     required this.iconImage,
+    required this.defaultImageUrl,
     required this.imageData,
     required this.remarks,
     required this.setName,
@@ -35,6 +36,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
   final PaymentMethod paymentMethod;
   final DateTime firstPaymentDate;
   final XFile? iconImage;
+  final String? defaultImageUrl;
   final String? imageData;
   final String? remarks;
   final void Function(String) setName;
@@ -69,7 +71,11 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
 
     Future onTapIconImage() async {
       try {
-        final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+        final pickedFile = await picker.pickImage(
+          source: ImageSource.gallery,
+          maxHeight: 300,
+          maxWidth: 300,
+        );
         if (pickedFile == null) {
           logger.e("No image selected.");
           return;
@@ -130,6 +136,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
             children: [
               UploadIconImageField(
                 iconImage: widget.iconImage,
+                defaultImageUrl: widget.defaultImageUrl,
                 onTapIconImage: onTapIconImage,
               ),
               TextFieldFormWidget(
