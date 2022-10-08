@@ -75,7 +75,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
           return;
         }
         widget.setIconImage(pickedFile);
-        final imageBytes = await pickedFile.readAsBytes();
+        final List<int> imageBytes = await pickedFile.readAsBytes();
         final String base64Image = base64Encode(imageBytes);
         final String imageExtension = pickedFile.name.split('.')[1];
         final String imageData =
