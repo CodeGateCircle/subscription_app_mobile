@@ -69,7 +69,11 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
 
     Future onTapIconImage() async {
       try {
-        final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+        final pickedFile = await picker.pickImage(
+          source: ImageSource.gallery,
+          maxHeight: 300,
+          maxWidth: 300,
+        );
         if (pickedFile == null) {
           logger.e("No image selected.");
           return;
