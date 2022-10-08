@@ -11,38 +11,38 @@ class SubscriptionList extends StatefulWidget {
   }) : super(key: key);
 
   final List<Subscription> subscriptions;
-  final void Function(String?) sortSubscriptionList;
+  final void Function(SortKey?) sortSubscriptionList;
 
   @override
   State<SubscriptionList> createState() => _SubscriptionListState();
 }
 
 class _SubscriptionListState extends State<SubscriptionList> {
-  String? selectedDropdownItem;
+  SortKey? selectedDropdownItem;
 
-  final List<DropdownMenuItem<String>> sortMenu = const [
+  final List<DropdownMenuItem<SortKey>> sortMenu = const [
     DropdownMenuItem(
-      value: "name_asc",
+      value: SortKey.nameAsc,
       child: Text("名前(昇順)"),
     ),
     DropdownMenuItem(
-      value: "name_desc",
+      value: SortKey.nameDesc,
       child: Text("名前（降順）"),
     ),
     DropdownMenuItem(
-      value: "price_asc",
+      value: SortKey.priceAsc,
       child: Text("料金(昇順)"),
     ),
     DropdownMenuItem(
-      value: "price_desc",
+      value: SortKey.priceDesc,
       child: Text("料金（降順）"),
     ),
     DropdownMenuItem(
-      value: "payment_day_asc",
+      value: SortKey.paymentDayAsc,
       child: Text("支払い日数(昇順)"),
     ),
     DropdownMenuItem(
-      value: "payment_day_desc",
+      value: SortKey.paymentDayDesc,
       child: Text("支払い日数（降順）"),
     ),
   ];
@@ -68,7 +68,7 @@ class _SubscriptionListState extends State<SubscriptionList> {
                 hint: const Text("並び替え"),
                 items: sortMenu,
                 value: selectedDropdownItem,
-                onChanged: (String? value) {
+                onChanged: (SortKey? value) {
                   setState(() {
                     selectedDropdownItem = value;
                     widget.sortSubscriptionList(value);

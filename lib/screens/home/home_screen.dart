@@ -4,6 +4,7 @@ import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/home/subscription_list.dart';
 import 'package:subscription_app_web/screens/home/total_amount.dart';
 import 'package:subscription_app_web/screens/search_subscription/search_subscription_screen.dart';
@@ -30,7 +31,7 @@ class HomeState extends ConsumerState<Home> {
     return totalAmount;
   }
 
-  void sortSubscriptionList(String? key) {
+  void sortSubscriptionList(SortKey? key) {
     ref.read(subscriptionsProvider.notifier).sort(key);
   }
 
