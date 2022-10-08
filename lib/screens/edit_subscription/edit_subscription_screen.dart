@@ -45,6 +45,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late DateTime firstPaymentDate;
   late bool isPaused;
   late XFile? iconImage;
+  late String? imageData;
   late String? remarks;
 
   @override
@@ -125,6 +126,12 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     });
   }
 
+  void setImageData(String? value) {
+    setState(() {
+      imageData = value;
+    });
+  }
+
   void setRemarks(String? value) {
     setState(() {
       remarks = value;
@@ -182,6 +189,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           paymentMethod: paymentMethod,
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
+          imageData: imageData,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,
@@ -189,6 +197,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           setPaymentMethod: setPaymentMethod,
           setFirstPaymentDate: setFirstPaymentDate,
           setIconImage: setIconImage,
+          setImageData: setImageData,
           setRemarks: setRemarks,
         ),
       ),
