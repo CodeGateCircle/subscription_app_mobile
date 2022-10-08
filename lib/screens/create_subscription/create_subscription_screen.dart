@@ -23,6 +23,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   PaymentMethod paymentMethod = PaymentMethod.cash;
   DateTime firstPaymentDate = DateTime.now();
   XFile? iconImage;
+  String? imageData;
   String? remarks;
   Subscription? subscription;
 
@@ -37,7 +38,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
         isPaused: false,
-        // image: null,
+        image: imageData,
         remarks: remarks,
       ),
     );
@@ -88,6 +89,12 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
     });
   }
 
+  void setImageData(String? value) {
+    setState(() {
+      imageData = value;
+    });
+  }
+
   void setRemarks(String? value) {
     setState(() {
       remarks = value;
@@ -126,6 +133,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           paymentMethod: paymentMethod,
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
+          imageData: imageData,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,
@@ -133,6 +141,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           setPaymentMethod: setPaymentMethod,
           setFirstPaymentDate: setFirstPaymentDate,
           setIconImage: setIconImage,
+          setImageData: setImageData,
           setRemarks: setRemarks,
         ),
       ),

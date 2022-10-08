@@ -16,6 +16,15 @@ enum PaymentMethod {
   card,
 }
 
+enum SortKey {
+  nameAsc,
+  nameDesc,
+  priceAsc,
+  priceDesc,
+  paymentDayAsc,
+  paymentDayDesc
+}
+
 extension PaymentMethodeExt on PaymentMethod {
   String get paymentMethod {
     switch (this) {

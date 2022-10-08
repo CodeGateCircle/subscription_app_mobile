@@ -46,11 +46,15 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              widget.subscription.name,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+            SizedBox(
+              width: 140,
+              child: Text(
+                overflow: TextOverflow.ellipsis,
+                widget.subscription.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
             ),
             Text.rich(
@@ -100,6 +104,37 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
     );
   }
 
+  Widget _buildPauseDisplay(BuildContext context) {
+    return Container(
+      height: 100,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(51, 51, 51, 0.4),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(
+              Icons.pause_circle,
+              color: Colors.white,
+            ),
+            SizedBox(width: 4),
+            Text(
+              "停止中",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    ;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -112,35 +147,42 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
           ),
         );
       },
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: const Color.fromRGBO(238, 242, 244, 1.0),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SubscriptionIconImage(
-              iconImageUrl: widget.subscription.imageUrl,
-              iconSize: 72,
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(238, 242, 244, 1.0),
+              borderRadius: BorderRadius.circular(8),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildNameAndPrice(context),
-                  const SizedBox(height: 4),
-                  _buildPaymentCycle(context),
-                  const SizedBox(height: 4),
-                  _buildRemainingDaysProgressBar(context),
-                ],
-              ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                SubscriptionIconImage(
+                  iconImageUrl: widget.subscription.imageUrl,
+                  iconSize: 72,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildNameAndPrice(context),
+                      const SizedBox(height: 4),
+                      _buildPaymentCycle(context),
+                      const SizedBox(height: 4),
+                      _buildRemainingDaysProgressBar(context),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          widget.subscription.isPaused
+              ? _buildPauseDisplay(context)
+              : Container(),
+        ],
       ),
     );
   }

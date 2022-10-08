@@ -12,26 +12,10 @@ import 'package:subscription_app_web/features/update_subscription_form/update_su
 class EditSubscription extends ConsumerStatefulWidget {
   const EditSubscription({
     Key? key,
-    required this.id,
-    required this.name,
-    required this.paymentCycle,
-    required this.price,
-    required this.paymentMethod,
-    required this.firstPaymentDate,
-    required this.isPaused,
-    required this.iconImage,
-    required this.remarks,
+    required this.subscription,
   }) : super(key: key);
 
-  final int id;
-  final String name;
-  final PaymentCycle paymentCycle;
-  final int price;
-  final PaymentMethod paymentMethod;
-  final DateTime firstPaymentDate;
-  final bool isPaused;
-  final String? iconImage;
-  final String? remarks;
+  final Subscription subscription;
 
   @override
   EditSubscriptionState createState() => EditSubscriptionState();
@@ -45,19 +29,21 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late DateTime firstPaymentDate;
   late bool isPaused;
   late XFile? iconImage;
+  late String? imageData;
   late String? remarks;
 
   @override
   void initState() {
     setState(() {
-      name = widget.name;
-      paymentCycle = widget.paymentCycle;
-      price = widget.price;
-      paymentMethod = widget.paymentMethod;
-      firstPaymentDate = widget.firstPaymentDate;
-      isPaused = widget.isPaused;
-      iconImage = XFile(widget.iconImage ?? "");
-      remarks = widget.remarks;
+      name = widget.subscription.name;
+      paymentCycle = widget.subscription.paymentCycle;
+      price = widget.subscription.price;
+      paymentMethod = widget.subscription.paymentMethod;
+      firstPaymentDate = widget.subscription.firstPaymentDate;
+      isPaused = widget.subscription.isPaused;
+      iconImage = XFile(widget.subscription.imageUrl ?? "");
+      imageData = null;
+      remarks = widget.subscription.remarks;
     });
     super.initState();
   }
@@ -73,12 +59,15 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
         isPaused: isPaused,
-        // image: iconImage,
+        image: imageData,
         remarks: remarks,
       ),
     );
     try {
-      final res = await SubscriptionRepository.update(postData, widget.id);
+      final res = await SubscriptionRepository.update(
+        postData,
+        widget.subscription.id,
+      );
       ref.read(subscriptionsProvider.notifier).replace(res.data);
     } catch (e) {
       logger.e(e);
@@ -86,8 +75,6 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       Navigator.popUntil(context, (_) => count++ >= 2);
     }
   }
-
-  Future _pauseSubscription() async {}
 
   void setName(String value) {
     setState(() {
@@ -125,10 +112,67 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     });
   }
 
+  void setImageData(String? value) {
+    setState(() {
+      imageData = value;
+    });
+  }
+
   void setRemarks(String? value) {
     setState(() {
       remarks = value;
     });
+  }
+
+  Widget _buildPauseButton(BuildContext context) {
+    final targetSubscriptionIndex = ref
+        .watch(subscriptionsProvider.notifier)
+        .getIndex(widget.subscription.id);
+    Future _pauseSubscription() async {
+      try {
+        final res = await SubscriptionRepository.pause(
+          widget.subscription,
+          ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused,
+          ref.watch(currentUserProvider)!.userId,
+        );
+        ref.read(subscriptionsProvider.notifier).replace(res.data);
+      } catch (e) {
+        logger.e(e);
+      }
+    }
+
+    return GestureDetector(
+      onTap: _pauseSubscription,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:
+            ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused
+                ? const [
+                    Icon(
+                      Icons.pause_circle_outline,
+                      color: Colors.red,
+                    ),
+                    Text(
+                      "停止中",
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    )
+                  ]
+                : const [
+                    Icon(
+                      Icons.pause_circle_outline,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      "一時停止",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+      ),
+    );
   }
 
   @override
@@ -144,24 +188,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
             color: Colors.black,
           ),
           actions: [
-            GestureDetector(
-              onTap: _pauseSubscription,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(
-                    Icons.pause_circle_outline,
-                    color: Colors.black,
-                  ),
-                  Text(
-                    "一時停止",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            _buildPauseButton(context),
             const SizedBox(width: 12),
             Button(
               variant: Variant.solid,
@@ -182,6 +209,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           paymentMethod: paymentMethod,
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
+          imageData: imageData,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,
@@ -189,6 +217,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           setPaymentMethod: setPaymentMethod,
           setFirstPaymentDate: setFirstPaymentDate,
           setIconImage: setIconImage,
+          setImageData: setImageData,
           setRemarks: setRemarks,
         ),
       ),
