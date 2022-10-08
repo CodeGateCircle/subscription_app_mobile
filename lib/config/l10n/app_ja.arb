@@ -2,11 +2,12 @@
   "@@locale": "ja",
 
   "totalAmount": "合計金額",
-  "localeSettings": "言語設定",
   "japanese": "日本語",
   "english": "英語",
-  "monthly": "月",
+  "home": "ホーム",
+  "settings": "設定",
 
+  "monthly": "月",
   "monthlyContract": "月契約",
   "twoMonthContract": "2ヶ月契約",
   "threeMonthContract": "3ヶ月契約",
@@ -29,7 +30,7 @@
   "saveSubscription": "保存",
   "resumeSubscription": "停止中",
   "pauseSubscription": "一時停止",
-
+  "stopSubscription": "停止中",
 
   "nameLabel": "サブスク名",
   "cycleLabel": "支払い周期",
@@ -43,5 +44,10 @@
   "pricePlaceHolder": "料金を記入してください",
   "remarksPlaceHolder": "メモの記入ができます",
 
+  "currencySettings": "通貨設定",
+  "localeSettings": "言語設定",
+  "termsOfUse": "利用規約",
+  "contactUs": "お問い合わせ",
+  "about": "このアプリについて",
   "privacyPolicy": "プライバシー・ポリシー"
 }

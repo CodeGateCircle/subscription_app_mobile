@@ -31,7 +31,7 @@ class Settings extends StatelessWidget {
             Column(
               children: [
                 SettingsItem(
-                  title: "通貨の設定",
+                  title: AppLocalizations.of(context)!.currencySettings,
                   onTap: () {},
                 ),
                 SettingsItem(
@@ -45,10 +45,6 @@ class Settings extends StatelessWidget {
                     );
                   },
                 ),
-                SettingsItem(
-                  title: "テーマ選択",
-                  onTap: () {},
-                ),
               ],
             ),
           ),
@@ -58,15 +54,15 @@ class Settings extends StatelessWidget {
             Column(
               children: [
                 SettingsItem(
-                  title: "利用規約",
+                  title: AppLocalizations.of(context)!.termsOfUse,
                   onTap: () {},
                 ),
                 SettingsItem(
-                  title: "プライパシーポリシー",
+                  title: AppLocalizations.of(context)!.privacyPolicy,
                   onTap: () {},
                 ),
                 SettingsItem(
-                  title: "お問い合わせ",
+                  title: AppLocalizations.of(context)!.contactUs,
                   onTap: () {},
                 ),
               ],
@@ -76,7 +72,7 @@ class Settings extends StatelessWidget {
           _buildSettingList(
             context,
             SettingsItem(
-              title: "このアプリについて",
+              title: AppLocalizations.of(context)!.about,
               onTap: () {},
             ),
           )

@@ -5,10 +5,11 @@
       "@totalAmount": {
         "description": "total amount title label"
       },
-  "localeSettings": "Language Settings",
   "japanese": "Japanese",
   "english": "English",
-
+  "home": "Home",
+  "settings": "Settings",
+  
   "monthly": "Monthly",
   "monthlyContract": "Monthly Contract",
   "twoMonthContract": "Two Month Contract",
@@ -16,13 +17,13 @@
   "semiannualContract": "Semiannual Contract",
   "yearContract": "Year Contract",
   "subscriptions": "All Subscriptions",
-
+  
   "month": "Month",
   "twoMonths": "2 months",
   "threeMonths": "3 months",
   "sixMonths": "6 months",
   "year": "Year",
-
+  
   "cash": "Cash",
   "creditCards": "Credit Cards",
   
@@ -33,7 +34,7 @@
   "resumeSubscription": "Resume",
   "pauseSubscription": "Pause",
   "stopSubscription": "Stop",
-
+  
   "nameLabel": "Name",
   "cycleLabel": "Cycle",
   "priceLabel": "Price",
@@ -45,7 +46,12 @@
   "namePlaceHolder": "Enter name",
   "pricePlaceHolder": "Enter price",
   "remarksPlaceHolder": "Enter remarks",
-
+  
+  "currencySettings": "Currency Settings",
+  "localeSettings": "Language Settings",
+  "termsOfUse": "Terms of Use",
+  "contactUs": "Contact us",
+  "about": "About",
   "privacyPolicy": "Privacy policy",
       "@privacyPolicy": {
         "description": "Privacy policy"
