@@ -6,7 +6,7 @@ import 'package:subscription_app_web/modules/account/account.entity.dart';
 import 'package:subscription_app_web/modules/account/account.service.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/widgets/button.dart';
-import 'package:subscription_app_web/widgets/dropdown_button_widget.dart';
+import 'package:subscription_app_web/widgets/input/dropdown_button_widget.dart';
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp({Key? key}) : super(key: key);

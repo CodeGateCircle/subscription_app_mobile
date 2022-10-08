@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({
+class TextFieldFormWidget extends StatelessWidget {
+  const TextFieldFormWidget({
     Key? key,
     required this.initialValue,
     required this.labelText,

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
-import 'package:subscription_app_web/widgets/dropdown_button_widget.dart';
-import 'package:subscription_app_web/widgets/text_field_widget.dart';
-import 'package:subscription_app_web/widgets/upload_icon_image_field.dart';
+import 'package:subscription_app_web/widgets/input/date_form_field_widget.dart';
+import 'package:subscription_app_web/widgets/input/dropdown_button_widget.dart';
+import 'package:subscription_app_web/widgets/input/text_field_form_widget.dart';
+import 'package:subscription_app_web/widgets/input/upload_icon_image_field.dart';
 
 class UpdateSubscriptionForm extends StatefulWidget {
   const UpdateSubscriptionForm({
@@ -108,22 +109,6 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
       ),
     ];
 
-    TextEditingController _textEditingController = TextEditingController();
-
-    _selectDate(BuildContext context) async {
-      final newSelectedDate = await showDatePicker(
-        context: context,
-        initialDate: widget.firstPaymentDate,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2040),
-      );
-
-      if (newSelectedDate != null) {
-        widget.setFirstPaymentDate(newSelectedDate);
-        _textEditingController.text = newSelectedDate.toString();
-      }
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: SingleChildScrollView(
@@ -136,7 +121,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 iconImage: widget.iconImage,
                 onTapIconImage: onTapIconImage,
               ),
-              TextFieldWidget(
+              TextFieldFormWidget(
                 initialValue: widget.name,
                 labelText: "サブスク名",
                 hintText: "登録するサブスク名を記入してください",
@@ -153,13 +138,21 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                   widget.setPaymentCycle(value);
                 },
               ),
-              TextFieldWidget(
+              TextFieldFormWidget(
                 initialValue: widget.price.toString(),
                 labelText: "月額料金（JPY）",
                 hintText: "料金を記入してください",
                 onSaved: (String? value) {
                   if (value == null) return;
                   widget.setPrice(int.parse(value));
+                },
+              ),
+              DateFormFieldWidget(
+                initialValue: widget.firstPaymentDate,
+                labelText: "初回支払い日",
+                onSaved: (DateTime value) {
+                  logger.d(widget.firstPaymentDate);
+                  widget.setFirstPaymentDate(value);
                 },
               ),
               DropdownButtonWidget(
@@ -170,7 +163,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                   widget.setPaymentMethod(value);
                 },
               ),
-              TextFieldWidget(
+              TextFieldFormWidget(
                 initialValue: widget.remarks,
                 labelText: "メモ",
                 hintText: "メモの記入ができます",
