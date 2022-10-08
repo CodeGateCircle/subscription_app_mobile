@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/subscription_detail_screen.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SubscriptionCard extends StatefulWidget {
   const SubscriptionCard({
@@ -26,9 +27,9 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(4),
       ),
-      child: const Text(
-        "年契約",
-        style: TextStyle(
+      child: Text(
+        widget.subscription.formatPaymentCycle(context),
+        style: const TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.bold,
           color: Colors.grey,
@@ -60,9 +61,10 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
                 ),
                 children: [
                   TextSpan(text: '¥$monthlyFee'),
-                  const TextSpan(
-                    text: ' / 月', // TODO: 月/年表示をミュータブルにする
-                    style: TextStyle(
+                  TextSpan(
+                    text:
+                        ' / ${AppLocalizations.of(context)!.monthly}', // TODO: 月/年表示をミュータブルにする
+                    style: const TextStyle(
                       fontSize: 12,
                     ),
                   ),

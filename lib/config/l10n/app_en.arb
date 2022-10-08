@@ -8,6 +8,14 @@
   "localeSettings": "Language Settings",
   "japanese": "Japanese",
   "english": "English",
+  "monthly": "Monthly",
+  "monthlyContract": "Monthly Contract",
+  "twoMonthContract": "Two Month Contract",
+  "threeMonthContract": "Three Month Contract",
+  "semiannualContract": "Semiannual Contract",
+  "yearContract": "Year Contract",
+  "subscriptions": "Subscriptions",
+  "sort": "Sort",
   "privacyPolicy": "Privacy policy",
       "@privacyPolicy": {
         "description": "Privacy policy"

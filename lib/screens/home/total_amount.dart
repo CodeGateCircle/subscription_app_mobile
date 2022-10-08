@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 class TotalAmount extends StatefulWidget {
   const TotalAmount({
@@ -41,19 +42,37 @@ class _TotalAmountState extends State<TotalAmount> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text("¥"),
-                  const SizedBox(width: 10),
-                  Text(
-                    widget.totalAmount.toString(),
-                    style: const TextStyle(
-                      fontSize: 46,
+                  const Text(
+                    "¥",
+                    style: TextStyle(
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      fontFamily: "Metropolis",
                     ),
                   ),
                   const SizedBox(width: 10),
-                  // TODO: 月/年表示をミュータブルにする
-                  const Text("/月"),
+                  SizedBox(
+                    height: 38,
+                    child: Text(
+                      NumberFormat().format(widget.totalAmount),
+                      style: const TextStyle(
+                        fontSize: 42,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Metropolis",
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    "/ ${AppLocalizations.of(context)!.monthly}",
+                    style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Metropolis",
+                    ),
+                  ),
                 ],
               ),
             ],

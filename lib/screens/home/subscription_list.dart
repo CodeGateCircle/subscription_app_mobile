@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/home/subscription_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SubscriptionList extends StatefulWidget {
   const SubscriptionList({
@@ -27,15 +28,15 @@ class _SubscriptionListState extends State<SubscriptionList> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Text(
-                "Subscriptions",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.subscriptions,
+                style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               DropdownButton(
-                hint: const Text("並び替え"),
+                hint: Text(AppLocalizations.of(context)!.sort),
                 items: const [
                   DropdownMenuItem(
                     value: "作成日",

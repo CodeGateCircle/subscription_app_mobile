@@ -5,5 +5,13 @@
   "localeSettings": "言語設定",
   "japanese": "日本語",
   "english": "英語",
+  "monthly": "月",
+  "monthlyContract": "月契約",
+  "twoMonthContract": "2ヶ月契約",
+  "threeMonthContract": "3ヶ月契約",
+  "semiannualContract": "半年契約",
+  "yearContract": "年契約",
+  "subscriptions": "サブスク一覧",
+  "sort": "並び替え",
   "privacyPolicy": "プライバシー・ポリシー"
 }
