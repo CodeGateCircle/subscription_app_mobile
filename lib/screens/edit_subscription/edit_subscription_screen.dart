@@ -58,6 +58,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       firstPaymentDate = widget.firstPaymentDate;
       isPaused = widget.isPaused;
       iconImage = XFile(widget.iconImage ?? "");
+      imageData = null;
       remarks = widget.remarks;
     });
     super.initState();
