@@ -37,6 +37,7 @@ class HomeState extends ConsumerState<Home> {
       final userId = ref.watch(currentUserProvider)!.userId;
       final res = await SubscriptionRepository.findAll(userId);
       ref.read(subscriptionsProvider.notifier).state = res.data.subscriptions;
+      ref.read(subscriptionsProvider.notifier).sort(null);
     } catch (e) {
       logger.e("error: $e");
     }

@@ -32,25 +32,54 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
   void sort(SortKey? key) {
     switch (key) {
       case SortKey.nameAsc:
-        state.sort((v1, v2) => v1.name.compareTo(v2.name));
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v1.name.compareTo(v2.name);
+        });
         break;
       case SortKey.nameDesc:
-        state.sort((v1, v2) => v2.name.compareTo(v1.name));
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v2.name.compareTo(v1.name);
+        });
         break;
       case SortKey.priceAsc:
-        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v1.price.compareTo(v2.price);
+        });
         break;
       case SortKey.priceDesc:
-        state.sort((v1, v2) => v2.price.compareTo(v1.price));
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v2.price.compareTo(v1.price);
+        });
         break;
       case SortKey.paymentDayAsc:
         // TODO 計算して表示する
-        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v1.name.compareTo(v2.name);
+        });
         break;
       case SortKey.paymentDayDesc:
-        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v1.name.compareTo(v2.name);
+        });
         break;
       case null:
+        state.sort((v1, v2) {
+          return (v1.isPaused != v2.isPaused)
+              ? (v2.isPaused ? -1 : 1)
+              : v1.name.compareTo(v2.name);
+        });
         break;
     }
   }
