@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/lib/convert_monthly_fee.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/subscription_detail_screen.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
@@ -20,6 +21,9 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
   double progressValue = 0.2;
 
   Widget _buildNameAndPrice(BuildContext context) {
+    final monthlyFee = convertMonthlyFee(
+        widget.subscription.paymentCycle, widget.subscription.price);
+
     return Column(
       children: <Widget>[
         Row(
@@ -39,7 +43,7 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
                   fontSize: 16,
                 ),
                 children: [
-                  TextSpan(text: '¥${widget.subscription.price}'),
+                  TextSpan(text: '¥$monthlyFee'),
                   const TextSpan(
                     text: ' /月', // TODO: 月/年表示をミュータブルにする
                     style: TextStyle(
