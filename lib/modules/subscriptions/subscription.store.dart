@@ -4,11 +4,17 @@ import 'package:subscription_app_web/modules/subscriptions/subscription.entity.d
 class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
   SubscriptionsNotifier() : super([]);
 
-  void addSubscription(Subscription subscription) {
+  void add(Subscription subscription) {
     state = [...state, subscription];
   }
 
-  void updateSubscription(Subscription updatedSubscription) {
+  void delete(int subscriptionId) {
+    state = state
+        .where((subscription) => subscription.id != subscriptionId)
+        .toList();
+  }
+
+  void replace(Subscription updatedSubscription) {
     state = [
       for (final subscription in state)
         if (subscription.id == updatedSubscription.id)

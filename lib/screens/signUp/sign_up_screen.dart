@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subscription_app_web/features/app_bottom_navigation_bar.dartapp_bottom_navigation_bar/app_bottom_navigation_bar.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.entity.dart';
 import 'package:subscription_app_web/modules/account/account.service.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
@@ -53,8 +54,19 @@ class SignUpState extends ConsumerState<SignUp> {
     ];
 
     Future _signUp() async {
-      final res = await AccountService.signUp(language, currency);
-      ref.read(currentUserProvider.notifier).state = res;
+      try {
+        final res = await AccountService.signUp(language, currency);
+        ref.read(currentUserProvider.notifier).state = res;
+      } catch (e) {
+        logger.e(e);
+      } finally {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AppBottomNavigationBar(),
+          ),
+        );
+      }
     }
 
     return Scaffold(
@@ -97,15 +109,7 @@ class SignUpState extends ConsumerState<SignUp> {
               variant: Variant.solid,
               text: "管理スタート",
               color: Colors.black,
-              onPressed: () {
-                _signUp();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AppBottomNavigationBar(),
-                  ),
-                );
-              },
+              onPressed: _signUp,
             ),
           ],
         ),

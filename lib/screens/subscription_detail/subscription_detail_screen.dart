@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 import 'package:subscription_app_web/screens/edit_subscription/edit_subscription_screen.dart';
 import 'package:subscription_app_web/screens/subscription_detail/basic_info.dart';
 import 'package:subscription_app_web/screens/subscription_detail/delete_modal.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 
-class SubscriptionDetail extends StatefulWidget {
+class SubscriptionDetail extends ConsumerStatefulWidget {
   const SubscriptionDetail({
     Key? key,
     required this.subscription,
@@ -16,30 +18,32 @@ class SubscriptionDetail extends StatefulWidget {
   final Subscription subscription;
 
   @override
-  State<SubscriptionDetail> createState() => _SubscriptionDetailState();
+  SubscriptionDetailState createState() => SubscriptionDetailState();
 }
 
-class _SubscriptionDetailState extends State<SubscriptionDetail> {
+class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
   double progressValue = 0.2;
 
   Future _deleteSubscription(int id) async {
+    int count = 0;
+
     try {
       await SubscriptionRepository.delete(id);
+      ref.read(subscriptionsProvider.notifier).delete(id);
     } catch (e) {
       logger.e(e);
+    } finally {
+      Navigator.popUntil(context, (_) => count++ >= 2);
     }
   }
 
   Future _showAlertDialog() async {
-    int count = 0;
-
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         return DeleteModal(
           onPressed: () {
             _deleteSubscription(widget.subscription.id);
-            Navigator.popUntil(context, (_) => count++ >= 2);
           },
         );
       },
@@ -57,8 +61,8 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "支払い方法",
                 style: TextStyle(
                   color: Colors.black,
@@ -66,10 +70,10 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(
-                "下4桁番号：1234",
-                style: TextStyle(
+                widget.subscription.paymentMethod.paymentMethod,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                 ),
@@ -129,14 +133,14 @@ class _SubscriptionDetailState extends State<SubscriptionDetail> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "2022/04/12 利用開始",
-                      style: TextStyle(
+                    Text(
+                      "${widget.subscription.firstPaymentDate.toString()} 利用開始",
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
-                    ), // TODO: 変数に変更
+                    ),
                     const SizedBox(height: 6),
                     const Text(
                       "支払いまでの残り日数: 17日",

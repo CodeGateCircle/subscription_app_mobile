@@ -79,7 +79,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     );
     try {
       final res = await SubscriptionRepository.update(postData, widget.id);
-      ref.read(subscriptionsProvider.notifier).updateSubscription(res.data);
+      ref.read(subscriptionsProvider.notifier).replace(res.data);
     } catch (e) {
       logger.e(e);
     } finally {
