@@ -22,7 +22,7 @@ class _SubscriptionIconImageState extends State<SubscriptionIconImage> {
     return widget.iconImageUrl != null &&
             widget.iconImageUrl!.startsWith('https')
         ? CircleAvatar(
-            radius: (widget.iconSize! / 2),
+            radius: widget.iconSize! / 2,
             backgroundImage: NetworkImage(widget.iconImageUrl!),
           )
         : Container(
