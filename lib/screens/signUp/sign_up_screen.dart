@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:subscription_app_web/features/app_bottom_navigation_bar.dartapp_bottom_navigation_bar/app_bottom_navigation_bar.dart';
 import 'package:subscription_app_web/modules/account/account.entity.dart';
 import 'package:subscription_app_web/modules/account/account.service.dart';
-import 'package:subscription_app_web/provider/current_user_notifier.dart';
+import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/widgets/dropdown_button_widget.dart';
 

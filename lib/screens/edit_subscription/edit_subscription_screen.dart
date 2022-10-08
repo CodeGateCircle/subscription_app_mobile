@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/main.dart';
+import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
-import 'package:subscription_app_web/provider/current_user_notifier.dart';
-import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 
@@ -63,6 +63,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
   }
 
   Future _editSubscription() async {
+    int count = 0;
     final postData = RequestData(
       userId: ref.watch(currentUserProvider)!.userId,
       subscription: RequestSubscription(
@@ -81,6 +82,8 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       ref.read(subscriptionsProvider.notifier).updateSubscription(res.data);
     } catch (e) {
       logger.e(e);
+    } finally {
+      Navigator.popUntil(context, (_) => count++ >= 2);
     }
   }
 
@@ -165,11 +168,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
               text: "更新",
               size: 90,
               color: Colors.red,
-              onPressed: () {
-                int count = 0;
-                _editSubscription();
-                Navigator.popUntil(context, (_) => count++ >= 2);
-              },
+              onPressed: _editSubscription,
             ),
             const SizedBox(width: 12),
           ],

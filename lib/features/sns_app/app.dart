@@ -4,7 +4,7 @@ import 'package:platform_device_id/platform_device_id.dart';
 import 'package:subscription_app_web/features/app_bottom_navigation_bar.dartapp_bottom_navigation_bar/app_bottom_navigation_bar.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.repository.dart';
-import 'package:subscription_app_web/provider/current_user_notifier.dart';
+import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/screens/signUp/sign_up_screen.dart';
 
 class SnsApp extends ConsumerStatefulWidget {

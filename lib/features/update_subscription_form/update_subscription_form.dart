@@ -162,48 +162,6 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                   widget.setPrice(int.parse(value));
                 },
               ),
-              TextFormField(
-                // initialValue: widget.firstPaymentDate.toString(),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.fromLTRB(12, 17, 0, 17),
-                  suffixIcon: const Icon(
-                    Icons.calendar_month,
-                    color: Colors.black,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(
-                      color: Color.fromRGBO(240, 237, 235, 1),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(
-                      color: Color.fromRGBO(240, 237, 235, 1),
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2101),
-                  );
-
-                  if (pickedDate != null) {
-                    String formattedDate = pickedDate.toString();
-                    setState(() {
-                      _textEditingController.text = formattedDate;
-                    });
-                    widget.setFirstPaymentDate(pickedDate);
-                  } else {
-                    logger.d("Date is not selected");
-                  }
-                  _selectDate(context);
-                },
-                controller: _textEditingController,
-              ),
               DropdownButtonWidget(
                 labelText: "支払い方法",
                 dropdownValue: widget.paymentMethod,

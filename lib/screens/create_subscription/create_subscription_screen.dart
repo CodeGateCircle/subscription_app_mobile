@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:subscription_app_web/main.dart';
+import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
-import 'package:subscription_app_web/provider/current_user_notifier.dart';
-import 'package:subscription_app_web/provider/subscriptions_notifier.dart';
+import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 
@@ -24,9 +25,10 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   DateTime firstPaymentDate = DateTime.now();
   XFile? iconImage;
   String? remarks;
+  Subscription? subscription;
 
-  // TODO: globalStateにサブスクを追加する処理を追加
   Future _createSubscription() async {
+    int count = 0;
     final postData = RequestData(
       userId: ref.watch(currentUserProvider)!.userId,
       subscription: RequestSubscription(
@@ -46,6 +48,8 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
       ref.read(subscriptionsProvider.notifier).addSubscription(res.data);
     } catch (e) {
       logger.e(e);
+    } finally {
+      Navigator.popUntil(context, (_) => count++ >= 2);
     }
   }
 
@@ -109,11 +113,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
               text: "登録",
               size: 90,
               color: Colors.red,
-              onPressed: () {
-                int count = 0;
-                _createSubscription();
-                Navigator.popUntil(context, (_) => count++ >= 2);
-              },
+              onPressed: _createSubscription,
             ),
             const SizedBox(width: 12),
           ],
