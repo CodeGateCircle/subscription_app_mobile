@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TotalAmount extends StatefulWidget {
   const TotalAmount({
@@ -30,9 +31,9 @@ class _TotalAmountState extends State<TotalAmount> {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(9999),
                 ),
-                child: const Text(
-                  "合計金額",
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context)!.totalAmount,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),

@@ -1,0 +1,9 @@
+{
+  "@@locale": "ja",
+
+  "totalAmount": "合計金額",
+  "localeSettings": "言語設定",
+  "japanese": "日本語",
+  "english": "英語",
+  "privacyPolicy": "プライバシー・ポリシー"
+}

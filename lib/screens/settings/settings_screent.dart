@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/screens/language_settings/locale_settings_screen.dart';
 import 'settings_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -33,8 +35,15 @@ class Settings extends StatelessWidget {
                   onTap: () {},
                 ),
                 SettingsItem(
-                  title: "言語選択",
-                  onTap: () {},
+                  title: AppLocalizations.of(context)!.localeSettings,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LanguageSettings(),
+                      ),
+                    );
+                  },
                 ),
                 SettingsItem(
                   title: "テーマ選択",

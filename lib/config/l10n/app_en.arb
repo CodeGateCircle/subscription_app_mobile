@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+
+  "totalAmount": "Total",
+      "@totalAmount": {
+        "description": "total amount title label"
+      },
+  "localeSettings": "Language Settings",
+  "japanese": "Japanese",
+  "english": "English",
+  "privacyPolicy": "Privacy policy",
+      "@privacyPolicy": {
+        "description": "Privacy policy"
+      }
+}
