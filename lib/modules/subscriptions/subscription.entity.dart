@@ -76,6 +76,28 @@ class Subscription {
       remarks: remarks ?? this.remarks,
     );
   }
+
+  int convertMonthlyFee() {
+    int monthlyFee = 0;
+    switch (paymentCycle) {
+      case PaymentCycle.oneMonth:
+        monthlyFee = price;
+        break;
+      case PaymentCycle.twoMonths:
+        monthlyFee = (price / 2).round();
+        break;
+      case PaymentCycle.threeMonths:
+        monthlyFee = (price / 3).round();
+        break;
+      case PaymentCycle.sixMonths:
+        monthlyFee = (price / 6).round();
+        break;
+      case PaymentCycle.year:
+        monthlyFee = (price / 12).round();
+        break;
+    }
+    return monthlyFee;
+  }
 }
 
 @JsonSerializable()

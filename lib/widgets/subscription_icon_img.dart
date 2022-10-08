@@ -31,7 +31,7 @@ class _SubscriptionIconImageState extends State<SubscriptionIconImage> {
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: const Color.fromRGBO(240, 237, 235, 1),
+                color: Colors.grey.shade300,
               ),
               borderRadius: BorderRadius.circular(999),
             ),

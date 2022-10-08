@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:subscription_app_web/lib/convert_monthly_fee.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
@@ -22,8 +21,7 @@ class HomeState extends ConsumerState<Home> {
   int calculateTotalAmount() {
     setState(() => totalAmount = 0);
     for (final subscription in ref.watch(subscriptionsProvider)) {
-      final monthlyFee =
-          convertMonthlyFee(subscription.paymentCycle, subscription.price);
+      final monthlyFee = subscription.convertMonthlyFee();
       setState(() => totalAmount = totalAmount + monthlyFee);
     }
     return totalAmount;
