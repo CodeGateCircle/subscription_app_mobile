@@ -8,16 +8,44 @@
   "localeSettings": "Language Settings",
   "japanese": "Japanese",
   "english": "English",
+
   "monthly": "Monthly",
   "monthlyContract": "Monthly Contract",
   "twoMonthContract": "Two Month Contract",
   "threeMonthContract": "Three Month Contract",
   "semiannualContract": "Semiannual Contract",
   "yearContract": "Year Contract",
-  "subscriptions": "Subscriptions",
-  "sort": "Sort",
+  "subscriptions": "All Subscriptions",
+
+  "month": "Month",
+  "twoMonths": "2 months",
+  "threeMonths": "3 months",
+  "sixMonths": "6 months",
+  "year": "Year",
+
+  "cash": "Cash",
+  "creditCards": "Credit Cards",
+  
+  "addSubscription": "Add",
+  "newSubscription": "New",
+  "sortSubscription": "Sort",
+  "saveSubscription": "Save",
+  "resumeSubscription": "Resume",
+  "pauseSubscription": "Pause",
+  "stopSubscription": "Stop",
+
+  "nameLabel": "Name",
+  "cycleLabel": "Cycle",
+  "priceLabel": "Price",
+  "firstBillLabel": "First bill",
+  "paymentMethodsLabel": "Payment Methods",
+  "remarksLabel": "Remarks",
+  
   "searchApplicationInputPlaceHolder": "Search Apps...",
-  "add": "Add",
+  "namePlaceHolder": "Enter name",
+  "pricePlaceHolder": "Enter price",
+  "remarksPlaceHolder": "Enter remarks",
+
   "privacyPolicy": "Privacy policy",
       "@privacyPolicy": {
         "description": "Privacy policy"

@@ -65,7 +65,7 @@ class _SubscriptionListState extends State<SubscriptionList> {
                 ),
               ),
               DropdownButton(
-                hint: Text(AppLocalizations.of(context)!.sort),
+                hint: Text(AppLocalizations.of(context)!.sortSubscription),
                 items: sortMenu,
                 value: selectedDropdownItem,
                 onChanged: (SortKey? value) {

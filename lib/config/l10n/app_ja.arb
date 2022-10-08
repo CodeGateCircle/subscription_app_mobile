@@ -6,14 +6,42 @@
   "japanese": "日本語",
   "english": "英語",
   "monthly": "月",
+
   "monthlyContract": "月契約",
   "twoMonthContract": "2ヶ月契約",
   "threeMonthContract": "3ヶ月契約",
   "semiannualContract": "半年契約",
   "yearContract": "年契約",
   "subscriptions": "サブスク一覧",
-  "sort": "並び替え",
+
+  "month": "1ヶ月",
+  "twoMonths": "2ヶ月",
+  "threeMonths": "3ヶ月",
+  "sixMonths": "半年",
+  "year": "1年",
+
+  "cash": "現金",
+  "creditCards": "クレジットカード",
+  
+  "addSubscription": "追加",
+  "newSubscription": "作成",
+  "sortSubscription": "並び替え",
+  "saveSubscription": "保存",
+  "resumeSubscription": "停止中",
+  "pauseSubscription": "一時停止",
+
+
+  "nameLabel": "サブスク名",
+  "cycleLabel": "支払い周期",
+  "priceLabel": "月額料金（JPY）",
+  "firstBillLabel": "初回支払い日",
+  "paymentMethodsLabel": "支払い方法",
+  "remarksLabel": "メモ",
+  
   "searchApplicationInputPlaceHolder": "アプリ名を入力してください",
-  "add": "作成",
+  "namePlaceHolder": "登録するサブスク名を記入してください",
+  "pricePlaceHolder": "料金を記入してください",
+  "remarksPlaceHolder": "メモの記入ができます",
+
   "privacyPolicy": "プライバシー・ポリシー"
 }

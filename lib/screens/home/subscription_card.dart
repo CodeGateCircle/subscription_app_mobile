@@ -114,15 +114,15 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.pause_circle,
               color: Colors.white,
             ),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             Text(
-              "停止中",
-              style: TextStyle(
+              AppLocalizations.of(context)!.stopSubscription,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

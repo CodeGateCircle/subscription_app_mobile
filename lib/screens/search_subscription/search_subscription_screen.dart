@@ -28,7 +28,7 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
           actions: [
             Button(
               variant: Variant.solid,
-              text: AppLocalizations.of(context)!.add,
+              text: AppLocalizations.of(context)!.newSubscription,
               size: 90,
               color: Colors.black,
               onPressed: () {

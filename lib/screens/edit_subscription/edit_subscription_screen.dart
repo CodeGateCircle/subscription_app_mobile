@@ -8,6 +8,7 @@ import 'package:subscription_app_web/modules/subscriptions/subscription.reposito
 import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditSubscription extends ConsumerStatefulWidget {
   const EditSubscription({
@@ -149,26 +150,26 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
         mainAxisAlignment: MainAxisAlignment.center,
         children:
             ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused
-                ? const [
-                    Icon(
+                ? [
+                    const Icon(
                       Icons.pause_circle_outline,
                       color: Colors.red,
                     ),
                     Text(
-                      "停止中",
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.resumeSubscription,
+                      style: const TextStyle(
                         color: Colors.red,
                       ),
                     )
                   ]
-                : const [
-                    Icon(
+                : [
+                    const Icon(
                       Icons.pause_circle_outline,
                       color: Colors.black,
                     ),
                     Text(
-                      "一時停止",
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.pauseSubscription,
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     )
@@ -194,7 +195,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
             const SizedBox(width: 12),
             Button(
               variant: Variant.solid,
-              text: "更新",
+              text: AppLocalizations.of(context)!.saveSubscription,
               size: 90,
               color: Colors.red,
               onPressed: _editSubscription,

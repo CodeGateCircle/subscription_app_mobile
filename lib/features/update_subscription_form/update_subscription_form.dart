@@ -7,6 +7,7 @@ import 'package:subscription_app_web/widgets/input/dropdown_button_widget.dart';
 import 'package:subscription_app_web/widgets/input/text_field_form_widget.dart';
 import 'package:subscription_app_web/widgets/input/upload_icon_image_field.dart';
 import 'dart:convert';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpdateSubscriptionForm extends StatefulWidget {
   const UpdateSubscriptionForm({
@@ -95,34 +96,55 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
     final paymentCycleOptions = [
       DropdownMenuItem(
         value: PaymentCycle.oneMonth,
-        child: _buildOptionText(context, "1ヶ月"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.month,
+        ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.twoMonths,
-        child: _buildOptionText(context, "2ヶ月"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.twoMonths,
+        ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.threeMonths,
-        child: _buildOptionText(context, "3ヶ月"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.threeMonths,
+        ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.sixMonths,
-        child: _buildOptionText(context, "半年"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.sixMonths,
+        ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.year,
-        child: _buildOptionText(context, "1年"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.year,
+        ),
       ),
     ];
 
     final paymentMethodOptions = [
       DropdownMenuItem(
         value: PaymentMethod.cash,
-        child: _buildOptionText(context, "現金"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.cash,
+        ),
       ),
       DropdownMenuItem(
         value: PaymentMethod.card,
-        child: _buildOptionText(context, "クレジットカード"),
+        child: _buildOptionText(
+          context,
+          AppLocalizations.of(context)!.creditCards,
+        ),
       ),
     ];
 
@@ -141,15 +163,15 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
               ),
               TextFieldFormWidget(
                 initialValue: widget.name,
-                labelText: "サブスク名",
-                hintText: "登録するサブスク名を記入してください",
+                labelText: AppLocalizations.of(context)!.nameLabel,
+                hintText: AppLocalizations.of(context)!.namePlaceHolder,
                 onSaved: (String? value) {
                   if (value == null) return;
                   widget.setName(value);
                 },
               ),
               DropdownButtonWidget<PaymentCycle>(
-                labelText: "支払い周期",
+                labelText: AppLocalizations.of(context)!.cycleLabel,
                 dropdownValue: widget.paymentCycle,
                 dropdownMenuItems: paymentCycleOptions,
                 onChanged: (PaymentCycle value) {
@@ -158,8 +180,8 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
               ),
               TextFieldFormWidget(
                 initialValue: widget.price.toString(),
-                labelText: "月額料金（JPY）",
-                hintText: "料金を記入してください",
+                labelText: AppLocalizations.of(context)!.priceLabel,
+                hintText: AppLocalizations.of(context)!.pricePlaceHolder,
                 onSaved: (String? value) {
                   if (value == null) return;
                   widget.setPrice(int.parse(value));
@@ -167,13 +189,13 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
               ),
               DateFormFieldWidget(
                 initialValue: widget.firstPaymentDate,
-                labelText: "初回支払い日",
+                labelText: AppLocalizations.of(context)!.firstBillLabel,
                 onSaved: (DateTime value) {
                   widget.setFirstPaymentDate(value);
                 },
               ),
               DropdownButtonWidget(
-                labelText: "支払い方法",
+                labelText: AppLocalizations.of(context)!.paymentMethodsLabel,
                 dropdownValue: widget.paymentMethod,
                 dropdownMenuItems: paymentMethodOptions,
                 onChanged: (PaymentMethod value) {
@@ -182,8 +204,8 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
               ),
               TextFieldFormWidget(
                 initialValue: widget.remarks,
-                labelText: "メモ",
-                hintText: "メモの記入ができます",
+                labelText: AppLocalizations.of(context)!.remarksLabel,
+                hintText: AppLocalizations.of(context)!.remarksPlaceHolder,
                 onSaved: (String? value) {
                   widget.setRemarks(value);
                 },
