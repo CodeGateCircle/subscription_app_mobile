@@ -28,6 +28,32 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
     final index = state.indexWhere((subscription) => subscription.id == id);
     return index;
   }
+
+  void sort(SortKey? key) {
+    switch (key) {
+      case SortKey.nameAsc:
+        state.sort((v1, v2) => v1.name.compareTo(v2.name));
+        break;
+      case SortKey.nameDesc:
+        state.sort((v1, v2) => v2.name.compareTo(v1.name));
+        break;
+      case SortKey.priceAsc:
+        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        break;
+      case SortKey.priceDesc:
+        state.sort((v1, v2) => v2.price.compareTo(v1.price));
+        break;
+      case SortKey.paymentDayAsc:
+        // TODO 計算して表示する
+        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        break;
+      case SortKey.paymentDayDesc:
+        state.sort((v1, v2) => v1.price.compareTo(v2.price));
+        break;
+      case null:
+        break;
+    }
+  }
 }
 
 final subscriptionsProvider =
