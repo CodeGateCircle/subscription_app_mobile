@@ -53,30 +53,6 @@ class Subscription {
       _$SubscriptionFromJson(json);
   Map<String, dynamic> toJson() => _$SubscriptionToJson(this);
 
-  Subscription copyWith({
-    int? id,
-    String? name,
-    int? price,
-    PaymentCycle? paymentCycle,
-    DateTime? firstPaymentDate,
-    PaymentMethod? paymentMethod,
-    bool? isPaused,
-    String? remarks,
-    String? imageUrl,
-  }) {
-    return Subscription(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      price: price ?? this.price,
-      paymentCycle: paymentCycle ?? this.paymentCycle,
-      firstPaymentDate: firstPaymentDate ?? this.firstPaymentDate,
-      paymentMethod: paymentMethod ?? this.paymentMethod,
-      isPaused: isPaused ?? this.isPaused,
-      imageUrl: imageUrl ?? this.imageUrl,
-      remarks: remarks ?? this.remarks,
-    );
-  }
-
   int convertMonthlyFee() {
     int monthlyFee = 0;
     switch (paymentCycle) {
