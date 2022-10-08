@@ -134,6 +134,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
           imageData: imageData,
+          defaultImageUrl: null,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,
