@@ -90,15 +90,7 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
       context,
       MaterialPageRoute(
         builder: (context) => EditSubscription(
-          id: widget.subscription.id,
-          name: widget.subscription.name,
-          paymentCycle: widget.subscription.paymentCycle,
-          price: widget.subscription.price,
-          paymentMethod: widget.subscription.paymentMethod,
-          firstPaymentDate: widget.subscription.firstPaymentDate,
-          isPaused: widget.subscription.isPaused,
-          iconImage: widget.subscription.imageUrl,
-          remarks: widget.subscription.remarks,
+          subscription: widget.subscription,
         ),
       ),
     );

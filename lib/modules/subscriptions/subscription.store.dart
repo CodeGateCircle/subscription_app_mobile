@@ -24,6 +24,11 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
     ];
   }
 
+  int getIndex(int id) {
+    final index = state.indexWhere((subscription) => subscription.id == id);
+    return index;
+  }
+
   void sort(SortKey? key) {
     switch (key) {
       case SortKey.nameAsc:

@@ -16,9 +16,37 @@ class SubscriptionRepository {
   }
 
   static Future<UpdateResponseData> update(
-      RequestData subscription, int id) async {
+    RequestData subscription,
+    int id,
+  ) async {
     final res =
         await api().post("/subscriptions/${id.toString()}", data: subscription);
+    return UpdateResponseData.fromJson(res.data);
+  }
+
+  static Future<UpdateResponseData> pause(
+    Subscription subscription,
+    bool isPaused,
+    String userId,
+  ) async {
+    final postData = RequestData(
+      userId: userId,
+      subscription: RequestSubscription(
+        name: subscription.name,
+        price: subscription.price,
+        paymentCycle: subscription.paymentCycle,
+        firstPaymentDate: subscription.firstPaymentDate,
+        paymentMethod: subscription.paymentMethod,
+        isPaused: !isPaused,
+        // image: subscription.iconImage,
+        remarks: subscription.remarks,
+      ),
+    );
+
+    final res = await api().post(
+      "/subscriptions/${subscription.id.toString()}",
+      data: postData,
+    );
     return UpdateResponseData.fromJson(res.data);
   }
 
