@@ -14,6 +14,17 @@ enum PaymentMethod {
   card,
 }
 
+extension PaymentMethodeExt on PaymentMethod {
+  String get paymentMethod {
+    switch (this) {
+      case PaymentMethod.cash:
+        return "現金";
+      case PaymentMethod.card:
+        return "クレジットカード";
+    }
+  }
+}
+
 @JsonSerializable()
 class Subscription {
   late int id;

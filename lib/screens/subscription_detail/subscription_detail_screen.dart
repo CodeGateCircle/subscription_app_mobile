@@ -61,8 +61,8 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "支払い方法",
                 style: TextStyle(
                   color: Colors.black,
@@ -70,10 +70,10 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(
-                "下4桁番号：1234",
-                style: TextStyle(
+                widget.subscription.paymentMethod.paymentMethod,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                 ),
@@ -133,14 +133,14 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "2022/04/12 利用開始",
-                      style: TextStyle(
+                    Text(
+                      "${widget.subscription.firstPaymentDate.toString()} 利用開始",
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
-                    ), // TODO: 変数に変更
+                    ),
                     const SizedBox(height: 6),
                     const Text(
                       "支払いまでの残り日数: 17日",
