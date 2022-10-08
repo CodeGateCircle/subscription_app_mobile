@@ -23,6 +23,11 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
           subscription,
     ];
   }
+
+  int getIndex(int id) {
+    final index = state.indexWhere((subscription) => subscription.id == id);
+    return index;
+  }
 }
 
 final subscriptionsProvider =
