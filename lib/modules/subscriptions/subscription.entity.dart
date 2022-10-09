@@ -236,6 +236,7 @@ class RequestSubscription {
   late PaymentMethod paymentMethod;
   late bool isPaused;
   late String? image;
+  late String? imageUrl;
   late String? remarks;
 
   RequestSubscription({

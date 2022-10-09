@@ -140,7 +140,7 @@ RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
       isPaused: json['isPaused'] as bool,
       image: json['image'] as String?,
       remarks: json['remarks'] as String?,
-    );
+    )..imageUrl = json['imageUrl'] as String?;
 
 Map<String, dynamic> _$RequestSubscriptionToJson(
         RequestSubscription instance) =>
@@ -152,5 +152,6 @@ Map<String, dynamic> _$RequestSubscriptionToJson(
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
       'isPaused': instance.isPaused,
       'image': instance.image,
+      'imageUrl': instance.imageUrl,
       'remarks': instance.remarks,
     };
