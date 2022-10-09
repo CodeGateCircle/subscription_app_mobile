@@ -84,9 +84,9 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          "支払いまで17日",
-          style: TextStyle(
+        Text(
+          "支払いまで${widget.subscription.daysUntilNextBill().toString()}日",
+          style: const TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,
           ),

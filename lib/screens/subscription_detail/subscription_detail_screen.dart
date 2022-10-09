@@ -134,9 +134,9 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
-                      "支払いまでの残り日数: 17日",
-                      style: TextStyle(
+                    Text(
+                      "支払いまでの残り日数: ${widget.subscription.daysUntilNextBill().toString()}日",
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
