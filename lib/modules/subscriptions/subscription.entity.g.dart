@@ -58,7 +58,8 @@ Map<String, dynamic> _$FindAllResponseDataToJson(
 
 CreateResponseData _$CreateResponseDataFromJson(Map<String, dynamic> json) =>
     CreateResponseData(
-      data: Subscription.fromJson(json['data'] as Map<String, dynamic>),
+      data: CreateResponseSubscription.fromJson(
+          json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CreateResponseDataToJson(CreateResponseData instance) =>
@@ -66,14 +67,41 @@ Map<String, dynamic> _$CreateResponseDataToJson(CreateResponseData instance) =>
       'data': instance.data,
     };
 
+CreateResponseSubscription _$CreateResponseSubscriptionFromJson(
+        Map<String, dynamic> json) =>
+    CreateResponseSubscription(
+      subscription:
+          Subscription.fromJson(json['subscription'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CreateResponseSubscriptionToJson(
+        CreateResponseSubscription instance) =>
+    <String, dynamic>{
+      'subscription': instance.subscription,
+    };
+
 UpdateResponseData _$UpdateResponseDataFromJson(Map<String, dynamic> json) =>
     UpdateResponseData(
-      data: Subscription.fromJson(json['data'] as Map<String, dynamic>),
+      data: UpdateResponseSubscription.fromJson(
+          json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UpdateResponseDataToJson(UpdateResponseData instance) =>
     <String, dynamic>{
       'data': instance.data,
+    };
+
+UpdateResponseSubscription _$UpdateResponseSubscriptionFromJson(
+        Map<String, dynamic> json) =>
+    UpdateResponseSubscription(
+      subscription:
+          Subscription.fromJson(json['subscription'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$UpdateResponseSubscriptionToJson(
+        UpdateResponseSubscription instance) =>
+    <String, dynamic>{
+      'subscription': instance.subscription,
     };
 
 ResponseSubscriptions _$ResponseSubscriptionsFromJson(

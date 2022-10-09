@@ -46,7 +46,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
 
     try {
       final res = await SubscriptionRepository.create(postData);
-      ref.read(subscriptionsProvider.notifier).add(res.data);
+      ref.read(subscriptionsProvider.notifier).add(res.data.subscription);
     } catch (e) {
       logger.e(e);
     } finally {
