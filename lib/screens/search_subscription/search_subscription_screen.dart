@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subscription_app_web/screens/search_subscription/search_input.dart';
 import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
 import 'package:subscription_app_web/widgets/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchSubscription extends StatefulWidget {
   const SearchSubscription({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
           actions: [
             Button(
               variant: Variant.solid,
-              text: "作成",
+              text: AppLocalizations.of(context)!.newSubscription,
               size: 90,
               color: Colors.black,
               onPressed: () {

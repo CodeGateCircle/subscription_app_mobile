@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DeleteModal extends StatelessWidget {
   const DeleteModal({
@@ -11,13 +12,15 @@ class DeleteModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("本当に削除しますか？"),
+      title: Center(
+        child: Text(AppLocalizations.of(context)!.deletionAlertMessage),
+      ),
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _ActionButton(
-              buttonText: "キャンセル",
+              buttonText: AppLocalizations.of(context)!.cancelButtonText,
               textColor: Colors.black,
               primaryColor: Colors.white,
               borderColor: Colors.grey.shade300,
@@ -25,7 +28,7 @@ class DeleteModal extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             _ActionButton(
-              buttonText: "削除",
+              buttonText: AppLocalizations.of(context)!.deleteButtonText,
               textColor: Colors.white,
               primaryColor: Colors.red,
               onPressed: onPressed,

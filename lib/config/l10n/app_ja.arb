@@ -1,0 +1,69 @@
+{
+  "@@locale": "ja",
+
+  "totalAmount": "合計金額",
+  "japanese": "日本語",
+  "english": "英語",
+  "home": "ホーム",
+  "settings": "設定",
+
+  "monthly": "月",
+  "shortMonthly": "月",
+  "monthlyContract": "月契約",
+  "twoMonthContract": "2ヶ月契約",
+  "threeMonthContract": "3ヶ月契約",
+  "semiannualContract": "半年契約",
+  "yearContract": "年契約",
+  "subscriptions": "サブスク一覧",
+  "daysRemaining": "支払いまで残り",
+  "startDateOfUse": "利用開始日",
+
+  "month": "1ヶ月",
+  "twoMonths": "2ヶ月",
+  "threeMonths": "3ヶ月",
+  "sixMonths": "半年",
+  "year": "1年",
+
+  "cash": "現金",
+  "creditCards": "クレジットカード",
+  
+  "addSubscription": "追加",
+  "newSubscription": "作成",
+  "sortSubscription": "並び替え",
+  "saveSubscription": "保存",
+  "resumeSubscription": "停止中",
+  "pauseSubscription": "一時停止",
+  "stopSubscription": "停止中",
+  "editSubscription": "編集",
+  "deleteSubscription": "削除",
+  
+  "nameLabel": "サブスク名",
+  "cycleLabel": "支払い周期",
+  "priceLabel": "月額料金（JPY）",
+  "firstBillLabel": "初回支払い日",
+  "paymentMethodsLabel": "支払い方法",
+  "remarksLabel": "メモ",
+
+  "searchApplicationInputPlaceHolder": "アプリ名を入力してください",
+  "namePlaceHolder": "登録するサブスク名を記入してください",
+  "pricePlaceHolder": "料金を記入してください",
+  "remarksPlaceHolder": "メモの記入ができます",
+
+  "deletionAlertMessage": "本当に削除しますか？",
+  "deleteButtonText": "削除",
+  "cancelButtonText": "キャンセル",
+  
+  "sortAscendingByName": "名前 (昇順)",
+  "sortDescendingByName": "名前 (降順)",
+  "sortAscendingByPrice": "料金 (昇順)",
+  "sortDescendingByPrice": "料金 (降順)",
+  "sortAscendingByPaymentDue": "支払い日数 (昇順)",
+  "sortDescendingByPaymentDue": "支払い日数 (降順)",
+
+  "currencySettings": "通貨設定",
+  "localeSettings": "言語設定",
+  "termsOfUse": "利用規約",
+  "contactUs": "お問い合わせ",
+  "about": "このアプリについて",
+  "privacyPolicy": "プライバシー・ポリシー"
+}

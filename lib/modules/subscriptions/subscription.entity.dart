@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 part 'subscription.entity.g.dart';
 
 enum PaymentCycle {
@@ -24,12 +27,12 @@ enum SortKey {
 }
 
 extension PaymentMethodeExt on PaymentMethod {
-  String get paymentMethod {
+  String paymentMethod(BuildContext context) {
     switch (this) {
       case PaymentMethod.cash:
-        return "現金";
+        return AppLocalizations.of(context)!.cash;
       case PaymentMethod.card:
-        return "クレジットカード";
+        return AppLocalizations.of(context)!.creditCards;
     }
   }
 }
@@ -61,6 +64,21 @@ class Subscription {
   factory Subscription.fromJson(Map<String, dynamic> json) =>
       _$SubscriptionFromJson(json);
   Map<String, dynamic> toJson() => _$SubscriptionToJson(this);
+
+  String formatPaymentCycle(BuildContext context) {
+    switch (paymentCycle) {
+      case PaymentCycle.oneMonth:
+        return AppLocalizations.of(context)!.monthlyContract;
+      case PaymentCycle.twoMonths:
+        return AppLocalizations.of(context)!.twoMonthContract;
+      case PaymentCycle.threeMonths:
+        return AppLocalizations.of(context)!.threeMonthContract;
+      case PaymentCycle.sixMonths:
+        return AppLocalizations.of(context)!.semiannualContract;
+      case PaymentCycle.year:
+        return AppLocalizations.of(context)!.yearContract;
+    }
+  }
 
   int convertMonthlyFee() {
     int monthlyFee = 0;

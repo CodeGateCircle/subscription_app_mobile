@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/screens/home/home_screen.dart';
 import 'package:subscription_app_web/screens/settings/settings_screent.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   const AppBottomNavigationBar({Key? key}) : super(key: key);
@@ -13,17 +13,6 @@ class AppBottomNavigationBar extends StatefulWidget {
 class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   int currentIndex = 0;
 
-  final List<BottomNavigationBarItem> _tabItems = [
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: 'ホーム',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: "設定",
-    ),
-  ];
-
   void _onTap(int index) {
     setState(() {
       currentIndex = index;
@@ -32,6 +21,17 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    final List<BottomNavigationBarItem> tabItems = [
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.home),
+        label: AppLocalizations.of(context)!.home,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.settings),
+        label: AppLocalizations.of(context)!.settings,
+      ),
+    ];
+
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
@@ -42,7 +42,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 32,
-        items: _tabItems,
+        items: tabItems,
         currentIndex: currentIndex,
         onTap: _onTap,
       ),

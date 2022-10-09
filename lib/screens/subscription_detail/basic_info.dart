@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BasicInfoArea extends StatefulWidget {
   const BasicInfoArea({
@@ -26,20 +28,28 @@ class _BasicInfoAreaState extends State<BasicInfoArea> {
             iconSize: 96,
           ),
           const SizedBox(width: 15),
-          Text.rich(
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 33,
-            ),
-            TextSpan(children: [
-              TextSpan(text: '¥${widget.subscription.price}'),
-              const TextSpan(
-                text: ' /月', // TODO: 月/年表示をミュータブルにする
-                style: TextStyle(
-                  fontSize: 16,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '¥${NumberFormat().format(widget.subscription.price)}',
+                style: const TextStyle(
+                  fontSize: 33,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Metropolis",
                 ),
               ),
-            ]),
+              const SizedBox(width: 4),
+              Text(
+                "/ ${AppLocalizations.of(context)!.shortMonthly}",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Metropolis",
+                ),
+              ),
+            ],
           ),
         ],
       ),
