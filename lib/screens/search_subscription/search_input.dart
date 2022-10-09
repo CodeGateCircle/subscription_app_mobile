@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:subscription_app_web/lib/debouncer.dart';
-import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/search_result/search_result.entity.dart';
 import 'package:subscription_app_web/modules/search_result/search_result.repository.dart';
 
@@ -33,6 +32,7 @@ class _SearchInputState extends State<SearchInput> {
     debouncer.run(() {
       search();
     });
+    if (inputValue == "") widget.setSearchResult([]);
   }
 
   @override
