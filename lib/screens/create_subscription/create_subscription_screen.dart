@@ -11,7 +11,16 @@ import 'package:subscription_app_web/features/update_subscription_form/update_su
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreateSubscription extends ConsumerStatefulWidget {
-  const CreateSubscription({Key? key}) : super(key: key);
+  const CreateSubscription({
+    Key? key,
+    this.name,
+    this.price,
+    // this.defaultImageUrl,
+  }) : super(key: key);
+
+  final String? name;
+  final double? price;
+  // final String? defaultImageUrl;
 
   @override
   CreateSubscriptionState createState() => CreateSubscriptionState();
@@ -20,13 +29,26 @@ class CreateSubscription extends ConsumerStatefulWidget {
 class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   String name = "";
   PaymentCycle paymentCycle = PaymentCycle.oneMonth;
-  int price = 0;
+  double price = 0;
   PaymentMethod paymentMethod = PaymentMethod.cash;
   DateTime firstPaymentDate = DateTime.now();
   XFile? iconImage;
   String? imageData;
   String? remarks;
   Subscription? subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.name == null) return;
+    if (widget.price == null) return;
+    // if (widget.defaultImageUrl == null) return;
+
+    name = widget.name!;
+    price = widget.price!;
+    // defaultImageUrl = widget.defaultImageUrl!;
+  }
 
   Future _createSubscription() async {
     int count = 0;
@@ -66,7 +88,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
     });
   }
 
-  void setPrice(int value) {
+  void setPrice(double value) {
     setState(() {
       price = value;
     });

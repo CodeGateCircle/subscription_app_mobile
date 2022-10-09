@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:subscription_app_web/modules/search_result/search_result.entity.dart';
 import 'package:subscription_app_web/screens/search_subscription/search_input.dart';
 import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
+import 'package:subscription_app_web/screens/search_subscription/search_results.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -13,6 +14,14 @@ class SearchSubscription extends StatefulWidget {
 }
 
 class _SearchSubscriptionState extends State<SearchSubscription> {
+  List<SearchResult> searchResult = [];
+
+  void setSearchResult(List<SearchResult> values) {
+    setState(() {
+      searchResult = values;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -47,8 +56,13 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
           titleSpacing: 20,
         ),
         body: Column(
-          children: const [
-            SearchInput(),
+          children: [
+            SearchInput(
+              setSearchResult: setSearchResult,
+            ),
+            SearchResults(
+              searchResults: searchResult,
+            ),
           ],
         ),
       ),
