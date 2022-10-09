@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/subscription_detail_screen.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SubscriptionCard extends StatefulWidget {
+class SubscriptionCard extends ConsumerStatefulWidget {
   const SubscriptionCard({
     Key? key,
     required this.subscription,
@@ -12,10 +15,10 @@ class SubscriptionCard extends StatefulWidget {
   final Subscription subscription;
 
   @override
-  State<SubscriptionCard> createState() => _SubscriptionCardState();
+  SubscriptionCardState createState() => SubscriptionCardState();
 }
 
-class _SubscriptionCardState extends State<SubscriptionCard> {
+class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
   final double imgSize = 56;
   double progressValue = 0.2;
 
@@ -26,9 +29,9 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(4),
       ),
-      child: const Text(
-        "年契約",
-        style: TextStyle(
+      child: Text(
+        widget.subscription.formatPaymentCycle(context),
+        style: const TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.bold,
           color: Colors.grey,
@@ -64,9 +67,10 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
                 ),
                 children: [
                   TextSpan(text: '¥$monthlyFee'),
-                  const TextSpan(
-                    text: ' / 月', // TODO: 月/年表示をミュータブルにする
-                    style: TextStyle(
+                  TextSpan(
+                    text:
+                        ' / ${AppLocalizations.of(context)!.shortMonthly}', // TODO: 月/年表示をミュータブルにする
+                    style: const TextStyle(
                       fontSize: 12,
                     ),
                   ),
@@ -85,7 +89,9 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "支払いまで${widget.subscription.daysUntilNextBill().toString()}日",
+          ref.watch(localeProvider) == const Locale("en")
+              ? "${widget.subscription.daysUntilNextBill().toString()} ${AppLocalizations.of(context)!.daysRemaining}"
+              : "${AppLocalizations.of(context)!.daysRemaining}${widget.subscription.daysUntilNextBill().toString()}日",
           style: const TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,
@@ -112,15 +118,15 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.pause_circle,
               color: Colors.white,
             ),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             Text(
-              "停止中",
-              style: TextStyle(
+              AppLocalizations.of(context)!.stopSubscription,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

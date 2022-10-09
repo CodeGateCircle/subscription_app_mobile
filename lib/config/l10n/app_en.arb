@@ -1,0 +1,76 @@
+{
+  "@@locale": "en",
+
+  "totalAmount": "Total",
+      "@totalAmount": {
+        "description": "total amount title label"
+      },
+  "japanese": "Japanese",
+  "english": "English",
+  "home": "Home",
+  "settings": "Settings",
+  
+  "monthly": "Monthly",
+  "shortMonthly": "M",
+  "monthlyContract": "Monthly Contract",
+  "twoMonthContract": "Two Month Contract",
+  "threeMonthContract": "Three Month Contract",
+  "semiannualContract": "Semiannual Contract",
+  "yearContract": "Year Contract",
+  "subscriptions": "Subscriptions",
+  "daysRemaining": "days to bill",
+  "startDateOfUse": "Start Date of Use",
+
+  "month": "Month",
+  "twoMonths": "2 months",
+  "threeMonths": "3 months",
+  "sixMonths": "6 months",
+  "year": "Year",
+  
+  "cash": "Cash",
+  "creditCards": "Credit Cards",
+  
+  "addSubscription": "Add",
+  "newSubscription": "New",
+  "sortSubscription": "Sort",
+  "saveSubscription": "Save",
+  "resumeSubscription": "Resume",
+  "pauseSubscription": "Pause",
+  "stopSubscription": "Stop",
+  "editSubscription": "Edit",
+  "deleteSubscription": "Delete",
+  
+  "nameLabel": "Name",
+  "cycleLabel": "Cycle",
+  "priceLabel": "Price",
+  "firstBillLabel": "First bill",
+  "paymentMethodsLabel": "Payment Methods",
+  "remarksLabel": "Remarks",
+  
+  "searchApplicationInputPlaceHolder": "Search Subscriptions...",
+  "namePlaceHolder": "Enter name",
+  "pricePlaceHolder": "Enter price",
+  "remarksPlaceHolder": "Enter remarks",
+  
+  "deletionAlertMessage": "Are you sure want to Delete?",
+  "deleteButtonText": "Yes!",
+  "cancelButtonText": "No",
+
+  "sortAscendingByName": "Name (ASC)",
+  "sortDescendingByName": "Name (DESC)",
+  "sortAscendingByPrice": "Price (ASC)",
+  "sortDescendingByPrice": "Price (DESC)",
+  "sortAscendingByPaymentDue": "PaymentDue (ASC)",
+  "sortDescendingByPaymentDue": "PaymentDue (DESC)",
+
+  
+  "currencySettings": "Currency Settings",
+  "localeSettings": "Language Settings",
+  "termsOfUse": "Terms of Use",
+  "contactUs": "Contact us",
+  "about": "About",
+  "privacyPolicy": "Privacy policy",
+      "@privacyPolicy": {
+        "description": "Privacy policy"
+      }
+}

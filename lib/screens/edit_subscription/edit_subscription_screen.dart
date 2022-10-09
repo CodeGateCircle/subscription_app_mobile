@@ -6,8 +6,10 @@ import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
+import 'package:subscription_app_web/screens/edit_subscription/pause_button.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditSubscription extends ConsumerStatefulWidget {
   const EditSubscription({
@@ -29,6 +31,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late DateTime firstPaymentDate;
   late bool isPaused;
   late XFile? iconImage;
+  late String? defaultImageUrl;
   late String? imageData;
   late String? remarks;
 
@@ -41,7 +44,8 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       paymentMethod = widget.subscription.paymentMethod;
       firstPaymentDate = widget.subscription.firstPaymentDate;
       isPaused = widget.subscription.isPaused;
-      iconImage = XFile(widget.subscription.imageUrl ?? "");
+      iconImage = null;
+      defaultImageUrl = widget.subscription.imageUrl ?? "";
       imageData = null;
       remarks = widget.subscription.remarks;
     });
@@ -68,7 +72,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
         postData,
         widget.subscription.id,
       );
-      ref.read(subscriptionsProvider.notifier).replace(res.data);
+      ref.read(subscriptionsProvider.notifier).replace(res.data.subscription);
     } catch (e) {
       logger.e(e);
     } finally {
@@ -124,10 +128,12 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     });
   }
 
-  Widget _buildPauseButton(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     final targetSubscriptionIndex = ref
         .watch(subscriptionsProvider.notifier)
         .getIndex(widget.subscription.id);
+
     Future _pauseSubscription() async {
       try {
         final res = await SubscriptionRepository.pause(
@@ -135,48 +141,12 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused,
           ref.watch(currentUserProvider)!.userId,
         );
-        ref.read(subscriptionsProvider.notifier).replace(res.data);
+        ref.read(subscriptionsProvider.notifier).replace(res.data.subscription);
       } catch (e) {
         logger.e(e);
       }
     }
 
-    return GestureDetector(
-      onTap: _pauseSubscription,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:
-            ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused
-                ? const [
-                    Icon(
-                      Icons.pause_circle_outline,
-                      color: Colors.red,
-                    ),
-                    Text(
-                      "停止中",
-                      style: TextStyle(
-                        color: Colors.red,
-                      ),
-                    )
-                  ]
-                : const [
-                    Icon(
-                      Icons.pause_circle_outline,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      "一時停止",
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    )
-                  ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -188,11 +158,16 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
             color: Colors.black,
           ),
           actions: [
-            _buildPauseButton(context),
+            PauseButton(
+              onTap: _pauseSubscription,
+              isPause: ref
+                  .watch(subscriptionsProvider)[targetSubscriptionIndex]
+                  .isPaused,
+            ),
             const SizedBox(width: 12),
             Button(
               variant: Variant.solid,
-              text: "更新",
+              text: AppLocalizations.of(context)!.saveSubscription,
               size: 90,
               color: Colors.red,
               onPressed: _editSubscription,
@@ -210,6 +185,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
           imageData: imageData,
+          defaultImageUrl: defaultImageUrl,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,

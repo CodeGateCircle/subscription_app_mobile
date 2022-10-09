@@ -8,6 +8,7 @@ import 'package:subscription_app_web/modules/subscriptions/subscription.reposito
 import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreateSubscription extends ConsumerStatefulWidget {
   const CreateSubscription({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
 
     try {
       final res = await SubscriptionRepository.create(postData);
-      ref.read(subscriptionsProvider.notifier).add(res.data);
+      ref.read(subscriptionsProvider.notifier).add(res.data.subscription);
     } catch (e) {
       logger.e(e);
     } finally {
@@ -116,7 +117,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           actions: [
             Button(
               variant: Variant.solid,
-              text: "登録",
+              text: AppLocalizations.of(context)!.addSubscription,
               size: 90,
               color: Colors.red,
               onPressed: _createSubscription,
@@ -134,6 +135,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
           imageData: imageData,
+          defaultImageUrl: null,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/screens/language_settings/locale_settings_screen.dart';
 import 'settings_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -29,16 +31,19 @@ class Settings extends StatelessWidget {
             Column(
               children: [
                 SettingsItem(
-                  title: "通貨の設定",
+                  title: AppLocalizations.of(context)!.currencySettings,
                   onTap: () {},
                 ),
                 SettingsItem(
-                  title: "言語選択",
-                  onTap: () {},
-                ),
-                SettingsItem(
-                  title: "テーマ選択",
-                  onTap: () {},
+                  title: AppLocalizations.of(context)!.localeSettings,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LanguageSettings(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -49,15 +54,15 @@ class Settings extends StatelessWidget {
             Column(
               children: [
                 SettingsItem(
-                  title: "利用規約",
+                  title: AppLocalizations.of(context)!.termsOfUse,
                   onTap: () {},
                 ),
                 SettingsItem(
-                  title: "プライパシーポリシー",
+                  title: AppLocalizations.of(context)!.privacyPolicy,
                   onTap: () {},
                 ),
                 SettingsItem(
-                  title: "お問い合わせ",
+                  title: AppLocalizations.of(context)!.contactUs,
                   onTap: () {},
                 ),
               ],
@@ -67,7 +72,7 @@ class Settings extends StatelessWidget {
           _buildSettingList(
             context,
             SettingsItem(
-              title: "このアプリについて",
+              title: AppLocalizations.of(context)!.about,
               onTap: () {},
             ),
           )

@@ -38,7 +38,7 @@ class SubscriptionRepository {
         firstPaymentDate: subscription.firstPaymentDate,
         paymentMethod: subscription.paymentMethod,
         isPaused: !isPaused,
-        // image: subscription.iconImage,
+        image: subscription.imageUrl,
         remarks: subscription.remarks,
       ),
     );
