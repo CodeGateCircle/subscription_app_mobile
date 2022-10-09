@@ -20,7 +20,6 @@ class SubscriptionCard extends ConsumerStatefulWidget {
 
 class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
   final double imgSize = 56;
-  double progressValue = 0.2;
 
   Widget _buildPaymentCycle(BuildContext context) {
     return Container(
@@ -96,12 +95,14 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
             fontSize: 11,
             fontWeight: FontWeight.w600,
           ),
-        ), // TODO: 期日の計算
+        ),
         const SizedBox(width: 4),
         Expanded(
           child: LinearProgressIndicator(
             backgroundColor: Colors.grey,
-            value: progressValue,
+            value: 1 -
+                (widget.subscription.daysUntilNextBill() /
+                    widget.subscription.getPaymentCycleDays()),
           ),
         ),
       ],
