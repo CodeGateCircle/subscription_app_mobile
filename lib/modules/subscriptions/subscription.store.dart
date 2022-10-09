@@ -70,7 +70,7 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
         state.sort((v1, v2) {
           return (v1.isPaused != v2.isPaused)
               ? (v2.isPaused ? -1 : 1)
-              : v2.daysUntilNextBill().compareTo(v2.daysUntilNextBill());
+              : v2.daysUntilNextBill().compareTo(v1.daysUntilNextBill());
         });
         break;
       case null:
