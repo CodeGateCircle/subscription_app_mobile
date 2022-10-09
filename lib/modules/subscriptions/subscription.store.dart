@@ -60,18 +60,17 @@ class SubscriptionsNotifier extends StateNotifier<List<Subscription>> {
         });
         break;
       case SortKey.paymentDayAsc:
-        // TODO 計算して表示する
         state.sort((v1, v2) {
           return (v1.isPaused != v2.isPaused)
               ? (v2.isPaused ? -1 : 1)
-              : v1.name.compareTo(v2.name);
+              : v1.daysUntilNextBill().compareTo(v2.daysUntilNextBill());
         });
         break;
       case SortKey.paymentDayDesc:
         state.sort((v1, v2) {
           return (v1.isPaused != v2.isPaused)
               ? (v2.isPaused ? -1 : 1)
-              : v1.name.compareTo(v2.name);
+              : v2.daysUntilNextBill().compareTo(v2.daysUntilNextBill());
         });
         break;
       case null:
