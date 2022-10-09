@@ -44,14 +44,21 @@
   "paymentMethodsLabel": "支払い方法",
   "remarksLabel": "メモ",
 
-  "deletionAlertMessage": "本当に削除しますか？",
-  "deleteButtonText": "削除",
-  "cancelButtonText": "キャンセル",
-  
   "searchApplicationInputPlaceHolder": "アプリ名を入力してください",
   "namePlaceHolder": "登録するサブスク名を記入してください",
   "pricePlaceHolder": "料金を記入してください",
   "remarksPlaceHolder": "メモの記入ができます",
+
+  "deletionAlertMessage": "本当に削除しますか？",
+  "deleteButtonText": "削除",
+  "cancelButtonText": "キャンセル",
+  
+  "sortAscendingByName": "名前 (昇順)",
+  "sortDescendingByName": "名前 (降順)",
+  "sortAscendingByPrice": "料金 (昇順)",
+  "sortDescendingByPrice": "料金 (降順)",
+  "sortAscendingByPaymentDue": "支払い日数 (昇順)",
+  "sortDescendingByPaymentDue": "支払い日数 (降順)",
 
   "currencySettings": "通貨設定",
   "localeSettings": "言語設定",

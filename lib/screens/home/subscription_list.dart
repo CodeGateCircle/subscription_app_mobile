@@ -20,35 +20,35 @@ class SubscriptionList extends StatefulWidget {
 class _SubscriptionListState extends State<SubscriptionList> {
   SortKey? selectedDropdownItem;
 
-  final List<DropdownMenuItem<SortKey>> sortMenu = const [
-    DropdownMenuItem(
-      value: SortKey.nameAsc,
-      child: Text("名前(昇順)"),
-    ),
-    DropdownMenuItem(
-      value: SortKey.nameDesc,
-      child: Text("名前（降順）"),
-    ),
-    DropdownMenuItem(
-      value: SortKey.priceAsc,
-      child: Text("料金(昇順)"),
-    ),
-    DropdownMenuItem(
-      value: SortKey.priceDesc,
-      child: Text("料金（降順）"),
-    ),
-    DropdownMenuItem(
-      value: SortKey.paymentDayAsc,
-      child: Text("支払い日数(昇順)"),
-    ),
-    DropdownMenuItem(
-      value: SortKey.paymentDayDesc,
-      child: Text("支払い日数（降順）"),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<DropdownMenuItem<SortKey>> sortMenu = [
+      DropdownMenuItem(
+        value: SortKey.nameAsc,
+        child: Text(AppLocalizations.of(context)!.sortAscendingByName),
+      ),
+      DropdownMenuItem(
+        value: SortKey.nameDesc,
+        child: Text(AppLocalizations.of(context)!.sortDescendingByName),
+      ),
+      DropdownMenuItem(
+        value: SortKey.priceAsc,
+        child: Text(AppLocalizations.of(context)!.sortAscendingByPrice),
+      ),
+      DropdownMenuItem(
+        value: SortKey.priceDesc,
+        child: Text(AppLocalizations.of(context)!.sortDescendingByPrice),
+      ),
+      DropdownMenuItem(
+        value: SortKey.paymentDayAsc,
+        child: Text(AppLocalizations.of(context)!.sortAscendingByPaymentDue),
+      ),
+      DropdownMenuItem(
+        value: SortKey.paymentDayDesc,
+        child: Text(AppLocalizations.of(context)!.sortDescendingByPaymentDue),
+      ),
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(

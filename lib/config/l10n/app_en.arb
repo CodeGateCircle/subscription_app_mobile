@@ -17,7 +17,7 @@
   "threeMonthContract": "Three Month Contract",
   "semiannualContract": "Semiannual Contract",
   "yearContract": "Year Contract",
-  "subscriptions": "All Subscriptions",
+  "subscriptions": "Subscriptions",
   "daysRemaining": "days to bill",
   "startDateOfUse": "Start Date of Use",
 
@@ -55,6 +55,14 @@
   "deletionAlertMessage": "Are you sure want to Delete?",
   "deleteButtonText": "Yes!",
   "cancelButtonText": "No",
+
+  "sortAscendingByName": "Name (ASC)",
+  "sortDescendingByName": "Name (DESC)",
+  "sortAscendingByPrice": "Price (ASC)",
+  "sortDescendingByPrice": "Price (DESC)",
+  "sortAscendingByPaymentDue": "PaymentDue (ASC)",
+  "sortDescendingByPaymentDue": "PaymentDue (DESC)",
+
   
   "currencySettings": "Currency Settings",
   "localeSettings": "Language Settings",
