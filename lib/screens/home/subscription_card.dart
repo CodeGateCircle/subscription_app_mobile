@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/subscription_detail_screen.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SubscriptionCard extends StatefulWidget {
+class SubscriptionCard extends ConsumerStatefulWidget {
   const SubscriptionCard({
     Key? key,
     required this.subscription,
@@ -13,10 +15,10 @@ class SubscriptionCard extends StatefulWidget {
   final Subscription subscription;
 
   @override
-  State<SubscriptionCard> createState() => _SubscriptionCardState();
+  SubscriptionCardState createState() => SubscriptionCardState();
 }
 
-class _SubscriptionCardState extends State<SubscriptionCard> {
+class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
   final double imgSize = 56;
   double progressValue = 0.2;
 
@@ -67,7 +69,7 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
                   TextSpan(text: '¥$monthlyFee'),
                   TextSpan(
                     text:
-                        ' / ${AppLocalizations.of(context)!.monthly}', // TODO: 月/年表示をミュータブルにする
+                        ' / ${AppLocalizations.of(context)!.shortMonthly}', // TODO: 月/年表示をミュータブルにする
                     style: const TextStyle(
                       fontSize: 12,
                     ),
@@ -86,9 +88,11 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          "支払いまで17日",
-          style: TextStyle(
+        Text(
+          ref.watch(localeProvider) == const Locale("en")
+              ? "17 ${AppLocalizations.of(context)!.daysRemaining}"
+              : "${AppLocalizations.of(context)!.daysRemaining}17日",
+          style: const TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,
           ),

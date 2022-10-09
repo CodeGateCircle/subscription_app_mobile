@@ -8,12 +8,15 @@
   "settings": "設定",
 
   "monthly": "月",
+  "shortMonthly": "月",
   "monthlyContract": "月契約",
   "twoMonthContract": "2ヶ月契約",
   "threeMonthContract": "3ヶ月契約",
   "semiannualContract": "半年契約",
   "yearContract": "年契約",
   "subscriptions": "サブスク一覧",
+  "daysRemaining": "支払いまで残り",
+  "startDateOfUse": "利用開始日",
 
   "month": "1ヶ月",
   "twoMonths": "2ヶ月",
@@ -31,13 +34,19 @@
   "resumeSubscription": "停止中",
   "pauseSubscription": "一時停止",
   "stopSubscription": "停止中",
-
+  "editSubscription": "編集",
+  "deleteSubscription": "削除",
+  
   "nameLabel": "サブスク名",
   "cycleLabel": "支払い周期",
   "priceLabel": "月額料金（JPY）",
   "firstBillLabel": "初回支払い日",
   "paymentMethodsLabel": "支払い方法",
   "remarksLabel": "メモ",
+
+  "deletionAlertMessage": "本当に削除しますか？",
+  "deleteButtonText": "削除",
+  "cancelButtonText": "キャンセル",
   
   "searchApplicationInputPlaceHolder": "アプリ名を入力してください",
   "namePlaceHolder": "登録するサブスク名を記入してください",

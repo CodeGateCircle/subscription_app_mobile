@@ -11,13 +11,16 @@
   "settings": "Settings",
   
   "monthly": "Monthly",
+  "shortMonthly": "M",
   "monthlyContract": "Monthly Contract",
   "twoMonthContract": "Two Month Contract",
   "threeMonthContract": "Three Month Contract",
   "semiannualContract": "Semiannual Contract",
   "yearContract": "Year Contract",
   "subscriptions": "All Subscriptions",
-  
+  "daysRemaining": "days to bill",
+  "startDateOfUse": "Start Date of Use",
+
   "month": "Month",
   "twoMonths": "2 months",
   "threeMonths": "3 months",
@@ -34,6 +37,8 @@
   "resumeSubscription": "Resume",
   "pauseSubscription": "Pause",
   "stopSubscription": "Stop",
+  "editSubscription": "Edit",
+  "deleteSubscription": "Delete",
   
   "nameLabel": "Name",
   "cycleLabel": "Cycle",
@@ -42,10 +47,14 @@
   "paymentMethodsLabel": "Payment Methods",
   "remarksLabel": "Remarks",
   
-  "searchApplicationInputPlaceHolder": "Search Apps...",
+  "searchApplicationInputPlaceHolder": "Search Subscriptions...",
   "namePlaceHolder": "Enter name",
   "pricePlaceHolder": "Enter price",
   "remarksPlaceHolder": "Enter remarks",
+  
+  "deletionAlertMessage": "Are you sure want to Delete?",
+  "deleteButtonText": "Yes!",
+  "cancelButtonText": "No",
   
   "currencySettings": "Currency Settings",
   "localeSettings": "Language Settings",

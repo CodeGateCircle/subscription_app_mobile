@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
@@ -8,6 +9,7 @@ import 'package:subscription_app_web/screens/edit_subscription/edit_subscription
 import 'package:subscription_app_web/screens/subscription_detail/basic_info.dart';
 import 'package:subscription_app_web/screens/subscription_detail/delete_modal.dart';
 import 'package:subscription_app_web/widgets/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SubscriptionDetail extends ConsumerStatefulWidget {
   const SubscriptionDetail({
@@ -62,9 +64,9 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "支払い方法",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.paymentMethodsLabel,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -72,7 +74,7 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
               ),
               const SizedBox(height: 5),
               Text(
-                widget.subscription.paymentMethod.paymentMethod,
+                widget.subscription.paymentMethod.paymentMethod(context),
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -126,7 +128,7 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${widget.subscription.firstPaymentDate.toString()} 利用開始",
+                      "${AppLocalizations.of(context)!.startDateOfUse}: ${DateFormat.yMMMMd(ref.watch(localeProvider).toString()).format(widget.subscription.firstPaymentDate)}",
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
@@ -134,9 +136,11 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
-                      "支払いまでの残り日数: 17日",
-                      style: TextStyle(
+                    Text(
+                      ref.watch(localeProvider) == const Locale("en")
+                          ? "17 ${AppLocalizations.of(context)!.daysRemaining}"
+                          : "${AppLocalizations.of(context)!.daysRemaining}17日",
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -154,14 +158,14 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                 const SizedBox(height: 28),
                 Button(
                   variant: Variant.outline,
-                  text: "編集",
+                  text: AppLocalizations.of(context)!.editSubscription,
                   onPressed: moveToEditScreen,
                   color: Colors.black,
                 ),
                 const SizedBox(height: 12),
                 Button(
                   variant: Variant.solid,
-                  text: "削除",
+                  text: AppLocalizations.of(context)!.deleteSubscription,
                   onPressed: _showAlertDialog,
                   color: Colors.red,
                 ),
