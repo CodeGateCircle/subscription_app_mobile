@@ -90,8 +90,8 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
       children: [
         Text(
           ref.watch(localeProvider) == const Locale("en")
-              ? "17 ${AppLocalizations.of(context)!.daysRemaining}"
-              : "${AppLocalizations.of(context)!.daysRemaining}17日",
+              ? "${widget.subscription.daysUntilNextBill().toString()} ${AppLocalizations.of(context)!.daysRemaining}"
+              : "${AppLocalizations.of(context)!.daysRemaining}${widget.subscription.daysUntilNextBill().toString()}日",
           style: const TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,

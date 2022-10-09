@@ -65,6 +65,36 @@ class Subscription {
       _$SubscriptionFromJson(json);
   Map<String, dynamic> toJson() => _$SubscriptionToJson(this);
 
+  int daysUntilNextBill() {
+    int calcDays(DateTime dt, int month) {
+      final now = DateTime.now();
+      int m = month;
+      DateTime afterDt = DateTime(dt.year, dt.month, dt.day);
+      while (now.isAfter(afterDt)) {
+        afterDt = DateTime(dt.year, dt.month + m, dt.day);
+        if (dt.day > 28 && afterDt.day < 4) {
+          int lastDay = DateTime(afterDt.year, afterDt.month, 0).day;
+          afterDt = DateTime(afterDt.year, afterDt.month - 1, lastDay);
+        }
+        m += month;
+      }
+      return afterDt.difference(now).inDays;
+    }
+
+    switch (paymentCycle) {
+      case PaymentCycle.oneMonth:
+        return calcDays(firstPaymentDate, 1);
+      case PaymentCycle.twoMonths:
+        return calcDays(firstPaymentDate, 2);
+      case PaymentCycle.threeMonths:
+        return calcDays(firstPaymentDate, 3);
+      case PaymentCycle.sixMonths:
+        return calcDays(firstPaymentDate, 6);
+      case PaymentCycle.year:
+        return calcDays(firstPaymentDate, 12);
+    }
+  }
+
   String formatPaymentCycle(BuildContext context) {
     switch (paymentCycle) {
       case PaymentCycle.oneMonth:

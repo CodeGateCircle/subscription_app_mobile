@@ -138,8 +138,8 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                     const SizedBox(height: 6),
                     Text(
                       ref.watch(localeProvider) == const Locale("en")
-                          ? "17 ${AppLocalizations.of(context)!.daysRemaining}"
-                          : "${AppLocalizations.of(context)!.daysRemaining}17日",
+                          ? "${widget.subscription.daysUntilNextBill().toString()} ${AppLocalizations.of(context)!.daysRemaining}"
+                          : "${AppLocalizations.of(context)!.daysRemaining}${widget.subscription.daysUntilNextBill().toString()}日",
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
