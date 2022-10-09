@@ -26,7 +26,7 @@ class EditSubscription extends ConsumerStatefulWidget {
 class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late String name;
   late PaymentCycle paymentCycle;
-  late int price;
+  late double price;
   late PaymentMethod paymentMethod;
   late DateTime firstPaymentDate;
   late bool isPaused;
@@ -92,7 +92,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     });
   }
 
-  void setPrice(int value) {
+  void setPrice(double value) {
     setState(() {
       price = value;
     });

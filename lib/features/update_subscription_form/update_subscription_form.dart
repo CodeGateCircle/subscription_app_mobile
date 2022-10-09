@@ -33,7 +33,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
 
   final String name;
   final PaymentCycle paymentCycle;
-  final int price;
+  final double price;
   final PaymentMethod paymentMethod;
   final DateTime firstPaymentDate;
   final XFile? iconImage;
@@ -42,7 +42,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
   final String? remarks;
   final void Function(String) setName;
   final void Function(PaymentCycle) setPaymentCycle;
-  final void Function(int) setPrice;
+  final void Function(double) setPrice;
   final void Function(PaymentMethod) setPaymentMethod;
   final void Function(DateTime) setFirstPaymentDate;
   final void Function(XFile?) setIconImage;
@@ -184,7 +184,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 hintText: AppLocalizations.of(context)!.pricePlaceHolder,
                 onSaved: (String? value) {
                   if (value == null) return;
-                  widget.setPrice(int.parse(value));
+                  widget.setPrice(double.parse(value));
                 },
               ),
               DateFormFieldWidget(

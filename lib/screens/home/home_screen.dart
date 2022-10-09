@@ -17,9 +17,9 @@ class Home extends ConsumerStatefulWidget {
 
 class HomeState extends ConsumerState<Home> {
   static const double floatingActionButtonSize = 64;
-  int totalAmount = 0;
+  double totalAmount = 0;
 
-  int calculateTotalAmount() {
+  double calculateTotalAmount() {
     setState(() => totalAmount = 0);
     for (final subscription in ref.watch(subscriptionsProvider)) {
       final monthlyFee = subscription.convertMonthlyFee();

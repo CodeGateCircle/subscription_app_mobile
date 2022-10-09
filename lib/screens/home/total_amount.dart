@@ -8,7 +8,7 @@ class TotalAmount extends StatefulWidget {
     required this.totalAmount,
   }) : super(key: key);
 
-  final int totalAmount;
+  final double totalAmount;
 
   @override
   State<TotalAmount> createState() => _TotalAmountState();

@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:subscription_app_web/lib/debouncer.dart';
+import 'package:subscription_app_web/main.dart';
+import 'package:subscription_app_web/modules/search_result/search_result.entity.dart';
+import 'package:subscription_app_web/modules/search_result/search_result.repository.dart';
 
 class SearchInput extends StatefulWidget {
-  const SearchInput({Key? key}) : super(key: key);
+  const SearchInput({
+    Key? key,
+    required this.setSearchResult,
+  }) : super(key: key);
+
+  final void Function(List<SearchResult>) setSearchResult;
 
   @override
   State<SearchInput> createState() => _SearchInputState();
 }
 
 class _SearchInputState extends State<SearchInput> {
+  final debouncer = Debouncer(milliseconds: 500);
   String inputValue = "";
 
-  void _changeInputValue(String value) {
-    // TODO: apiを使用した検索をかける処理を実装
+  void _changeInputValue(String value) async {
+    Future search() async {
+      final res = await SearchResultRepository.get(value);
+      widget.setSearchResult(res.data.result);
+    }
+
     setState(() {
       inputValue = value;
+    });
+    debouncer.run(() {
+      search();
     });
   }
 

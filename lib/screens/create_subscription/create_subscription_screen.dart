@@ -20,7 +20,7 @@ class CreateSubscription extends ConsumerStatefulWidget {
 class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   String name = "";
   PaymentCycle paymentCycle = PaymentCycle.oneMonth;
-  int price = 0;
+  double price = 0;
   PaymentMethod paymentMethod = PaymentMethod.cash;
   DateTime firstPaymentDate = DateTime.now();
   XFile? iconImage;
@@ -66,7 +66,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
     });
   }
 
-  void setPrice(int value) {
+  void setPrice(double value) {
     setState(() {
       price = value;
     });
