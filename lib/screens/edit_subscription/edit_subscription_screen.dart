@@ -6,6 +6,7 @@ import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.store.dart';
+import 'package:subscription_app_web/screens/edit_subscription/pause_button.dart';
 import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/features/update_subscription_form/update_subscription_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -71,7 +72,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
         postData,
         widget.subscription.id,
       );
-      ref.read(subscriptionsProvider.notifier).replace(res.data);
+      ref.read(subscriptionsProvider.notifier).replace(res.data.subscription);
     } catch (e) {
       logger.e(e);
     } finally {
@@ -127,10 +128,12 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     });
   }
 
-  Widget _buildPauseButton(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     final targetSubscriptionIndex = ref
         .watch(subscriptionsProvider.notifier)
         .getIndex(widget.subscription.id);
+
     Future _pauseSubscription() async {
       try {
         final res = await SubscriptionRepository.pause(
@@ -138,48 +141,12 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused,
           ref.watch(currentUserProvider)!.userId,
         );
-        ref.read(subscriptionsProvider.notifier).replace(res.data);
+        ref.read(subscriptionsProvider.notifier).replace(res.data.subscription);
       } catch (e) {
         logger.e(e);
       }
     }
 
-    return GestureDetector(
-      onTap: _pauseSubscription,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:
-            ref.watch(subscriptionsProvider)[targetSubscriptionIndex].isPaused
-                ? [
-                    const Icon(
-                      Icons.pause_circle_outline,
-                      color: Colors.red,
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.resumeSubscription,
-                      style: const TextStyle(
-                        color: Colors.red,
-                      ),
-                    )
-                  ]
-                : [
-                    const Icon(
-                      Icons.pause_circle_outline,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.pauseSubscription,
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                    )
-                  ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -191,7 +158,12 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
             color: Colors.black,
           ),
           actions: [
-            _buildPauseButton(context),
+            PauseButton(
+              onTap: _pauseSubscription,
+              isPause: ref
+                  .watch(subscriptionsProvider)[targetSubscriptionIndex]
+                  .isPaused,
+            ),
             const SizedBox(width: 12),
             Button(
               variant: Variant.solid,
