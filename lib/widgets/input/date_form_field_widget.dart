@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class DateFormFieldWidget extends StatelessWidget {
   const DateFormFieldWidget({
@@ -41,9 +42,7 @@ class DateFormFieldWidget extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: const TextStyle(
-            fontSize: 13,
-          ),
+          style: Theme.of(context).textTheme.bodyText1,
         ),
         const SizedBox(height: 10),
         GestureDetector(
@@ -53,14 +52,20 @@ class DateFormFieldWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 17, horizontal: 12),
             decoration: BoxDecoration(
-              border: Border.all(color: const Color.fromRGBO(240, 237, 235, 1)),
+              border: Border.all(color: AppColor.border),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(initialValue.toString().split(" ")[0]),
-                const Icon(Icons.event_note),
+                Text(
+                  initialValue.toString().split(" ")[0],
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                const Icon(
+                  Icons.event_note,
+                  color: AppColor.black,
+                ),
               ],
             ),
           ),

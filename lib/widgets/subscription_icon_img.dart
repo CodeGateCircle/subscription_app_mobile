@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:subscription_app_web/config/app_color.dart';
 
 class SubscriptionIconImage extends StatefulWidget {
@@ -45,6 +46,7 @@ class _SubscriptionIconImageState extends State<SubscriptionIconImage> {
         : Container(
             width: widget.iconSize,
             height: widget.iconSize,
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
@@ -52,10 +54,10 @@ class _SubscriptionIconImageState extends State<SubscriptionIconImage> {
               ),
               borderRadius: BorderRadius.circular(widget.borderRadius!),
             ),
-            child: Icon(
-              Icons.image,
-              size: defaultIconSize,
-              color: AppColor.lightGray,
+            child: SvgPicture.asset(
+              "images/icons/image-outline.svg",
+              fit: BoxFit.fitWidth,
+              color: AppColor.gray,
             ),
           );
   }

@@ -49,7 +49,7 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 140,
+              width: 130,
               child: Text(
                 widget.subscription.name,
                 overflow: TextOverflow.ellipsis,
@@ -87,7 +87,7 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
               ? "${widget.subscription.daysUntilNextBill().toString()} ${AppLocalizations.of(context)!.daysRemaining}"
               : "${AppLocalizations.of(context)!.daysRemaining}${widget.subscription.daysUntilNextBill().toString()}日",
           style: Theme.of(context).textTheme.bodyText2,
-        ), // TODO: 期日の計算
+        ),
         const SizedBox(width: 4),
         Expanded(
           child: LinearProgressIndicator(

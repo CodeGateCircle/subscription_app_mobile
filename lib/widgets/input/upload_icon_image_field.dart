@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class UploadIconImageField extends StatelessWidget {
   const UploadIconImageField({
@@ -22,33 +24,34 @@ class UploadIconImageField extends StatelessWidget {
     return Column(
       children: [
         GestureDetector(
-            onTap: onTapIconImage,
-            child: iconImage != null
-                ? CircleAvatar(
-                    radius: imageSize / 2,
-                    backgroundImage: Image.file(File(iconImage!.path)).image,
-                  )
-                : iconImage == null && defaultImageUrl != null
-                    ? CircleAvatar(
-                        radius: imageSize / 2,
-                        backgroundImage: NetworkImage(defaultImageUrl!),
-                      )
-                    : Container(
-                        width: imageSize,
-                        height: imageSize,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: const Color.fromRGBO(240, 237, 235, 1),
-                          ),
-                          borderRadius: BorderRadius.circular(999),
+          onTap: onTapIconImage,
+          child: iconImage != null
+              ? CircleAvatar(
+                  radius: imageSize / 2,
+                  backgroundImage: Image.file(File(iconImage!.path)).image,
+                )
+              : iconImage == null && defaultImageUrl != null
+                  ? CircleAvatar(
+                      radius: imageSize / 2,
+                      backgroundImage: NetworkImage(defaultImageUrl!),
+                    )
+                  : Container(
+                      width: imageSize,
+                      height: imageSize,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: AppColor.border,
                         ),
-                        child: Icon(
-                          Icons.image,
-                          size: imageSize / 2,
-                          color: const Color.fromRGBO(17, 17, 17, 0.25),
-                        ),
-                      )),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: SvgPicture.asset(
+                        "images/icons/image-outline.svg",
+                        color: AppColor.lightGray,
+                      ),
+                    ),
+        ),
         const SizedBox(height: 30),
       ],
     );

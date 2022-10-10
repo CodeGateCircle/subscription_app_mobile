@@ -49,7 +49,6 @@ class SubscriptionRepository {
       "/subscriptions/${subscription.id.toString()}",
       data: postData,
     );
-    logger.d(res.data);
     return UpdateResponseData.fromJson(res.data);
   }
 
