@@ -7,12 +7,12 @@ class UploadIconImageField extends StatelessWidget {
   const UploadIconImageField({
     Key? key,
     required this.onTapIconImage,
-    required this.defaultImageUrl,
+    required this.imageUrl,
     this.iconImage,
   }) : super(key: key);
 
   final XFile? iconImage;
-  final String? defaultImageUrl;
+  final String? imageUrl;
   final void Function() onTapIconImage;
 
   final double imageSize = 96;
@@ -28,10 +28,10 @@ class UploadIconImageField extends StatelessWidget {
                     radius: imageSize / 2,
                     backgroundImage: Image.file(File(iconImage!.path)).image,
                   )
-                : iconImage == null && defaultImageUrl != null
+                : iconImage == null && imageUrl != null
                     ? CircleAvatar(
                         radius: imageSize / 2,
-                        backgroundImage: NetworkImage(defaultImageUrl!),
+                        backgroundImage: NetworkImage(imageUrl!),
                       )
                     : Container(
                         width: imageSize,
