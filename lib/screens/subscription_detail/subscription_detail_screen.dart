@@ -25,8 +25,6 @@ class SubscriptionDetail extends ConsumerStatefulWidget {
 }
 
 class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
-  double progressValue = 0.2;
-
   Future _deleteSubscription(int id) async {
     int count = 0;
 
@@ -138,7 +136,9 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                     const SizedBox(height: 8),
                     LinearProgressIndicator(
                       backgroundColor: AppColor.gray,
-                      value: progressValue,
+                      value: 1 -
+                          (widget.subscription.daysUntilNextBill() /
+                              widget.subscription.getPaymentCycleDays()),
                     ),
                   ],
                 ),
