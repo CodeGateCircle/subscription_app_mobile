@@ -9,7 +9,7 @@ part of 'subscription.entity.dart';
 Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
       id: json['id'] as int,
       name: json['name'] as String,
-      price: json['price'] as int,
+      price: (json['price'] as num).toDouble(),
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
@@ -133,12 +133,13 @@ Map<String, dynamic> _$RequestDataToJson(RequestData instance) =>
 RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
     RequestSubscription(
       name: json['name'] as String,
-      price: json['price'] as int,
+      price: (json['price'] as num).toDouble(),
       paymentCycle: $enumDecode(_$PaymentCycleEnumMap, json['paymentCycle']),
       firstPaymentDate: DateTime.parse(json['firstPaymentDate'] as String),
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
       isPaused: json['isPaused'] as bool,
       image: json['image'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       remarks: json['remarks'] as String?,
     );
 
@@ -152,5 +153,6 @@ Map<String, dynamic> _$RequestSubscriptionToJson(
       'paymentMethod': _$PaymentMethodEnumMap[instance.paymentMethod]!,
       'isPaused': instance.isPaused,
       'image': instance.image,
+      'imageUrl': instance.imageUrl,
       'remarks': instance.remarks,
     };

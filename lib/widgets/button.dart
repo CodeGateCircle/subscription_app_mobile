@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 enum Variant {
   solid,
@@ -12,8 +13,8 @@ class Button extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.size = 210,
-    this.color = Colors.blue,
-    this.textColor = Colors.black,
+    this.color = AppColor.black,
+    this.textColor = AppColor.white,
   }) : super(key: key);
 
   final Variant variant;
@@ -22,16 +23,6 @@ class Button extends StatelessWidget {
   final double? size;
   final Color? color;
   final Color? textColor;
-
-  Widget _buildButtonText(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +33,16 @@ class Button extends StatelessWidget {
           onPressed: onPressed,
           style: OutlinedButton.styleFrom(
             primary: color,
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(999),
             ),
             side: BorderSide(color: color!),
           ),
-          child: _buildButtonText(context),
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.headline3,
+          ),
         ),
       );
     } else {
@@ -59,13 +53,18 @@ class Button extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: color,
             shadowColor: Colors.transparent,
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(999),
             ),
             side: BorderSide(color: color!),
           ),
-          child: _buildButtonText(context),
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  color: textColor,
+                ),
+          ),
         ),
       );
     }

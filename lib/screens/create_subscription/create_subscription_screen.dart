@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
@@ -11,7 +12,16 @@ import 'package:subscription_app_web/features/update_subscription_form/update_su
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreateSubscription extends ConsumerStatefulWidget {
-  const CreateSubscription({Key? key}) : super(key: key);
+  const CreateSubscription({
+    Key? key,
+    this.initializeName,
+    this.initializePrice,
+    // this.defaultImageUrl,
+  }) : super(key: key);
+
+  final String? initializeName;
+  final double? initializePrice;
+  // final String? defaultImageUrl;
 
   @override
   CreateSubscriptionState createState() => CreateSubscriptionState();
@@ -20,13 +30,26 @@ class CreateSubscription extends ConsumerStatefulWidget {
 class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   String name = "";
   PaymentCycle paymentCycle = PaymentCycle.oneMonth;
-  int price = 0;
+  double price = 0;
   PaymentMethod paymentMethod = PaymentMethod.cash;
   DateTime firstPaymentDate = DateTime.now();
   XFile? iconImage;
   String? imageData;
   String? remarks;
   Subscription? subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.initializeName == null) return;
+    if (widget.initializePrice == null) return;
+    // if (widget.defaultImageUrl == null) return;
+
+    name = widget.initializeName!;
+    price = widget.initializePrice!;
+    // defaultImageUrl = widget.defaultImageUrl!;
+  }
 
   Future _createSubscription() async {
     int count = 0;
@@ -66,7 +89,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
     });
   }
 
-  void setPrice(int value) {
+  void setPrice(double value) {
     setState(() {
       price = value;
     });
@@ -112,14 +135,14 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
-            color: Colors.black,
+            color: AppColor.black,
           ),
           actions: [
             Button(
               variant: Variant.solid,
               text: AppLocalizations.of(context)!.addSubscription,
               size: 90,
-              color: Colors.red,
+              color: AppColor.primary,
               onPressed: _createSubscription,
             ),
             const SizedBox(width: 12),

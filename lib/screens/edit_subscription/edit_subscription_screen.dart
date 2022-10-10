@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
@@ -26,7 +27,7 @@ class EditSubscription extends ConsumerStatefulWidget {
 class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late String name;
   late PaymentCycle paymentCycle;
-  late int price;
+  late double price;
   late PaymentMethod paymentMethod;
   late DateTime firstPaymentDate;
   late bool isPaused;
@@ -92,7 +93,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
     });
   }
 
-  void setPrice(int value) {
+  void setPrice(double value) {
     setState(() {
       price = value;
     });
@@ -155,7 +156,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
-            color: Colors.black,
+            color: AppColor.black,
           ),
           actions: [
             PauseButton(
@@ -169,7 +170,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
               variant: Variant.solid,
               text: AppLocalizations.of(context)!.saveSubscription,
               size: 90,
-              color: Colors.red,
+              color: AppColor.primary,
               onPressed: _editSubscription,
             ),
             const SizedBox(width: 12),

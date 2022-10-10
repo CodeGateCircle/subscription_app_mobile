@@ -33,7 +33,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
 
   final String name;
   final PaymentCycle paymentCycle;
-  final int price;
+  final double price;
   final PaymentMethod paymentMethod;
   final DateTime firstPaymentDate;
   final XFile? iconImage;
@@ -42,7 +42,7 @@ class UpdateSubscriptionForm extends StatefulWidget {
   final String? remarks;
   final void Function(String) setName;
   final void Function(PaymentCycle) setPaymentCycle;
-  final void Function(int) setPrice;
+  final void Function(double) setPrice;
   final void Function(PaymentMethod) setPaymentMethod;
   final void Function(DateTime) setFirstPaymentDate;
   final void Function(XFile?) setIconImage;
@@ -55,16 +55,6 @@ class UpdateSubscriptionForm extends StatefulWidget {
 
 class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  Widget _buildOptionText(BuildContext context, String textValue) {
-    return Text(
-      textValue,
-      style: const TextStyle(
-        fontSize: 13,
-        color: Colors.black,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,54 +86,37 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
     final paymentCycleOptions = [
       DropdownMenuItem(
         value: PaymentCycle.oneMonth,
-        child: _buildOptionText(
-          context,
+        child: Text(
           AppLocalizations.of(context)!.month,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.twoMonths,
-        child: _buildOptionText(
-          context,
+        child: Text(
           AppLocalizations.of(context)!.twoMonths,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.threeMonths,
-        child: _buildOptionText(
-          context,
+        child: Text(
           AppLocalizations.of(context)!.threeMonths,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.sixMonths,
-        child: _buildOptionText(
-          context,
+        child: Text(
           AppLocalizations.of(context)!.sixMonths,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
       DropdownMenuItem(
         value: PaymentCycle.year,
-        child: _buildOptionText(
-          context,
+        child: Text(
           AppLocalizations.of(context)!.year,
-        ),
-      ),
-    ];
-
-    final paymentMethodOptions = [
-      DropdownMenuItem(
-        value: PaymentMethod.cash,
-        child: _buildOptionText(
-          context,
-          AppLocalizations.of(context)!.cash,
-        ),
-      ),
-      DropdownMenuItem(
-        value: PaymentMethod.card,
-        child: _buildOptionText(
-          context,
-          AppLocalizations.of(context)!.creditCards,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
     ];
@@ -184,7 +157,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 hintText: AppLocalizations.of(context)!.pricePlaceHolder,
                 onSaved: (String? value) {
                   if (value == null) return;
-                  widget.setPrice(int.parse(value));
+                  widget.setPrice(double.parse(value));
                 },
               ),
               DateFormFieldWidget(
@@ -192,14 +165,6 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
                 labelText: AppLocalizations.of(context)!.firstBillLabel,
                 onSaved: (DateTime value) {
                   widget.setFirstPaymentDate(value);
-                },
-              ),
-              DropdownButtonWidget(
-                labelText: AppLocalizations.of(context)!.paymentMethodsLabel,
-                dropdownValue: widget.paymentMethod,
-                dropdownMenuItems: paymentMethodOptions,
-                onChanged: (PaymentMethod value) {
-                  widget.setPaymentMethod(value);
                 },
               ),
               TextFieldFormWidget(

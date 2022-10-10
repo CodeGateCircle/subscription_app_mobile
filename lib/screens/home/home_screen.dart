@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
@@ -17,9 +18,9 @@ class Home extends ConsumerStatefulWidget {
 
 class HomeState extends ConsumerState<Home> {
   static const double floatingActionButtonSize = 64;
-  int totalAmount = 0;
+  double totalAmount = 0;
 
-  int calculateTotalAmount() {
+  double calculateTotalAmount() {
     setState(() => totalAmount = 0);
     for (final subscription in ref.watch(subscriptionsProvider)) {
       final monthlyFee = subscription.convertMonthlyFee();
@@ -70,7 +71,7 @@ class HomeState extends ConsumerState<Home> {
           width: floatingActionButtonSize,
           height: floatingActionButtonSize,
           child: FloatingActionButton(
-            backgroundColor: Colors.red,
+            backgroundColor: AppColor.black,
             child: const Icon(Icons.add, size: 32),
             onPressed: () {
               Navigator.push(
