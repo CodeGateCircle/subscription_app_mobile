@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class SubscriptionIconImage extends StatefulWidget {
   const SubscriptionIconImage({
     Key? key,
     required this.iconImageUrl,
     this.iconSize = 56,
+    this.borderRadius = 16,
   }) : super(key: key);
 
   final String? iconImageUrl;
   final double? iconSize;
+  final double? borderRadius;
 
   @override
   State<SubscriptionIconImage> createState() => _SubscriptionIconImageState();
@@ -21,24 +25,39 @@ class _SubscriptionIconImageState extends State<SubscriptionIconImage> {
 
     return widget.iconImageUrl != null &&
             widget.iconImageUrl!.startsWith('https')
-        ? CircleAvatar(
-            radius: widget.iconSize! / 2,
-            backgroundImage: NetworkImage(widget.iconImageUrl!),
+        ? Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: AppColor.lightGray,
+              ),
+              borderRadius: BorderRadius.circular(widget.borderRadius!),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(widget.borderRadius!),
+              child: Image.network(
+                widget.iconImageUrl!,
+                width: widget.iconSize,
+                height: widget.iconSize,
+                fit: BoxFit.cover,
+              ),
+            ),
           )
         : Container(
             width: widget.iconSize,
             height: widget.iconSize,
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: Colors.grey.shade300,
+                color: AppColor.lightGray,
               ),
-              borderRadius: BorderRadius.circular(999),
+              borderRadius: BorderRadius.circular(widget.borderRadius!),
             ),
-            child: Icon(
-              Icons.image,
-              size: defaultIconSize,
-              color: const Color.fromRGBO(17, 17, 17, 0.25),
+            child: SvgPicture.asset(
+              "images/icons/image-outline.svg",
+              fit: BoxFit.fitWidth,
+              color: AppColor.gray,
             ),
           );
   }

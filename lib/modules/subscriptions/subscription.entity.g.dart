@@ -139,8 +139,9 @@ RequestSubscription _$RequestSubscriptionFromJson(Map<String, dynamic> json) =>
       paymentMethod: $enumDecode(_$PaymentMethodEnumMap, json['paymentMethod']),
       isPaused: json['isPaused'] as bool,
       image: json['image'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       remarks: json['remarks'] as String?,
-    )..imageUrl = json['imageUrl'] as String?;
+    );
 
 Map<String, dynamic> _$RequestSubscriptionToJson(
         RequestSubscription instance) =>

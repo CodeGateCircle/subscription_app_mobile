@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/subscription_detail/subscription_detail_screen.dart';
@@ -26,16 +27,14 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
+        border: Border.all(color: AppColor.gray),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
         widget.subscription.formatPaymentCycle(context),
-        style: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.bold,
-          color: Colors.grey,
-        ),
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              color: AppColor.gray,
+            ),
       ),
     );
   }
@@ -47,32 +46,27 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 140,
+              width: 130,
               child: Text(
-                overflow: TextOverflow.ellipsis,
                 widget.subscription.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.headline3,
               ),
             ),
             Text.rich(
               TextSpan(
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+                style: Theme.of(context).textTheme.headline3,
                 children: [
                   TextSpan(text: '¥$monthlyFee'),
                   TextSpan(
                     text:
                         ' / ${AppLocalizations.of(context)!.shortMonthly}', // TODO: 月/年表示をミュータブルにする
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),
@@ -92,15 +86,12 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
           ref.watch(localeProvider) == const Locale("en")
               ? "${widget.subscription.daysUntilNextBill().toString()} ${AppLocalizations.of(context)!.daysRemaining}"
               : "${AppLocalizations.of(context)!.daysRemaining}${widget.subscription.daysUntilNextBill().toString()}日",
-          style: const TextStyle(
-            fontSize: 11,
-            fontWeight: FontWeight.w600,
-          ),
-        ), // TODO: 期日の計算
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
         const SizedBox(width: 4),
         Expanded(
           child: LinearProgressIndicator(
-            backgroundColor: Colors.grey,
+            backgroundColor: AppColor.gray,
             value: progressValue,
           ),
         ),
@@ -112,7 +103,7 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
     return Container(
       height: 100,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(51, 51, 51, 0.4),
+        color: AppColor.lightBlack,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Center(
@@ -121,16 +112,14 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
           children: [
             const Icon(
               Icons.pause_circle,
-              color: Colors.white,
+              color: AppColor.white,
             ),
             const SizedBox(width: 4),
             Text(
               AppLocalizations.of(context)!.stopSubscription,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    color: AppColor.white,
+                  ),
             ),
           ],
         ),
@@ -156,7 +145,7 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(238, 242, 244, 1.0),
+              color: AppColor.backgroundColor,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -170,13 +159,13 @@ class SubscriptionCardState extends ConsumerState<SubscriptionCard> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       _buildNameAndPrice(context),
-                      const SizedBox(height: 4),
-                      _buildPaymentCycle(context),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 6),
                       _buildRemainingDaysProgressBar(context),
+                      const SizedBox(height: 6),
+                      _buildPaymentCycle(context),
                     ],
                   ),
                 ),

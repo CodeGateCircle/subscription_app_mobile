@@ -5,10 +5,10 @@
       "@totalAmount": {
         "description": "total amount title label"
       },
-  "japanese": "Japanese",
-  "english": "English",
+  "signUpTitle": "Welcome to Manage Subscriptions!!",
   "home": "Home",
   "settings": "Settings",
+  "start": "Let's Start!!",
   
   "monthly": "Monthly",
   "shortMonthly": "M",
@@ -63,9 +63,12 @@
   "sortAscendingByPaymentDue": "PaymentDue (ASC)",
   "sortDescendingByPaymentDue": "PaymentDue (DESC)",
 
-  
-  "currencySettings": "Currency Settings",
   "localeSettings": "Language Settings",
+  "japanese": "Japanese",
+  "english": "English",
+  "currencySettings": "Currency Settings",
+  "usd": "US Dollar ($)",
+  "jpy": "Japanese Yen (¥)",
   "termsOfUse": "Terms of Use",
   "contactUs": "Contact us",
   "about": "About",

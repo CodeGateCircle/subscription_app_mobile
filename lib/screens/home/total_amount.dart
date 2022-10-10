@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class TotalAmount extends StatefulWidget {
   const TotalAmount({
@@ -27,51 +28,41 @@ class _TotalAmountState extends State<TotalAmount> {
               Container(
                 margin: const EdgeInsets.only(bottom: 16),
                 padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: AppColor.black,
                   borderRadius: BorderRadius.circular(9999),
                 ),
                 child: Text(
                   AppLocalizations.of(context)!.totalAmount,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                        color: AppColor.white,
+                      ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text(
+                  Text(
                     "¥",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Metropolis",
-                    ),
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   const SizedBox(width: 10),
                   SizedBox(
                     height: 38,
                     child: Text(
                       NumberFormat().format(widget.totalAmount),
-                      style: const TextStyle(
-                        fontSize: 42,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Metropolis",
-                      ),
+                      style: Theme.of(context).textTheme.headline1!.copyWith(
+                            fontSize: 42,
+                            fontFamily: "Metropolis",
+                          ),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Text(
                     "/ ${AppLocalizations.of(context)!.monthly}",
-                    style: const TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Metropolis",
-                    ),
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                 ],
               ),

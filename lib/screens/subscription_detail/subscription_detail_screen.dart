@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.repository.dart';
@@ -52,41 +53,6 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
     );
   }
 
-  Widget _buildPaymentMethodCard(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(238, 242, 244, 1.0),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.paymentMethodsLabel,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.subscription.paymentMethod.paymentMethod(context),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
   void moveToEditScreen() {
     Navigator.push(
       context,
@@ -98,6 +64,37 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
     );
   }
 
+  Widget _buildRemarks(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 24),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColor.border),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.remarksLabel,
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.subscription.remarks!,
+                style: Theme.of(context).textTheme.bodyText1,
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,13 +103,11 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
-          color: Colors.black,
+          color: AppColor.black,
         ),
         title: Text(
           widget.subscription.name,
-          style: const TextStyle(
-            color: Colors.black,
-          ),
+          style: Theme.of(context).textTheme.headline2,
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -129,45 +124,40 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
                   children: [
                     Text(
                       "${AppLocalizations.of(context)!.startDateOfUse}: ${DateFormat.yMMMMd(ref.watch(localeProvider).toString()).format(widget.subscription.firstPaymentDate)}",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            color: AppColor.gray,
+                          ),
                     ),
                     const SizedBox(height: 6),
                     Text(
                       ref.watch(localeProvider) == const Locale("en")
                           ? "${widget.subscription.daysUntilNextBill().toString()} ${AppLocalizations.of(context)!.daysRemaining}"
                           : "${AppLocalizations.of(context)!.daysRemaining}${widget.subscription.daysUntilNextBill().toString()}日",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     const SizedBox(height: 8),
                     LinearProgressIndicator(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: AppColor.gray,
                       value: progressValue,
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                _buildPaymentMethodCard(context),
+                widget.subscription.remarks == null
+                    ? Container()
+                    : _buildRemarks(context),
                 const SizedBox(height: 28),
                 Button(
                   variant: Variant.outline,
                   text: AppLocalizations.of(context)!.editSubscription,
                   onPressed: moveToEditScreen,
-                  color: Colors.black,
+                  color: AppColor.black,
                 ),
                 const SizedBox(height: 12),
                 Button(
                   variant: Variant.solid,
                   text: AppLocalizations.of(context)!.deleteSubscription,
                   onPressed: _showAlertDialog,
-                  color: Colors.red,
+                  color: AppColor.primary,
                 ),
               ],
             ),

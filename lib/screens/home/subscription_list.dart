@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/screens/home/subscription_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -59,12 +60,12 @@ class _SubscriptionListState extends State<SubscriptionList> {
             children: <Widget>[
               Text(
                 AppLocalizations.of(context)!.subscriptions,
-                style: const TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
               DropdownButton(
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      color: AppColor.black,
+                    ),
                 hint: Text(AppLocalizations.of(context)!.sortSubscription),
                 items: sortMenu,
                 value: selectedDropdownItem,

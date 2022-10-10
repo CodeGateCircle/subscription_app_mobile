@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class DeleteModal extends StatelessWidget {
   const DeleteModal({
@@ -13,24 +14,28 @@ class DeleteModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Center(
-        child: Text(AppLocalizations.of(context)!.deletionAlertMessage),
+        child: Text(
+          AppLocalizations.of(context)!.deletionAlertMessage,
+          style: Theme.of(context).textTheme.headline3,
+        ),
       ),
+      titlePadding: const EdgeInsets.only(top: 28, bottom: 12),
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _ActionButton(
               buttonText: AppLocalizations.of(context)!.cancelButtonText,
-              textColor: Colors.black,
-              primaryColor: Colors.white,
-              borderColor: Colors.grey.shade300,
+              textColor: AppColor.black,
+              primaryColor: AppColor.white,
+              borderColor: AppColor.border,
               onPressed: () => Navigator.pop(context),
             ),
             const SizedBox(width: 10),
             _ActionButton(
               buttonText: AppLocalizations.of(context)!.deleteButtonText,
-              textColor: Colors.white,
-              primaryColor: Colors.red,
+              textColor: AppColor.white,
+              primaryColor: AppColor.primary,
               onPressed: onPressed,
             ),
           ],
@@ -71,9 +76,9 @@ class _ActionButton extends StatelessWidget {
         ),
         child: Text(
           buttonText,
-          style: TextStyle(
-            color: textColor,
-          ),
+          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                color: textColor,
+              ),
         ),
         onPressed: () => onPressed(),
       ),

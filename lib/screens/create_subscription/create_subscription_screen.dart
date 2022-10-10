@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
@@ -13,13 +14,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CreateSubscription extends ConsumerStatefulWidget {
   const CreateSubscription({
     Key? key,
-    this.name,
-    this.price,
+    this.initializeName,
+    this.initializePrice,
     // this.defaultImageUrl,
   }) : super(key: key);
 
-  final String? name;
-  final double? price;
+  final String? initializeName;
+  final double? initializePrice;
   // final String? defaultImageUrl;
 
   @override
@@ -41,12 +42,12 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   void initState() {
     super.initState();
 
-    if (widget.name == null) return;
-    if (widget.price == null) return;
+    if (widget.initializeName == null) return;
+    if (widget.initializePrice == null) return;
     // if (widget.defaultImageUrl == null) return;
 
-    name = widget.name!;
-    price = widget.price!;
+    name = widget.initializeName!;
+    price = widget.initializePrice!;
     // defaultImageUrl = widget.defaultImageUrl!;
   }
 
@@ -134,14 +135,14 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
-            color: Colors.black,
+            color: AppColor.black,
           ),
           actions: [
             Button(
               variant: Variant.solid,
               text: AppLocalizations.of(context)!.addSubscription,
               size: 90,
-              color: Colors.red,
+              color: AppColor.primary,
               onPressed: _createSubscription,
             ),
             const SizedBox(width: 12),

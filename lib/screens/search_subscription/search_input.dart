@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/lib/debouncer.dart';
 import 'package:subscription_app_web/modules/search_result/search_result.entity.dart';
 import 'package:subscription_app_web/modules/search_result/search_result.repository.dart';
@@ -40,14 +41,21 @@ class _SearchInputState extends State<SearchInput> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextField(
+        style: Theme.of(context).textTheme.bodyText1,
         onChanged: (value) => _changeInputValue(value),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(14, 10, 0, 10),
+          prefixIcon: const Icon(
+            Icons.search,
+            color: AppColor.black,
+          ),
           hintText:
               AppLocalizations.of(context)!.searchApplicationInputPlaceHolder,
-          prefixIcon: const Icon(Icons.search),
+          hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                color: AppColor.gray,
+              ),
           filled: true,
-          fillColor: const Color.fromRGBO(240, 237, 235, 1),
+          fillColor: AppColor.border,
           border: InputBorder.none,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(999),
