@@ -14,13 +14,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CreateSubscription extends ConsumerStatefulWidget {
   const CreateSubscription({
     Key? key,
-    this.name,
-    this.price,
+    this.initializeName,
+    this.initializePrice,
     // this.defaultImageUrl,
   }) : super(key: key);
 
-  final String? name;
-  final double? price;
+  final String? initializeName;
+  final double? initializePrice;
   // final String? defaultImageUrl;
 
   @override
@@ -42,12 +42,12 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   void initState() {
     super.initState();
 
-    if (widget.name == null) return;
-    if (widget.price == null) return;
+    if (widget.initializeName == null) return;
+    if (widget.initializePrice == null) return;
     // if (widget.defaultImageUrl == null) return;
 
-    name = widget.name!;
-    price = widget.price!;
+    name = widget.initializeName!;
+    price = widget.initializePrice!;
     // defaultImageUrl = widget.defaultImageUrl!;
   }
 

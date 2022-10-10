@@ -28,14 +28,16 @@ class _TotalAmountState extends State<TotalAmount> {
               Container(
                 margin: const EdgeInsets.only(bottom: 16),
                 padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
                 decoration: BoxDecoration(
                   color: AppColor.black,
                   borderRadius: BorderRadius.circular(9999),
                 ),
                 child: Text(
                   AppLocalizations.of(context)!.totalAmount,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                        color: AppColor.white,
+                      ),
                 ),
               ),
               Row(

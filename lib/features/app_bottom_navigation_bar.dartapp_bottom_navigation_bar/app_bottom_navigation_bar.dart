@@ -26,12 +26,12 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
     final List<BottomNavigationBarItem> tabItems = [
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
-          "images/icons/home_outline.svg",
+          "images/icons/home-outline.svg",
           semanticsLabel: 'Home icon',
           color: AppColor.gray,
         ),
         activeIcon: SvgPicture.asset(
-          "images/icons/home_outline.svg",
+          "images/icons/home-outline.svg",
           semanticsLabel: 'Home icon',
           width: 32,
           height: 32,
@@ -41,12 +41,12 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
-          "images/icons/cog_outline.svg",
+          "images/icons/cog-outline.svg",
           semanticsLabel: 'Settings icon',
           color: AppColor.gray,
         ),
         activeIcon: SvgPicture.asset(
-          "images/icons/cog_outline.svg",
+          "images/icons/cog-outline.svg",
           semanticsLabel: 'Settings icon',
           color: AppColor.black,
         ),

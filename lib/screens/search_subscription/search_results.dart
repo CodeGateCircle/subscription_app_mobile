@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subscription_app_web/modules/search_result/search_result.entity.dart';
 import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
-import 'package:subscription_app_web/widgets/button.dart';
 import 'package:subscription_app_web/widgets/subscription_icon_img.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({
@@ -14,48 +12,44 @@ class SearchResults extends StatelessWidget {
   final List<SearchResult> searchResults;
 
   Widget _buildResultCard(BuildContext context, SearchResult result) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SubscriptionIconImage(
-                iconImageUrl: result.imageUrl,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                result.name,
-                style: const TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CreateSubscription(
+              initializeName: result.name,
+              initializePrice: result.price,
+              // defaultImageUrl: result.imageUrl,
+            ),
           ),
-          Button(
-            variant: Variant.solid,
-            text: AppLocalizations.of(context)!.addSubscription,
-            size: 68,
-            color: const Color.fromRGBO(203, 194, 189, 1),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CreateSubscription(
-                    name: result.name,
-                    price: result.price,
-                    // defaultImageUrl: result.imageUrl,
-                  ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SubscriptionIconImage(
+                  iconImageUrl: result.imageUrl,
+                  iconSize: 52,
                 ),
-              );
-            },
-          ),
-        ],
+                const SizedBox(width: 8),
+                Text(
+                  result.name,
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+              ],
+            ),
+            const Icon(Icons.chevron_right, size: 32),
+          ],
+        ),
       ),
     );
   }

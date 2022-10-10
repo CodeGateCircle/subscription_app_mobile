@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/modules/search_result/search_result.entity.dart';
 import 'package:subscription_app_web/screens/search_subscription/search_input.dart';
 import 'package:subscription_app_web/screens/create_subscription/create_subscription_screen.dart';
@@ -32,14 +33,14 @@ class _SearchSubscriptionState extends State<SearchSubscription> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
-            color: Colors.black,
+            color: AppColor.black,
           ),
           actions: [
             Button(
               variant: Variant.solid,
               text: AppLocalizations.of(context)!.newSubscription,
               size: 90,
-              color: Colors.black,
+              color: AppColor.black,
               onPressed: () {
                 Navigator.push(
                   context,
