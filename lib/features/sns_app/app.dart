@@ -54,7 +54,7 @@ class SnsAppState extends ConsumerState<SnsApp> {
     }
 
     return ref.watch(currentUserProvider) == null
-        ? const AppBottomNavigationBar()
-        : const SignUp();
+        ? const SignUp()
+        : const AppBottomNavigationBar();
   }
 }

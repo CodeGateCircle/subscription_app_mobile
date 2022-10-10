@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class SettingsItem extends StatelessWidget {
   const SettingsItem({
@@ -19,18 +20,19 @@ class SettingsItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 16),
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: AppColor.white,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
-                const Icon(Icons.chevron_right),
+                const Icon(
+                  Icons.chevron_right,
+                  color: AppColor.black,
+                ),
               ],
             ),
           ),
