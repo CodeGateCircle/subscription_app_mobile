@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 import 'package:subscription_app_web/widgets/input/date_form_field_widget.dart';
@@ -61,7 +62,7 @@ class _UpdateSubscriptionFormState extends State<UpdateSubscriptionForm> {
       textValue,
       style: const TextStyle(
         fontSize: 13,
-        color: Colors.black,
+        color: AppColor.black,
       ),
     );
   }

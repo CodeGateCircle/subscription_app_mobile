@@ -1,4 +1,5 @@
 import 'package:subscription_app_web/lib/api.dart';
+import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/subscriptions/subscription.entity.dart';
 
 class SubscriptionRepository {
@@ -39,6 +40,7 @@ class SubscriptionRepository {
         paymentMethod: subscription.paymentMethod,
         isPaused: !isPaused,
         image: subscription.imageUrl,
+        imageUrl: null,
         remarks: subscription.remarks,
       ),
     );
@@ -47,6 +49,7 @@ class SubscriptionRepository {
       "/subscriptions/${subscription.id.toString()}",
       data: postData,
     );
+    logger.d(res.data);
     return UpdateResponseData.fromJson(res.data);
   }
 

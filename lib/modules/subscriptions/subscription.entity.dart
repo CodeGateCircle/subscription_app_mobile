@@ -247,6 +247,7 @@ class RequestSubscription {
     required this.paymentMethod,
     required this.isPaused,
     this.image,
+    this.imageUrl,
     this.remarks,
   });
 

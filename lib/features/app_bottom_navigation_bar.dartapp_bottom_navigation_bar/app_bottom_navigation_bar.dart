@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/screens/home/home_screen.dart';
 import 'package:subscription_app_web/screens/settings/settings_screent.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,11 +25,31 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   Widget build(BuildContext context) {
     final List<BottomNavigationBarItem> tabItems = [
       BottomNavigationBarItem(
-        icon: const Icon(Icons.home),
+        icon: SvgPicture.asset(
+          "images/icons/home_outline.svg",
+          semanticsLabel: 'Home icon',
+          color: AppColor.gray,
+        ),
+        activeIcon: SvgPicture.asset(
+          "images/icons/home_outline.svg",
+          semanticsLabel: 'Home icon',
+          width: 32,
+          height: 32,
+          color: AppColor.black,
+        ),
         label: AppLocalizations.of(context)!.home,
       ),
       BottomNavigationBarItem(
-        icon: const Icon(Icons.settings),
+        icon: SvgPicture.asset(
+          "images/icons/cog_outline.svg",
+          semanticsLabel: 'Settings icon',
+          color: AppColor.gray,
+        ),
+        activeIcon: SvgPicture.asset(
+          "images/icons/cog_outline.svg",
+          semanticsLabel: 'Settings icon',
+          color: AppColor.black,
+        ),
         label: AppLocalizations.of(context)!.settings,
       ),
     ];
