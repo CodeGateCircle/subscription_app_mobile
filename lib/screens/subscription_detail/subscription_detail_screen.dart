@@ -103,7 +103,7 @@ class SubscriptionDetailState extends ConsumerState<SubscriptionDetail> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
-          color: Colors.black,
+          color: AppColor.black,
         ),
         title: Text(
           widget.subscription.name,

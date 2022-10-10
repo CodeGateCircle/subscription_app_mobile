@@ -144,7 +144,7 @@ class SignUpState extends ConsumerState<SignUp> {
                       Button(
                         variant: Variant.solid,
                         text: AppLocalizations.of(context)!.start,
-                        color: Colors.black,
+                        color: AppColor.black,
                         onPressed: _signUp,
                       ),
                     ],
