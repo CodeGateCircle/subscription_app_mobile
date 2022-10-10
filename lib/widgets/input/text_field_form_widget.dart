@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class TextFieldFormWidget extends StatelessWidget {
   const TextFieldFormWidget({
@@ -23,35 +24,38 @@ class TextFieldFormWidget extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: const TextStyle(
-            fontSize: 13,
-          ),
+          style: Theme.of(context).textTheme.bodyText1,
         ),
         const SizedBox(height: 10),
         TextFormField(
-          initialValue:
-              initialValue == null || initialValue == "" || initialValue == "0"
-                  ? null
-                  : initialValue,
+          initialValue: initialValue == null ||
+                  initialValue == "" ||
+                  initialValue == "0" ||
+                  initialValue == "0.0"
+              ? null
+              : initialValue,
           onChanged: (text) {
             onSaved(text);
           },
+          style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
             contentPadding: isMultiline == true
                 ? const EdgeInsets.fromLTRB(12, 32, 12, 0)
                 : const EdgeInsets.fromLTRB(12, 17, 0, 17),
             hintText: hintText,
-            hintStyle: const TextStyle(fontSize: 13),
+            hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  color: AppColor.gray,
+                ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
               borderSide: const BorderSide(
-                color: Color.fromRGBO(240, 237, 235, 1),
+                color: AppColor.border,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
               borderSide: const BorderSide(
-                color: Color.fromRGBO(240, 237, 235, 1),
+                color: AppColor.border,
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 
 class DropdownButtonWidget<T> extends StatelessWidget {
   const DropdownButtonWidget({
@@ -21,16 +22,14 @@ class DropdownButtonWidget<T> extends StatelessWidget {
       children: <Widget>[
         Text(
           labelText,
-          style: const TextStyle(
-            fontSize: 13,
-          ),
+          style: Theme.of(context).textTheme.bodyText1,
         ),
         const SizedBox(height: 10),
         DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             border: Border.all(
-              color: const Color.fromRGBO(240, 237, 235, 1),
+              color: AppColor.border,
             ),
           ),
           child: Padding(

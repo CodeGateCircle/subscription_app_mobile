@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subscription_app_web/config/app_color.dart';
 import 'package:subscription_app_web/screens/language_settings/locale_settings_screen.dart';
 import 'settings_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,7 +11,7 @@ class Settings extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
       ),
       child: settings,
     );
@@ -21,7 +22,7 @@ class Settings extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 64),
       decoration: const BoxDecoration(
-        color: Color.fromRGBO(197, 198, 199, 0.5),
+        color: AppColor.backgroundColor,
       ),
       width: double.infinity,
       child: Column(

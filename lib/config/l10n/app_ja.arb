@@ -2,8 +2,7 @@
   "@@locale": "ja",
 
   "totalAmount": "合計金額",
-  "japanese": "日本語",
-  "english": "英語",
+  "signUpTitle": "サブスク管理へようこそ！",
   "home": "ホーム",
   "settings": "設定",
 
@@ -17,6 +16,7 @@
   "subscriptions": "サブスク一覧",
   "daysRemaining": "支払いまで残り",
   "startDateOfUse": "利用開始日",
+  "start": "管理スタート！",
 
   "month": "1ヶ月",
   "twoMonths": "2ヶ月",
@@ -60,8 +60,12 @@
   "sortAscendingByPaymentDue": "支払い日数 (昇順)",
   "sortDescendingByPaymentDue": "支払い日数 (降順)",
 
-  "currencySettings": "通貨設定",
   "localeSettings": "言語設定",
+  "japanese": "日本語",
+  "english": "英語",
+  "currencySettings": "通貨設定",
+  "usd": "米ドル（$）",
+  "jpy": "日本円（¥）",
   "termsOfUse": "利用規約",
   "contactUs": "お問い合わせ",
   "about": "このアプリについて",

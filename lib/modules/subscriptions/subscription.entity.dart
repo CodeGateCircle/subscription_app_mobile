@@ -41,7 +41,7 @@ extension PaymentMethodeExt on PaymentMethod {
 class Subscription {
   late int id;
   late String name;
-  late int price;
+  late double price;
   late PaymentCycle paymentCycle;
   late DateTime firstPaymentDate;
   late PaymentMethod paymentMethod;
@@ -110,23 +110,24 @@ class Subscription {
     }
   }
 
-  int convertMonthlyFee() {
-    int monthlyFee = 0;
+  double convertMonthlyFee() {
+    const double baseNumber = 10;
+    double monthlyFee = 0;
     switch (paymentCycle) {
       case PaymentCycle.oneMonth:
         monthlyFee = price;
         break;
       case PaymentCycle.twoMonths:
-        monthlyFee = (price / 2).round();
+        monthlyFee = (price / 2 * baseNumber).round() / baseNumber;
         break;
       case PaymentCycle.threeMonths:
-        monthlyFee = (price / 3).round();
+        monthlyFee = (price / 3 * baseNumber).round() / baseNumber;
         break;
       case PaymentCycle.sixMonths:
-        monthlyFee = (price / 6).round();
+        monthlyFee = (price / 6 * baseNumber).round() / baseNumber;
         break;
       case PaymentCycle.year:
-        monthlyFee = (price / 12).round();
+        monthlyFee = (price / 12 * baseNumber).round() / baseNumber;
         break;
     }
     return monthlyFee;
@@ -229,12 +230,13 @@ class RequestData {
 @JsonSerializable()
 class RequestSubscription {
   late String name;
-  late int price;
+  late double price;
   late PaymentCycle paymentCycle;
   late DateTime firstPaymentDate;
   late PaymentMethod paymentMethod;
   late bool isPaused;
   late String? image;
+  late String? imageUrl;
   late String? remarks;
 
   RequestSubscription({
@@ -245,6 +247,7 @@ class RequestSubscription {
     required this.paymentMethod,
     required this.isPaused,
     this.image,
+    this.imageUrl,
     this.remarks,
   });
 

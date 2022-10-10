@@ -25,7 +25,7 @@ class _BasicInfoAreaState extends State<BasicInfoArea> {
         children: [
           SubscriptionIconImage(
             iconImageUrl: widget.subscription.imageUrl,
-            iconSize: 96,
+            iconSize: 80,
           ),
           const SizedBox(width: 15),
           Row(
@@ -34,20 +34,14 @@ class _BasicInfoAreaState extends State<BasicInfoArea> {
             children: [
               Text(
                 '¥${NumberFormat().format(widget.subscription.price)}',
-                style: const TextStyle(
-                  fontSize: 33,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Metropolis",
-                ),
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                      fontSize: 33,
+                    ),
               ),
               const SizedBox(width: 4),
               Text(
                 "/ ${AppLocalizations.of(context)!.shortMonthly}",
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Metropolis",
-                ),
+                style: Theme.of(context).textTheme.headline3,
               ),
             ],
           ),

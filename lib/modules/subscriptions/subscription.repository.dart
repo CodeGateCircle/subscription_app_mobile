@@ -39,6 +39,7 @@ class SubscriptionRepository {
         paymentMethod: subscription.paymentMethod,
         isPaused: !isPaused,
         image: subscription.imageUrl,
+        imageUrl: null,
         remarks: subscription.remarks,
       ),
     );
