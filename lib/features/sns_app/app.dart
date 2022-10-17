@@ -6,7 +6,6 @@ import 'package:subscription_app_web/main.dart';
 import 'package:subscription_app_web/modules/account/account.repository.dart';
 import 'package:subscription_app_web/modules/account/account.store.dart';
 import 'package:subscription_app_web/screens/signUp/sign_up_screen.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class SnsApp extends ConsumerStatefulWidget {
   const SnsApp({Key? key}) : super(key: key);
@@ -54,7 +53,6 @@ class SnsAppState extends ConsumerState<SnsApp> {
       );
     }
 
-    FlutterNativeSplash.remove();
     return ref.watch(currentUserProvider) == null
         ? const SignUp()
         : const AppBottomNavigationBar();

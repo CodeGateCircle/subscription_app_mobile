@@ -1,4 +1,4 @@
-package com.subscription_app_web
+package com.example.subscription_app_web
 
 import io.flutter.embedding.android.FlutterActivity
 
