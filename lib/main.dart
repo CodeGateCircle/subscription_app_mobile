@@ -5,7 +5,6 @@ import 'package:logger/logger.dart';
 import 'package:subscription_app_web/config/app_theme.dart';
 import 'package:subscription_app_web/features/sns_app/app.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 final localeProvider = StateProvider<Locale>(
   (ref) => AppLocalizations.supportedLocales.first,
@@ -14,8 +13,6 @@ final localeProvider = StateProvider<Locale>(
 var logger = Logger();
 void main() async {
   await dotenv.load(fileName: ".env");
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const ProviderScope(child: MyApp()));
 }
 
