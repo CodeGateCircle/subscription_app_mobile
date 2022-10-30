@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.subscription_app_web">
+    package="com.subscription_app">
    <application
         android:label="subscription_app_web"
         android:name="${applicationName}"
