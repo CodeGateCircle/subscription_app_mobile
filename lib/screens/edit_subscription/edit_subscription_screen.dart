@@ -32,7 +32,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
   late DateTime firstPaymentDate;
   late bool isPaused;
   late XFile? iconImage;
-  late String? defaultImageUrl;
+  late String? imageUrl;
   late String? imageData;
   late String? remarks;
 
@@ -46,7 +46,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
       firstPaymentDate = widget.subscription.firstPaymentDate;
       isPaused = widget.subscription.isPaused;
       iconImage = null;
-      defaultImageUrl = widget.subscription.imageUrl ?? "";
+      imageUrl = widget.subscription.imageUrl ?? "";
       imageData = null;
       remarks = widget.subscription.remarks;
     });
@@ -186,7 +186,7 @@ class EditSubscriptionState extends ConsumerState<EditSubscription> {
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
           imageData: imageData,
-          defaultImageUrl: defaultImageUrl,
+          imageUrl: imageUrl,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,

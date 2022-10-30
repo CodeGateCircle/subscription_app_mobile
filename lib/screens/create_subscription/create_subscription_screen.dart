@@ -16,12 +16,12 @@ class CreateSubscription extends ConsumerStatefulWidget {
     Key? key,
     this.initializeName,
     this.initializePrice,
-    // this.defaultImageUrl,
+    this.initialImageUrl,
   }) : super(key: key);
 
   final String? initializeName;
   final double? initializePrice;
-  // final String? defaultImageUrl;
+  final String? initialImageUrl;
 
   @override
   CreateSubscriptionState createState() => CreateSubscriptionState();
@@ -35,6 +35,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
   DateTime firstPaymentDate = DateTime.now();
   XFile? iconImage;
   String? imageData;
+  String? imageUrl;
   String? remarks;
   Subscription? subscription;
 
@@ -44,11 +45,10 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
 
     if (widget.initializeName == null) return;
     if (widget.initializePrice == null) return;
-    // if (widget.defaultImageUrl == null) return;
 
     name = widget.initializeName!;
     price = widget.initializePrice!;
-    // defaultImageUrl = widget.defaultImageUrl!;
+    imageUrl = widget.initialImageUrl!;
   }
 
   Future _createSubscription() async {
@@ -62,6 +62,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
         firstPaymentDate: firstPaymentDate,
         paymentMethod: paymentMethod,
         isPaused: false,
+        imageUrl: imageUrl,
         image: imageData,
         remarks: remarks,
       ),
@@ -158,7 +159,7 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
           firstPaymentDate: firstPaymentDate,
           iconImage: iconImage,
           imageData: imageData,
-          defaultImageUrl: null,
+          imageUrl: imageUrl,
           remarks: remarks,
           setName: setName,
           setPaymentCycle: setPaymentCycle,

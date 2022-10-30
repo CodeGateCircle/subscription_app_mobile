@@ -21,7 +21,7 @@ class SearchResults extends StatelessWidget {
             builder: (context) => CreateSubscription(
               initializeName: result.name,
               initializePrice: result.price,
-              // defaultImageUrl: result.imageUrl,
+              initialImageUrl: result.imageUrl,
             ),
           ),
         );
