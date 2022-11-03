@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236965607437",
+    "project_id": "subscription-app-5900f",
+    "storage_bucket": "subscription-app-5900f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236965607437:android:63a7e2e15ca65863a5bd44",
+        "android_client_info": {
+          "package_name": "com.subscription_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236965607437-1pomtndq5gd2po939isgak71laf0ajtk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX5nldZemL3yOs4Gkd3NuJLtOhLSrs_TE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236965607437-1pomtndq5gd2po939isgak71laf0ajtk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
