@@ -32,20 +32,25 @@ class SearchResults extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SubscriptionIconImage(
-                  iconImageUrl: result.imageUrl,
-                  iconSize: 52,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  result.name,
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-              ],
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SubscriptionIconImage(
+                    iconImageUrl: result.imageUrl,
+                    iconSize: 52,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      result.name,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const Icon(Icons.chevron_right, size: 32),
           ],

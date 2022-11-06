@@ -46,9 +46,11 @@ class CreateSubscriptionState extends ConsumerState<CreateSubscription> {
     if (widget.initializeName == null) return;
     if (widget.initializePrice == null) return;
 
-    name = widget.initializeName!;
-    price = widget.initializePrice!;
-    imageUrl = widget.initialImageUrl!;
+    setState(() {
+      name = widget.initializeName!;
+      price = widget.initializePrice!;
+      imageUrl = widget.initialImageUrl;
+    });
   }
 
   Future _createSubscription() async {
